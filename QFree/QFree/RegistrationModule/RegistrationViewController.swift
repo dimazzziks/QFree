@@ -11,7 +11,7 @@ protocol RegistrationViewProtocol: class {
     
 }
 
-class RegistrationViewController: BaseViewController, RegistrationViewProtocol {
+class RegistrationViewController: BaseViewController {
     public var presenter: RegistrationPresenterProtocol?
     
     private var titleLabel: UILabel!
@@ -32,4 +32,8 @@ class RegistrationViewController: BaseViewController, RegistrationViewProtocol {
             titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
+}
+
+extension RegistrationViewController: RegistrationViewProtocol {
+    
 }
