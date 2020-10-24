@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		341184F82543891C006D1361 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F72543891C006D1361 /* UIColor+hex.swift */; };
 		3411850225438C1C006D1361 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411850125438C1C006D1361 /* BaseTextField.swift */; };
 		341A00A625448418006F0523 /* AuthValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A00A525448418006F0523 /* AuthValidator.swift */; };
+		3438507B2544C1DA0048B43B /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3438507A2544C1DA0048B43B /* AuthError.swift */; };
 		3442CA0B254392130079B5AB /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */; };
 		3442CA0F254394B40079B5AB /* FormStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA0E254394B40079B5AB /* FormStackView.swift */; };
 		3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA13254398DB0079B5AB /* BaseButton.swift */; };
@@ -52,6 +53,7 @@
 		341184F72543891C006D1361 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		3411850125438C1C006D1361 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		341A00A525448418006F0523 /* AuthValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidator.swift; sourceTree = "<group>"; };
+		3438507A2544C1DA0048B43B /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		3442CA0E254394B40079B5AB /* FormStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStackView.swift; sourceTree = "<group>"; };
 		3442CA13254398DB0079B5AB /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -110,7 +112,7 @@
 				340F1A7925420773000A381D /* AppDelegate.swift */,
 				340F1A7B25420773000A381D /* SceneDelegate.swift */,
 				341184F3254385C0006D1361 /* Brandbook.swift */,
-				341184FC25438BDF006D1361 /* Interface */,
+				341184FC25438BDF006D1361 /* UI */,
 				341184F625438911006D1361 /* Helpers */,
 				344B8E7825447F6100B1A671 /* Auth */,
 				340F1A8225420775000A381D /* Assets.xcassets */,
@@ -137,18 +139,19 @@
 			isa = PBXGroup;
 			children = (
 				341A00A525448418006F0523 /* AuthValidator.swift */,
+				3438507A2544C1DA0048B43B /* AuthError.swift */,
 				341A00A325448400006F0523 /* Extensions */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		341184FC25438BDF006D1361 /* Interface */ = {
+		341184FC25438BDF006D1361 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				3442CA11254398C50079B5AB /* Controllers */,
 				3442CA12254398D00079B5AB /* Views */,
 			);
-			path = Interface;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		341A00A325448400006F0523 /* Extensions */ = {
@@ -206,7 +209,6 @@
 				17239FE9A9A689730F68C06F /* Pods-QFree.debug.xcconfig */,
 				A5B42705DBC48C7900253926 /* Pods-QFree.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -340,6 +342,7 @@
 				340F1AA325420D91000A381D /* BaseViewController.swift in Sources */,
 				341184F4254385C0006D1361 /* Brandbook.swift in Sources */,
 				3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */,
+				3438507B2544C1DA0048B43B /* AuthError.swift in Sources */,
 				341184F82543891C006D1361 /* UIColor+hex.swift in Sources */,
 				344B8E7625447F4600B1A671 /* RegistrationInteractor.swift in Sources */,
 				340F1A7A25420773000A381D /* AppDelegate.swift in Sources */,

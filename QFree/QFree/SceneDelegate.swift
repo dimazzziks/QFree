@@ -16,11 +16,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         FirebaseApp.configure()
         
+        print("CURRENT USER:", Auth.auth().currentUser?.email ?? "nil")
+        
         guard let mainScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: mainScene)
         window?.overrideUserInterfaceStyle = .light
-        window?.rootViewController = BaseNavigationController(rootViewController: EntranceModuleBuilder.build())
+        window?.tintColor = Brandbook.defaultColor
+        window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
+    }
+    
+    private var initialViewController: UIViewController {
+        if Auth.auth().currentUser == nil {
+            return BaseNavigationController(rootViewController: EntranceModuleBuilder.build())
+        } else {
+            // TODO: - Show main menu
+            let currentUserViewController = BaseViewController()
+            let currentUserEmail = Auth.auth().currentUser?.email ?? "nil"
+            let currentUserEmailLabel = UILabel()
+            currentUserEmailLabel.font = Brandbook.font()
+            currentUserEmailLabel.text = currentUserEmail
+            currentUserViewController.view.addSubview(currentUserEmailLabel)
+            currentUserEmailLabel.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                currentUserEmailLabel.centerXAnchor.constraint(equalTo: currentUserViewController.view.centerXAnchor),
+                currentUserEmailLabel.centerYAnchor.constraint(equalTo: currentUserViewController.view.centerYAnchor)
+            ])
+            return currentUserViewController
+        }
+    }
+    
+    // FOR DEBUG
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("SIGN OUT ERROR")
+        }
     }
 }
 

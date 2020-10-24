@@ -8,7 +8,8 @@
 import Foundation
 
 protocol EntrancePresenterProtocol {
-    func checkEmailAndPasswordAndEnter(_ email: String?, _ password: String?)
+    func checkInfoAndEnter(_ email: String?, _ password: String?)
+    func showRegistrationViewController()
 }
 
 class EntrancePresenter {
@@ -24,27 +25,35 @@ class EntrancePresenter {
 }
 
 extension EntrancePresenter: EntrancePresenterProtocol {
-    func checkEmailAndPasswordAndEnter(_ email: String?, _ password: String?) {
+    func checkInfoAndEnter(_ email: String?, _ password: String?) {
         let emailIsValid = interactor.emailIsValid(email)
         let passwordIsValid = interactor.passwordIsValid(password)
         
         guard emailIsValid && passwordIsValid else {
             if !emailIsValid {
+                print("EMAIL IS NOT VALID")
                 view?.showEmailIsNotValid()
             }
             if !passwordIsValid {
+                print("PASSWORD IS NOT VALID")
                 view?.showPasswordIsNotValid()
             }
             return
         }
         
         print("OK!")
-        interactor.signInAccount(email!, password!) { (error) in
-            guard error == nil else {
-                // TODO: - go to main menu
+        interactor.signInAccount(email!, password!) { (authError) in
+            guard authError == nil else {
+                // TODO: - handle error
+                print("ERROR:", authError)
                 return
             }
-            // TODO: - handle error
+            // TODO: - go to main menu
+            print("SHOW MAIN MENU")
         }
+    }
+    
+    func showRegistrationViewController() {
+        self.router.pushCreateAccountViewController()
     }
 }
