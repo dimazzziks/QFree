@@ -17,6 +17,13 @@
 		340F1A9C254209BE000A381D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9B254209BE000A381D /* RegistrationViewController.swift */; };
 		340F1A9F25420AB4000A381D /* RegistrationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9E25420AB4000A381D /* RegistrationModuleBuilder.swift */; };
 		340F1AA325420D91000A381D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1AA225420D91000A381D /* BaseViewController.swift */; };
+		341184F4254385C0006D1361 /* Brandbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F3254385C0006D1361 /* Brandbook.swift */; };
+		341184F82543891C006D1361 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F72543891C006D1361 /* UIColor+hex.swift */; };
+		3411850225438C1C006D1361 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411850125438C1C006D1361 /* BaseTextField.swift */; };
+		3442CA0B254392130079B5AB /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */; };
+		3442CA0F254394B40079B5AB /* FormStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA0E254394B40079B5AB /* FormStackView.swift */; };
+		3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA13254398DB0079B5AB /* BaseButton.swift */; };
+		3442CA1925439CB30079B5AB /* UIView+cornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +39,13 @@
 		340F1A9B254209BE000A381D /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		340F1A9E25420AB4000A381D /* RegistrationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleBuilder.swift; sourceTree = "<group>"; };
 		340F1AA225420D91000A381D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		341184F3254385C0006D1361 /* Brandbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brandbook.swift; sourceTree = "<group>"; };
+		341184F72543891C006D1361 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		3411850125438C1C006D1361 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
+		3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
+		3442CA0E254394B40079B5AB /* FormStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStackView.swift; sourceTree = "<group>"; };
+		3442CA13254398DB0079B5AB /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+cornerRadius.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +80,9 @@
 			children = (
 				340F1A7925420773000A381D /* AppDelegate.swift */,
 				340F1A7B25420773000A381D /* SceneDelegate.swift */,
-				340F1AA225420D91000A381D /* BaseViewController.swift */,
+				341184F3254385C0006D1361 /* Brandbook.swift */,
+				341184FC25438BDF006D1361 /* Interface */,
+				341184F625438911006D1361 /* Helpers */,
 				340F1A8F254208CA000A381D /* RegistrationModule */,
 				340F1A8225420775000A381D /* Assets.xcassets */,
 				340F1A8425420775000A381D /* LaunchScreen.storyboard */,
@@ -85,6 +101,43 @@
 				340F1A9E25420AB4000A381D /* RegistrationModuleBuilder.swift */,
 			);
 			path = RegistrationModule;
+			sourceTree = "<group>";
+		};
+		341184F625438911006D1361 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				341184F72543891C006D1361 /* UIColor+hex.swift */,
+				3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		341184FC25438BDF006D1361 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				3442CA11254398C50079B5AB /* Controllers */,
+				3442CA12254398D00079B5AB /* Views */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		3442CA11254398C50079B5AB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */,
+				340F1AA225420D91000A381D /* BaseViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3442CA12254398D00079B5AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3411850125438C1C006D1361 /* BaseTextField.swift */,
+				3442CA13254398DB0079B5AB /* BaseButton.swift */,
+				3442CA0E254394B40079B5AB /* FormStackView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,9 +212,16 @@
 				340F1A9825420961000A381D /* RegistrationRouter.swift in Sources */,
 				340F1A9F25420AB4000A381D /* RegistrationModuleBuilder.swift in Sources */,
 				340F1A9525420924000A381D /* RegistrationPresenter.swift in Sources */,
+				3442CA0B254392130079B5AB /* BaseNavigationViewController.swift in Sources */,
+				3442CA1925439CB30079B5AB /* UIView+cornerRadius.swift in Sources */,
 				340F1A91254208F0000A381D /* RegistrationInteractor.swift in Sources */,
+				3442CA0F254394B40079B5AB /* FormStackView.swift in Sources */,
+				3411850225438C1C006D1361 /* BaseTextField.swift in Sources */,
 				340F1A9C254209BE000A381D /* RegistrationViewController.swift in Sources */,
 				340F1AA325420D91000A381D /* BaseViewController.swift in Sources */,
+				341184F4254385C0006D1361 /* Brandbook.swift in Sources */,
+				3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */,
+				341184F82543891C006D1361 /* UIColor+hex.swift in Sources */,
 				340F1A7A25420773000A381D /* AppDelegate.swift in Sources */,
 				340F1A7C25420773000A381D /* SceneDelegate.swift in Sources */,
 			);
