@@ -10,7 +10,7 @@ import UIKit
 class EntranceModuleBuilder {
     static func build() -> BaseViewController {
         let view = EntranceViewController()
-        let interactor = EntranceInteractor()
+        let interactor = EntranceInteractor(authValidator: AuthValidator())
         let router = EntranceRouter(view: view)
         let presenter = EntrancePresenter(view: view, interactor: interactor, router: router)
         view.presenter = presenter

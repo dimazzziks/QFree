@@ -1,0 +1,19 @@
+//
+//  RegistrationRouter.swift
+//  QFree
+//
+//  Created by Maxim Sidorov on 24.10.2020.
+//
+
+import Foundation
+
+protocol RegistrationRouterProtocol {
+    var viewController: RegistrationViewProtocol { get set }
+}
+
+class RegistrationRouter: RegistrationRouterProtocol {
+    var viewController: RegistrationViewProtocol
+    init(view: RegistrationViewProtocol) {
+        self.viewController = view
+    }
+}

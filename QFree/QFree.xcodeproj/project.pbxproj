@@ -20,10 +20,16 @@
 		341184F4254385C0006D1361 /* Brandbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F3254385C0006D1361 /* Brandbook.swift */; };
 		341184F82543891C006D1361 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F72543891C006D1361 /* UIColor+hex.swift */; };
 		3411850225438C1C006D1361 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411850125438C1C006D1361 /* BaseTextField.swift */; };
+		341A00A625448418006F0523 /* AuthValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A00A525448418006F0523 /* AuthValidator.swift */; };
 		3442CA0B254392130079B5AB /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */; };
 		3442CA0F254394B40079B5AB /* FormStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA0E254394B40079B5AB /* FormStackView.swift */; };
 		3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA13254398DB0079B5AB /* BaseButton.swift */; };
 		3442CA1925439CB30079B5AB /* UIView+cornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */; };
+		344B8E7625447F4600B1A671 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E7525447F4600B1A671 /* RegistrationInteractor.swift */; };
+		344B8E7B25447FEF00B1A671 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E7A25447FEF00B1A671 /* RegistrationPresenter.swift */; };
+		344B8E7E2544803C00B1A671 /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E7D2544803C00B1A671 /* RegistrationRouter.swift */; };
+		344B8E812544806E00B1A671 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E802544806E00B1A671 /* RegistrationViewController.swift */; };
+		344B8E84254480CD00B1A671 /* RegistrationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E83254480CD00B1A671 /* RegistrationModuleBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,10 +48,16 @@
 		341184F3254385C0006D1361 /* Brandbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brandbook.swift; sourceTree = "<group>"; };
 		341184F72543891C006D1361 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		3411850125438C1C006D1361 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
+		341A00A525448418006F0523 /* AuthValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidator.swift; sourceTree = "<group>"; };
 		3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		3442CA0E254394B40079B5AB /* FormStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStackView.swift; sourceTree = "<group>"; };
 		3442CA13254398DB0079B5AB /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+cornerRadius.swift"; sourceTree = "<group>"; };
+		344B8E7525447F4600B1A671 /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
+		344B8E7A25447FEF00B1A671 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		344B8E7D2544803C00B1A671 /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
+		344B8E802544806E00B1A671 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		344B8E83254480CD00B1A671 /* RegistrationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +95,7 @@
 				341184F3254385C0006D1361 /* Brandbook.swift */,
 				341184FC25438BDF006D1361 /* Interface */,
 				341184F625438911006D1361 /* Helpers */,
-				340F1A8F254208CA000A381D /* EntranceModule */,
+				344B8E7825447F6100B1A671 /* Auth */,
 				340F1A8225420775000A381D /* Assets.xcassets */,
 				340F1A8425420775000A381D /* LaunchScreen.storyboard */,
 				340F1A8725420775000A381D /* Info.plist */,
@@ -106,8 +118,8 @@
 		341184F625438911006D1361 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				341184F72543891C006D1361 /* UIColor+hex.swift */,
-				3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */,
+				341A00A525448418006F0523 /* AuthValidator.swift */,
+				341A00A325448400006F0523 /* Extensions */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -119,6 +131,15 @@
 				3442CA12254398D00079B5AB /* Views */,
 			);
 			path = Interface;
+			sourceTree = "<group>";
+		};
+		341A00A325448400006F0523 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				341184F72543891C006D1361 /* UIColor+hex.swift */,
+				3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		3442CA11254398C50079B5AB /* Controllers */ = {
@@ -138,6 +159,27 @@
 				3442CA0E254394B40079B5AB /* FormStackView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		344B8E7425447F1E00B1A671 /* RegistrationModule */ = {
+			isa = PBXGroup;
+			children = (
+				344B8E7525447F4600B1A671 /* RegistrationInteractor.swift */,
+				344B8E7A25447FEF00B1A671 /* RegistrationPresenter.swift */,
+				344B8E7D2544803C00B1A671 /* RegistrationRouter.swift */,
+				344B8E802544806E00B1A671 /* RegistrationViewController.swift */,
+				344B8E83254480CD00B1A671 /* RegistrationModuleBuilder.swift */,
+			);
+			path = RegistrationModule;
+			sourceTree = "<group>";
+		};
+		344B8E7825447F6100B1A671 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				340F1A8F254208CA000A381D /* EntranceModule */,
+				344B8E7425447F1E00B1A671 /* RegistrationModule */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,19 +253,25 @@
 			files = (
 				340F1A9825420961000A381D /* EntranceRouter.swift in Sources */,
 				340F1A9F25420AB4000A381D /* EntranceModuleBuilder.swift in Sources */,
+				344B8E812544806E00B1A671 /* RegistrationViewController.swift in Sources */,
 				340F1A9525420924000A381D /* EntrancePresenter.swift in Sources */,
 				3442CA0B254392130079B5AB /* BaseNavigationViewController.swift in Sources */,
 				3442CA1925439CB30079B5AB /* UIView+cornerRadius.swift in Sources */,
+				344B8E7E2544803C00B1A671 /* RegistrationRouter.swift in Sources */,
+				344B8E7B25447FEF00B1A671 /* RegistrationPresenter.swift in Sources */,
 				340F1A91254208F0000A381D /* EntranceInteractor.swift in Sources */,
 				3442CA0F254394B40079B5AB /* FormStackView.swift in Sources */,
+				344B8E84254480CD00B1A671 /* RegistrationModuleBuilder.swift in Sources */,
 				3411850225438C1C006D1361 /* BaseTextField.swift in Sources */,
 				340F1A9C254209BE000A381D /* EntranceViewController.swift in Sources */,
 				340F1AA325420D91000A381D /* BaseViewController.swift in Sources */,
 				341184F4254385C0006D1361 /* Brandbook.swift in Sources */,
 				3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */,
 				341184F82543891C006D1361 /* UIColor+hex.swift in Sources */,
+				344B8E7625447F4600B1A671 /* RegistrationInteractor.swift in Sources */,
 				340F1A7A25420773000A381D /* AppDelegate.swift in Sources */,
 				340F1A7C25420773000A381D /* SceneDelegate.swift in Sources */,
+				341A00A625448418006F0523 /* AuthValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

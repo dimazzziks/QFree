@@ -14,21 +14,20 @@ protocol EntranceInteractorProtocol {
 }
 
 
-class EntranceInteractor { }
+class EntranceInteractor {
+    let authValidator: AuthValidatorProtocol!
+    init(authValidator: AuthValidatorProtocol) {
+        self.authValidator = authValidator
+    }
+}
 
 extension EntranceInteractor: EntranceInteractorProtocol {
     func emailIsValid(_ email: String?) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPredicate.evaluate(with: email)
+        return authValidator.emailIsValid(email)
     }
     
     func passwordIsValid(_ password: String?) -> Bool {
-        // TODO: - passport validation
-        guard let password = password else {
-            return false
-        }
-        return !password.isEmpty
+        return authValidator.passwordIsValid(password)
     }
     
     func signInAccount(_ email: String, _ password: String, completion: @escaping(_ error: Error?) -> ()) {
