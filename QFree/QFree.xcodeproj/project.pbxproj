@@ -11,11 +11,11 @@
 		340F1A7C25420773000A381D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A7B25420773000A381D /* SceneDelegate.swift */; };
 		340F1A8325420775000A381D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 340F1A8225420775000A381D /* Assets.xcassets */; };
 		340F1A8625420775000A381D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 340F1A8425420775000A381D /* LaunchScreen.storyboard */; };
-		340F1A91254208F0000A381D /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A90254208F0000A381D /* RegistrationInteractor.swift */; };
-		340F1A9525420924000A381D /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9425420924000A381D /* RegistrationPresenter.swift */; };
-		340F1A9825420961000A381D /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9725420961000A381D /* RegistrationRouter.swift */; };
-		340F1A9C254209BE000A381D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9B254209BE000A381D /* RegistrationViewController.swift */; };
-		340F1A9F25420AB4000A381D /* RegistrationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9E25420AB4000A381D /* RegistrationModuleBuilder.swift */; };
+		340F1A91254208F0000A381D /* EntranceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A90254208F0000A381D /* EntranceInteractor.swift */; };
+		340F1A9525420924000A381D /* EntrancePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9425420924000A381D /* EntrancePresenter.swift */; };
+		340F1A9825420961000A381D /* EntranceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9725420961000A381D /* EntranceRouter.swift */; };
+		340F1A9C254209BE000A381D /* EntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9B254209BE000A381D /* EntranceViewController.swift */; };
+		340F1A9F25420AB4000A381D /* EntranceModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1A9E25420AB4000A381D /* EntranceModuleBuilder.swift */; };
 		340F1AA325420D91000A381D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340F1AA225420D91000A381D /* BaseViewController.swift */; };
 		341184F4254385C0006D1361 /* Brandbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F3254385C0006D1361 /* Brandbook.swift */; };
 		341184F82543891C006D1361 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F72543891C006D1361 /* UIColor+hex.swift */; };
@@ -33,11 +33,11 @@
 		340F1A8225420775000A381D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		340F1A8525420775000A381D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		340F1A8725420775000A381D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		340F1A90254208F0000A381D /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
-		340F1A9425420924000A381D /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
-		340F1A9725420961000A381D /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
-		340F1A9B254209BE000A381D /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		340F1A9E25420AB4000A381D /* RegistrationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleBuilder.swift; sourceTree = "<group>"; };
+		340F1A90254208F0000A381D /* EntranceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceInteractor.swift; sourceTree = "<group>"; };
+		340F1A9425420924000A381D /* EntrancePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrancePresenter.swift; sourceTree = "<group>"; };
+		340F1A9725420961000A381D /* EntranceRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceRouter.swift; sourceTree = "<group>"; };
+		340F1A9B254209BE000A381D /* EntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceViewController.swift; sourceTree = "<group>"; };
+		340F1A9E25420AB4000A381D /* EntranceModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceModuleBuilder.swift; sourceTree = "<group>"; };
 		340F1AA225420D91000A381D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		341184F3254385C0006D1361 /* Brandbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brandbook.swift; sourceTree = "<group>"; };
 		341184F72543891C006D1361 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 				341184F3254385C0006D1361 /* Brandbook.swift */,
 				341184FC25438BDF006D1361 /* Interface */,
 				341184F625438911006D1361 /* Helpers */,
-				340F1A8F254208CA000A381D /* RegistrationModule */,
+				340F1A8F254208CA000A381D /* EntranceModule */,
 				340F1A8225420775000A381D /* Assets.xcassets */,
 				340F1A8425420775000A381D /* LaunchScreen.storyboard */,
 				340F1A8725420775000A381D /* Info.plist */,
@@ -91,16 +91,16 @@
 			path = QFree;
 			sourceTree = "<group>";
 		};
-		340F1A8F254208CA000A381D /* RegistrationModule */ = {
+		340F1A8F254208CA000A381D /* EntranceModule */ = {
 			isa = PBXGroup;
 			children = (
-				340F1A90254208F0000A381D /* RegistrationInteractor.swift */,
-				340F1A9425420924000A381D /* RegistrationPresenter.swift */,
-				340F1A9725420961000A381D /* RegistrationRouter.swift */,
-				340F1A9B254209BE000A381D /* RegistrationViewController.swift */,
-				340F1A9E25420AB4000A381D /* RegistrationModuleBuilder.swift */,
+				340F1A90254208F0000A381D /* EntranceInteractor.swift */,
+				340F1A9425420924000A381D /* EntrancePresenter.swift */,
+				340F1A9725420961000A381D /* EntranceRouter.swift */,
+				340F1A9B254209BE000A381D /* EntranceViewController.swift */,
+				340F1A9E25420AB4000A381D /* EntranceModuleBuilder.swift */,
 			);
-			path = RegistrationModule;
+			path = EntranceModule;
 			sourceTree = "<group>";
 		};
 		341184F625438911006D1361 /* Helpers */ = {
@@ -209,15 +209,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				340F1A9825420961000A381D /* RegistrationRouter.swift in Sources */,
-				340F1A9F25420AB4000A381D /* RegistrationModuleBuilder.swift in Sources */,
-				340F1A9525420924000A381D /* RegistrationPresenter.swift in Sources */,
+				340F1A9825420961000A381D /* EntranceRouter.swift in Sources */,
+				340F1A9F25420AB4000A381D /* EntranceModuleBuilder.swift in Sources */,
+				340F1A9525420924000A381D /* EntrancePresenter.swift in Sources */,
 				3442CA0B254392130079B5AB /* BaseNavigationViewController.swift in Sources */,
 				3442CA1925439CB30079B5AB /* UIView+cornerRadius.swift in Sources */,
-				340F1A91254208F0000A381D /* RegistrationInteractor.swift in Sources */,
+				340F1A91254208F0000A381D /* EntranceInteractor.swift in Sources */,
 				3442CA0F254394B40079B5AB /* FormStackView.swift in Sources */,
 				3411850225438C1C006D1361 /* BaseTextField.swift in Sources */,
-				340F1A9C254209BE000A381D /* RegistrationViewController.swift in Sources */,
+				340F1A9C254209BE000A381D /* EntranceViewController.swift in Sources */,
 				340F1AA325420D91000A381D /* BaseViewController.swift in Sources */,
 				341184F4254385C0006D1361 /* Brandbook.swift in Sources */,
 				3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */,

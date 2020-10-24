@@ -1,5 +1,5 @@
 //
-//  RegistrationViewController.swift
+//  EntranceViewController.swift
 //  QFree
 //
 //  Created by Maxim Sidorov on 22.10.2020.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol RegistrationViewProtocol: class {
+protocol EntranceViewProtocol: class {
     
 }
 
-class RegistrationViewController: BaseViewController {
-    public var presenter: RegistrationPresenterProtocol?
+class EntranceViewController: BaseViewController {
+    public var presenter: EntrancePresenterProtocol?
     
     private var stackView: FormStackView!
     private var emailTextfield: UITextField!
@@ -106,6 +106,6 @@ class RegistrationViewController: BaseViewController {
 }
 
 
-extension RegistrationViewController: RegistrationViewProtocol {
+extension EntranceViewController: EntranceViewProtocol {
     
 }
