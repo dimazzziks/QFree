@@ -16,6 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         FirebaseApp.configure()
         
+//        FOR DEBUG
+//        signOut()
+        
         print("CURRENT USER:", Auth.auth().currentUser?.email ?? "nil")
         
         guard let mainScene = (scene as? UIWindowScene) else { return }
@@ -46,7 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
-    // FOR DEBUG
+//    FOR DEBUG
     private func signOut() {
         do {
             try Auth.auth().signOut()
