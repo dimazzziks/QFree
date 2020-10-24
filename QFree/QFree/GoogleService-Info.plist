@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1085370503175-rn5v6voo6754a6qot9anv9fthsmc618a.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1085370503175-rn5v6voo6754a6qot9anv9fthsmc618a</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBirvQbbFrzE5DROIicN7BFjQgTbdrUYoY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1085370503175</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.MS.QFree</string>
+	<key>PROJECT_ID</key>
+	<string>qfree-87569</string>
+	<key>STORAGE_BUCKET</key>
+	<string>qfree-87569.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1085370503175:ios:82782b0efdd536e9701aa2</string>
+	<key>DATABASE_URL</key>
+	<string>https://qfree-87569.firebaseio.com</string>
+</dict>
+</plist>
