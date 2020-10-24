@@ -19,7 +19,7 @@ extension Brandbook {
         case thin = "Thin"
         case regular = "Regular"
         case bold = "Bold"
-        case medium  = "Medium"
+        case medium = "Medium"
         case heavy = "Heavy"
     }
     

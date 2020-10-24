@@ -8,15 +8,16 @@
 import UIKit
 
 protocol EntranceViewProtocol: class {
-    
+    func showPasswordIsNotValid()
+    func showEmailIsNotValid()
 }
 
 class EntranceViewController: BaseViewController {
     public var presenter: EntrancePresenterProtocol?
     
     private var stackView: FormStackView!
-    private var emailTextfield: UITextField!
-    private var passwordTextfield: UITextField!
+    private var emailTextfield: BaseTextField!
+    private var passwordTextfield: BaseTextField!
     private var enterButton: BaseButton!
     private var createAccountButton: BaseButton!
     
@@ -33,36 +34,35 @@ class EntranceViewController: BaseViewController {
     }
     
     private func setupEnterForm() {
+        
+        let elementHeight: CGFloat = 48
+        
         emailTextfield = BaseTextField()
         emailTextfield.keyboardType = .emailAddress
         emailTextfield.placeholder = "Почта"
         emailTextfield.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emailTextfield.heightAnchor.constraint(equalToConstant: 48)
+            emailTextfield.heightAnchor.constraint(equalToConstant: elementHeight)
         ])
         
         passwordTextfield = BaseTextField()
         passwordTextfield.isSecureTextEntry = true
         passwordTextfield.placeholder = "Пароль"
         passwordTextfield.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            passwordTextfield.heightAnchor.constraint(equalToConstant: 48)
-        ])
+        passwordTextfield.heightAnchor.constraint(equalToConstant: elementHeight).isActive = true
         
         enterButton = BaseButton()
+        enterButton.addTarget(self, action: #selector(enterButtonAction(_:)), for: .touchUpInside)
         enterButton.setTitle("Войти", for: .normal)
         enterButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            enterButton.heightAnchor.constraint(equalToConstant: 48)
-        ])
+        enterButton.heightAnchor.constraint(equalToConstant: elementHeight).isActive = true
         
         createAccountButton = BaseButton()
+        createAccountButton.addTarget(self, action: #selector(createAccountButtonAction(_:)), for: .touchUpInside)
         createAccountButton.setTitle("Создать аккаунт", for: .normal)
         createAccountButton.filled = false
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            createAccountButton.heightAnchor.constraint(equalToConstant: 48)
-        ])
+        createAccountButton.heightAnchor.constraint(equalToConstant: elementHeight).isActive = true
         
         stackView = FormStackView()
         stackView.spacing = 16
@@ -82,7 +82,20 @@ class EntranceViewController: BaseViewController {
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
     }
+}
+
+extension EntranceViewController{
+    @objc func enterButtonAction(_ sender: BaseButton) {
+        print("Enter")
+        presenter?.checkEmailAndPasswordAndEnter(emailTextfield.text, passwordTextfield.text)
+    }
     
+    @objc func createAccountButtonAction(_ sender: BaseButton) {
+        print("Create account")
+    }
+}
+
+extension EntranceViewController {
     override func keyboardWillAppear() {
         stackViewCenterYConstraint.isActive = false
         self.stackViewCenterYConstraint = self.stackView.centerYAnchor.constraint(greaterThanOrEqualTo: self.view.centerYAnchor, constant: -75)
@@ -107,5 +120,11 @@ class EntranceViewController: BaseViewController {
 
 
 extension EntranceViewController: EntranceViewProtocol {
+    func showEmailIsNotValid() {
+        print(#function)
+    }
     
+    func showPasswordIsNotValid() {
+        print(#function)
+    }
 }
