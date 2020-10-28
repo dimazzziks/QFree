@@ -34,18 +34,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return BaseNavigationController(rootViewController: EntranceModuleBuilder.build())
         } else {
             // TODO: - Show main menu
-            let currentUserViewController = BaseViewController()
-            let currentUserEmail = Auth.auth().currentUser?.email ?? "nil"
-            let currentUserEmailLabel = UILabel()
-            currentUserEmailLabel.font = Brandbook.font()
-            currentUserEmailLabel.text = currentUserEmail
-            currentUserViewController.view.addSubview(currentUserEmailLabel)
-            currentUserEmailLabel.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                currentUserEmailLabel.centerXAnchor.constraint(equalTo: currentUserViewController.view.centerXAnchor),
-                currentUserEmailLabel.centerYAnchor.constraint(equalTo: currentUserViewController.view.centerYAnchor)
-            ])
-            return currentUserViewController
+//            let currentUserViewController = BaseViewController()
+            let tabBarController = TabBarController()
+//            let currentUserEmail = Auth.auth().currentUser?.email ?? "nil"
+//            let currentUserEmailLabel = UILabel()
+//            currentUserEmailLabel.font = Brandbook.font()
+//            currentUserEmailLabel.text = currentUserEmail
+//            currentUserViewController.view.addSubview(currentUserEmailLabel)
+//            currentUserEmailLabel.translatesAutoresizingMaskIntoConstraints = false
+//            NSLayoutConstraint.activate([
+//                currentUserEmailLabel.centerXAnchor.constraint(equalTo: currentUserViewController.view.centerXAnchor),
+//                currentUserEmailLabel.centerYAnchor.constraint(equalTo: currentUserViewController.view.centerYAnchor)
+//            ])
+            return tabBarController
         }
     }
     
