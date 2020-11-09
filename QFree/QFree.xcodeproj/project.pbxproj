@@ -62,6 +62,11 @@
 		B78229052548EADE0052A546 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78229002548EADE0052A546 /* SearchInteractor.swift */; };
 		B78229062548EADE0052A546 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78229012548EADE0052A546 /* SearchVC.swift */; };
 		C492985053D3D3655E7D980E /* Pods_QFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4276A4CA41B108E8576702E9 /* Pods_QFree.framework */; };
+		CE6227762559769200DC01AB /* EmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6227752559769200DC01AB /* EmailConfirmationViewController.swift */; };
+		CE6227792559835000DC01AB /* EmailConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6227782559835000DC01AB /* EmailConfirmationPresenter.swift */; };
+		CE62277C25598E3B00DC01AB /* EmailConfirmationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62277B25598E3B00DC01AB /* EmailConfirmationModuleBuilder.swift */; };
+		CE62277F25598EA500DC01AB /* EmailConfirmationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62277E25598EA500DC01AB /* EmailConfirmationInteractor.swift */; };
+		CE62278225598EBF00DC01AB /* EmailConfirmationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62278125598EBF00DC01AB /* EmailConfirmationRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +129,11 @@
 		B78228FF2548EADE0052A546 /* SearchModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModuleBuilder.swift; sourceTree = "<group>"; };
 		B78229002548EADE0052A546 /* SearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		B78229012548EADE0052A546 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		CE6227752559769200DC01AB /* EmailConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationViewController.swift; sourceTree = "<group>"; };
+		CE6227782559835000DC01AB /* EmailConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationPresenter.swift; sourceTree = "<group>"; };
+		CE62277B25598E3B00DC01AB /* EmailConfirmationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationModuleBuilder.swift; sourceTree = "<group>"; };
+		CE62277E25598EA500DC01AB /* EmailConfirmationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationInteractor.swift; sourceTree = "<group>"; };
+		CE62278125598EBF00DC01AB /* EmailConfirmationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +266,7 @@
 		344B8E7825447F6100B1A671 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				CE6227732559752400DC01AB /* EmailConfirmationModule */,
 				340F1A8F254208CA000A381D /* EntranceModule */,
 				344B8E7425447F1E00B1A671 /* RegistrationModule */,
 			);
@@ -345,6 +356,18 @@
 				B78229012548EADE0052A546 /* SearchVC.swift */,
 			);
 			path = SearchModule;
+			sourceTree = "<group>";
+		};
+		CE6227732559752400DC01AB /* EmailConfirmationModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE6227752559769200DC01AB /* EmailConfirmationViewController.swift */,
+				CE6227782559835000DC01AB /* EmailConfirmationPresenter.swift */,
+				CE62277B25598E3B00DC01AB /* EmailConfirmationModuleBuilder.swift */,
+				CE62277E25598EA500DC01AB /* EmailConfirmationInteractor.swift */,
+				CE62278125598EBF00DC01AB /* EmailConfirmationRouter.swift */,
+			);
+			path = EmailConfirmationModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,6 +488,7 @@
 				B78229022548EADE0052A546 /* SearchRouter.swift in Sources */,
 				340F1A9F25420AB4000A381D /* EntranceModuleBuilder.swift in Sources */,
 				B78228E92548EAC10052A546 /* ProfileVC.swift in Sources */,
+				CE62277F25598EA500DC01AB /* EmailConfirmationInteractor.swift in Sources */,
 				B78228E62548EAC10052A546 /* ProfileInteractor.swift in Sources */,
 				B78228D22548EA9E0052A546 /* BasketPresenter.swift in Sources */,
 				344B8E812544806E00B1A671 /* RegistrationViewController.swift in Sources */,
@@ -486,6 +510,7 @@
 				344B8E7E2544803C00B1A671 /* RegistrationRouter.swift in Sources */,
 				B78228FA2548EAD10052A546 /* RestaurantModel.swift in Sources */,
 				B78228DC2548EAAB0052A546 /* OrderRouter.swift in Sources */,
+				CE62278225598EBF00DC01AB /* EmailConfirmationRouter.swift in Sources */,
 				344B8E7B25447FEF00B1A671 /* RegistrationPresenter.swift in Sources */,
 				B78228F52548EAD10052A546 /* CategoryCell.swift in Sources */,
 				340F1A91254208F0000A381D /* EntranceInteractor.swift in Sources */,
@@ -503,15 +528,18 @@
 				3438507B2544C1DA0048B43B /* AuthError.swift in Sources */,
 				B78228FB2548EAD10052A546 /* RestaurantRouter.swift in Sources */,
 				B78228EA2548EAC10052A546 /* ProfilePresenter.swift in Sources */,
+				CE6227792559835000DC01AB /* EmailConfirmationPresenter.swift in Sources */,
 				341184F82543891C006D1361 /* UIColor+hex.swift in Sources */,
 				344B8E7625447F4600B1A671 /* RegistrationInteractor.swift in Sources */,
 				340F1A7A25420773000A381D /* AppDelegate.swift in Sources */,
 				B78228F82548EAD10052A546 /* RestaurantPresenter.swift in Sources */,
 				B78228DE2548EAAB0052A546 /* OrderModuleBuilder.swift in Sources */,
 				340F1A7C25420773000A381D /* SceneDelegate.swift in Sources */,
+				CE6227762559769200DC01AB /* EmailConfirmationViewController.swift in Sources */,
 				B78228D12548EA9E0052A546 /* BasketModuleBuilder.swift in Sources */,
 				341A00A625448418006F0523 /* AuthValidator.swift in Sources */,
 				B78228F72548EAD10052A546 /* RestaurantInteractor.swift in Sources */,
+				CE62277C25598E3B00DC01AB /* EmailConfirmationModuleBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

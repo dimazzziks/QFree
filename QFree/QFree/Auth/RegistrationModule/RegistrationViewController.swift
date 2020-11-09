@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RegistrationViewProtocol: class {
-
+    func pushEmailConfirmationController()
 }
 
 class RegistrationViewController: BaseViewController {
@@ -114,5 +114,9 @@ extension RegistrationViewController {
 }
 
 extension RegistrationViewController: RegistrationViewProtocol {
+    
+    func pushEmailConfirmationController(){
+        navigationController?.pushViewController(EmailConfirmationModuleBuilder.build(), animated: true)
+    }
     
 }

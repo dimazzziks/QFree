@@ -16,4 +16,5 @@ class RegistrationModuleBuilder {
         view.presenter = presenter
         return view
     }
+    
 }
