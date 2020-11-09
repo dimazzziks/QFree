@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol EntrancePresenterProtocol {
     func checkInfoAndEnter(_ email: String?, _ password: String?)
@@ -48,7 +49,7 @@ extension EntrancePresenter: EntrancePresenterProtocol {
                 print("ERROR:", authError)
                 return
             }
-            // TODO: - go to main menu
+            UINavigationController().pushViewController(TabBarController(), animated: true)
             print("SHOW MAIN MENU")
         }
     }

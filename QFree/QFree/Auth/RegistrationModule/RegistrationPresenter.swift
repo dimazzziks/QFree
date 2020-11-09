@@ -48,7 +48,8 @@ extension RegistrationPresenter: RegistrationPresenterProtocol {
                 return
             }
             // TODO: - go to main menu
-            print("SHOW MAIN MENU")
+            //print("SHOW MAIN MENU")
+            self.router.pushEmailConfirmationController()
         }
     }
 }
