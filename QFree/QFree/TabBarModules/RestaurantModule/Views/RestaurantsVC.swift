@@ -136,8 +136,14 @@ extension RestaurantsVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == restaurantsCollectionView {
-            print(restaurants[indexPath.row].name)
+            pushMenuVC(name: restaurants[indexPath.row].name)
         }
+    }
+    
+    func pushMenuVC(name: String) {
+        let menuVC = RestaurantMenuTableViewController()
+        menuVC.title = name
+        self.navigationController?.pushViewController(menuVC, animated: true)
     }
 
 }
