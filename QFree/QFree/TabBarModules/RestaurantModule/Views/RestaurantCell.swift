@@ -20,7 +20,7 @@ class RestaurantCell: UICollectionViewCell {
         
         setupViews()
         
-        self.layer.cornerRadius = 25
+        self.layer.cornerRadius = 20
         self.clipsToBounds = true
         
     }
@@ -49,7 +49,7 @@ extension RestaurantCell {
         blurEffectView.frame = CGRect(x: 0, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/4)
         
         name.textColor = .label
-        name.font = UIFont(name: "Avenir Next", size: 25)
+        name.font = Brandbook.font(size: 25, weight: .regular)
         
     }
 }

@@ -111,11 +111,7 @@ extension RestaurantsVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension RestaurantsVC: UICollectionViewDelegate, UICollectionViewDataSource {
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == restaurantsCollectionView {
             return restaurants.count
@@ -136,6 +132,12 @@ extension RestaurantsVC: UICollectionViewDelegate, UICollectionViewDataSource {
             return cell
         }
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == restaurantsCollectionView {
+            print(restaurants[indexPath.row].name)
+        }
     }
 
 }

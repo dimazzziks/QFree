@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+protocol RestaurantInteractorProtocol {
+    
+}
+
+class RestaurantInteractor {
+    
+}
+
+extension RestaurantInteractor: RestaurantInteractorProtocol {
+    
+}

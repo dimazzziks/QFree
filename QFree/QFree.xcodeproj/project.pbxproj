@@ -178,16 +178,11 @@
 			isa = PBXGroup;
 			children = (
 				B78228C22548EA250052A546 /* TabBarModules */,
-				340F1A7925420773000A381D /* AppDelegate.swift */,
-				340F1A7B25420773000A381D /* SceneDelegate.swift */,
-				341184F3254385C0006D1361 /* Brandbook.swift */,
+				B708653F255A0B6C00665E2C /* Supporting Files */,
 				341184FC25438BDF006D1361 /* UI */,
 				341184F625438911006D1361 /* Helpers */,
 				344B8E7825447F6100B1A671 /* Auth */,
-				340F1A8225420775000A381D /* Assets.xcassets */,
-				340F1A8425420775000A381D /* LaunchScreen.storyboard */,
 				340F1A8725420775000A381D /* Info.plist */,
-				345522D52544B02800495E5F /* GoogleService-Info.plist */,
 			);
 			path = QFree;
 			sourceTree = "<group>";
@@ -282,6 +277,29 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B708653D255A07B300665E2C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B78228ED2548EAD00052A546 /* CategoryCell.swift */,
+				B78228F12548EAD10052A546 /* RestaurantCell.swift */,
+				B78228EE2548EAD00052A546 /* RestaurantsVC.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B708653F255A0B6C00665E2C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				340F1A7925420773000A381D /* AppDelegate.swift */,
+				340F1A7B25420773000A381D /* SceneDelegate.swift */,
+				341184F3254385C0006D1361 /* Brandbook.swift */,
+				340F1A8225420775000A381D /* Assets.xcassets */,
+				340F1A8425420775000A381D /* LaunchScreen.storyboard */,
+				345522D52544B02800495E5F /* GoogleService-Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		B78228C22548EA250052A546 /* TabBarModules */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,14 +352,12 @@
 		B78228C92548EA800052A546 /* RestaurantModule */ = {
 			isa = PBXGroup;
 			children = (
-				B78228ED2548EAD00052A546 /* CategoryCell.swift */,
-				B78228F12548EAD10052A546 /* RestaurantCell.swift */,
+				B708653D255A07B300665E2C /* Views */,
 				B78228EF2548EAD00052A546 /* RestaurantInteractor.swift */,
 				B78228F22548EAD10052A546 /* RestaurantModel.swift */,
 				B78228EC2548EAD00052A546 /* RestaurantModuleBuilder.swift */,
 				B78228F02548EAD10052A546 /* RestaurantPresenter.swift */,
 				B78228F32548EAD10052A546 /* RestaurantRouter.swift */,
-				B78228EE2548EAD00052A546 /* RestaurantsVC.swift */,
 			);
 			path = RestaurantModule;
 			sourceTree = "<group>";

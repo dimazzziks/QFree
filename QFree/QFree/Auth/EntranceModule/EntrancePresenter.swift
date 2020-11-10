@@ -49,7 +49,7 @@ extension EntrancePresenter: EntrancePresenterProtocol {
                 print("ERROR:", authError)
                 return
             }
-            UINavigationController().pushViewController(TabBarController(), animated: true)
+            // TODO: Go to Tab Bar
             print("SHOW MAIN MENU")
         }
     }

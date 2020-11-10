@@ -17,8 +17,7 @@ class TabBarController: UITabBarController {
         let basketVC = UINavigationController(rootViewController: BasketVC())
         let searchVC = UINavigationController(rootViewController: SearchVC())
         let profileVC = UINavigationController(rootViewController: ProfileVC())
-        
-        //restaurantVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemIndigo]
+
         restaurantVC.title = "Рестораны"
         ordersVC.title = "Заказы"
         basketVC.title = "Корзина"
@@ -26,7 +25,7 @@ class TabBarController: UITabBarController {
         profileVC.title = "Профиль"
         
         setViewControllers([restaurantVC, ordersVC, basketVC, searchVC, profileVC], animated: true)
-        tabBar.tintColor = .systemIndigo
+        tabBar.tintColor = Brandbook.defaultColor
         
         let barImages = ["restaurant", "order", "basket", "search", "profile"]
         guard let items = tabBar.items else { return }

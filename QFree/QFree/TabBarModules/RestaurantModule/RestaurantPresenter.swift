@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+protocol RestaurantPresenterProtocol {
+    
+}
+
+class RestaurantPresenter {
+    
+}
+
+extension RestaurantPresenter: RestaurantPresenterProtocol {
+    
+}

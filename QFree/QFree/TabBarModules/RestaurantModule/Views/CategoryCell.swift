@@ -15,7 +15,7 @@ class CategoryCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemIndigo
+        backgroundColor = Brandbook.defaultColor
         
         setupViews()
         

@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+protocol RestaurantRouterProtocol {
+    
+}
+
+class RestaurantRouter: RestaurantRouterProtocol {
+    
+}

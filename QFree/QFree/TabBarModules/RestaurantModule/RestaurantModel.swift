@@ -20,7 +20,7 @@ struct Restaurant: Hashable {
     }
 }
 
-enum Category: String, Hashable {
+enum Category: String, Hashable, Codable {
     case favourite = "Избранное"
     case bakery = "Выпечка"
     case coffee = "Кофе"
