@@ -17,11 +17,19 @@ class CategoryCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = Brandbook.defaultColor
         
-        setupViews()
-        
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = Brandbook.defaultCornerRadius
         self.clipsToBounds = true
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        addSubview(categoryName)
+        
+        categoryName.frame = self.bounds
+        categoryName.textColor = .white
+        categoryName.textAlignment = .center
     }
     
     func configure(categoryIndex: Int) {
@@ -30,15 +38,5 @@ class CategoryCell: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension CategoryCell {
-    func setupViews() {
-        addSubview(categoryName)
-        
-        categoryName.frame = self.bounds
-        categoryName.textColor = .white
-        categoryName.textAlignment = .center
     }
 }

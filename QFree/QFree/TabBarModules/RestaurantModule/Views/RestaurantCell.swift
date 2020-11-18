@@ -18,25 +18,14 @@ class RestaurantCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = UIColor(white: 1, alpha: 1)
         
-        setupViews()
-        
-        self.layer.cornerRadius = 20
+        self.layer.cornerRadius = Brandbook.defaultCornerRadius
         self.clipsToBounds = true
         
     }
     
-    func configure(with restaurant: Restaurant) {
-        name.text = restaurant.name
-        restaurantImageView.image = restaurant.image
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension RestaurantCell {
-    func setupViews() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemUltraThinMaterial)
         let blurEffectView: UIVisualEffectView = UIVisualEffectView(effect: blurEffect)
         
@@ -50,6 +39,14 @@ extension RestaurantCell {
         
         name.textColor = .label
         name.font = Brandbook.font(size: 25, weight: .regular)
-        
+    }
+    
+    func configure(with restaurant: Restaurant) {
+        name.text = restaurant.name
+        restaurantImageView.image = restaurant.image
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
