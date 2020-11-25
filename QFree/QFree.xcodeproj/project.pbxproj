@@ -32,6 +32,9 @@
 		344B8E812544806E00B1A671 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E802544806E00B1A671 /* RegistrationViewController.swift */; };
 		344B8E84254480CD00B1A671 /* RegistrationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E83254480CD00B1A671 /* RegistrationModuleBuilder.swift */; };
 		345522D62544B02800495E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 345522D52544B02800495E5F /* GoogleService-Info.plist */; };
+		34585921256F08E300E47E7E /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34585920256F08E300E47E7E /* MapManager.swift */; };
+		34585927256F0B9E00E47E7E /* BaseMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34585926256F0B9E00E47E7E /* BaseMapView.swift */; };
+		3458592A256F149B00E47E7E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34585929256F149B00E47E7E /* MapViewController.swift */; };
 		B7086558255AE6CB00665E2C /* RestaurantMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086555255AE6CA00665E2C /* RestaurantMenuTableViewController.swift */; };
 		B7086559255AE6CB00665E2C /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086556255AE6CA00665E2C /* ProductTableViewCell.swift */; };
 		B708655A255AE6CB00665E2C /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086557255AE6CA00665E2C /* ProductModel.swift */; };
@@ -101,6 +104,9 @@
 		344B8E802544806E00B1A671 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		344B8E83254480CD00B1A671 /* RegistrationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleBuilder.swift; sourceTree = "<group>"; };
 		345522D52544B02800495E5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		34585920256F08E300E47E7E /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		34585926256F0B9E00E47E7E /* BaseMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapView.swift; sourceTree = "<group>"; };
+		34585929256F149B00E47E7E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4276A4CA41B108E8576702E9 /* Pods_QFree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QFree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B42705DBC48C7900253926 /* Pods-QFree.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QFree.release.xcconfig"; path = "Target Support Files/Pods-QFree/Pods-QFree.release.xcconfig"; sourceTree = "<group>"; };
 		B7086555255AE6CA00665E2C /* RestaurantMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -183,11 +189,12 @@
 		340F1A7825420773000A381D /* QFree */ = {
 			isa = PBXGroup;
 			children = (
-				B78228C22548EA250052A546 /* TabBarModules */,
 				B708653F255A0B6C00665E2C /* Supporting Files */,
-				341184FC25438BDF006D1361 /* UI */,
 				341184F625438911006D1361 /* Helpers */,
-				344B8E7825447F6100B1A671 /* Auth */,
+				B78228C22548EA250052A546 /* TabBarModules */,
+				344B8E7825447F6100B1A671 /* AuthModules */,
+				341184FC25438BDF006D1361 /* UI */,
+				3458591F256F08BB00E47E7E /* Map */,
 				340F1A8725420775000A381D /* Info.plist */,
 			);
 			path = QFree;
@@ -264,14 +271,24 @@
 			path = RegistrationModule;
 			sourceTree = "<group>";
 		};
-		344B8E7825447F6100B1A671 /* Auth */ = {
+		344B8E7825447F6100B1A671 /* AuthModules */ = {
 			isa = PBXGroup;
 			children = (
 				CE6227732559752400DC01AB /* EmailConfirmationModule */,
 				340F1A8F254208CA000A381D /* EntranceModule */,
 				344B8E7425447F1E00B1A671 /* RegistrationModule */,
 			);
-			path = Auth;
+			path = AuthModules;
+			sourceTree = "<group>";
+		};
+		3458591F256F08BB00E47E7E /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				34585920256F08E300E47E7E /* MapManager.swift */,
+				34585926256F0B9E00E47E7E /* BaseMapView.swift */,
+				34585929256F149B00E47E7E /* MapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		682860BBB01170A36DA22FAD /* Pods */ = {
@@ -533,6 +550,7 @@
 				B78228F92548EAD10052A546 /* RestaurantCell.swift in Sources */,
 				B78228D02548EA9E0052A546 /* BasketVC.swift in Sources */,
 				3442CA0B254392130079B5AB /* BaseNavigationViewController.swift in Sources */,
+				34585921256F08E300E47E7E /* MapManager.swift in Sources */,
 				B78228C42548EA480052A546 /* TabBarController.swift in Sources */,
 				B78228DF2548EAAB0052A546 /* OrderPresenter.swift in Sources */,
 				B78229062548EADE0052A546 /* SearchVC.swift in Sources */,
@@ -547,6 +565,7 @@
 				B78228DC2548EAAB0052A546 /* OrderRouter.swift in Sources */,
 				CE62278225598EBF00DC01AB /* EmailConfirmationRouter.swift in Sources */,
 				344B8E7B25447FEF00B1A671 /* RegistrationPresenter.swift in Sources */,
+				3458592A256F149B00E47E7E /* MapViewController.swift in Sources */,
 				B78228F52548EAD10052A546 /* CategoryCell.swift in Sources */,
 				340F1A91254208F0000A381D /* EntranceInteractor.swift in Sources */,
 				3442CA0F254394B40079B5AB /* FormStackView.swift in Sources */,
@@ -559,6 +578,7 @@
 				B78229052548EADE0052A546 /* SearchInteractor.swift in Sources */,
 				340F1AA325420D91000A381D /* BaseViewController.swift in Sources */,
 				341184F4254385C0006D1361 /* Brandbook.swift in Sources */,
+				34585927256F0B9E00E47E7E /* BaseMapView.swift in Sources */,
 				3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */,
 				3438507B2544C1DA0048B43B /* AuthError.swift in Sources */,
 				B78228FB2548EAD10052A546 /* RestaurantRouter.swift in Sources */,
@@ -719,7 +739,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9ZB2A7WP7E;
 				INFOPLIST_FILE = QFree/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,7 +761,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SP8T652TNA;
 				INFOPLIST_FILE = QFree/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
