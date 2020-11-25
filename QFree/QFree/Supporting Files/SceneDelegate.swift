@@ -31,10 +31,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private var initialViewController: UIViewController {
-        #if DEBUG
-//        return EmailConfirmationModuleBuilder.build()
-        #endif
-        
         if Auth.auth().currentUser == nil {
             return BaseNavigationController(rootViewController: EntranceModuleBuilder.build())
         }
