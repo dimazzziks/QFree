@@ -9,10 +9,10 @@ import UIKit
 
 struct Restaurant: Hashable {
     let name: String
-    let image: UIImage
+    var image: String
     let category: [Category]
     
-    init(name: String, image: UIImage, category: [Category]) {
+    init(name: String, image: String, category: [Category]) {
         self.name = name
         self.image = image
         self.category = category
@@ -20,7 +20,7 @@ struct Restaurant: Hashable {
     }
 }
 
-enum Category: String, Hashable, Codable {
+enum Category: String, Hashable {
     case favourite = "Избранное"
     case bakery = "Выпечка"
     case coffee = "Кофе"

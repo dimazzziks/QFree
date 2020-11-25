@@ -34,6 +34,10 @@ extension Brandbook {
     static var defaultColor: UIColor {
         return UIColor(hex: "#6D80FF")
     }
+    
+    static var textColor: UIColor {
+        return UIColor(hex: "#4B4E57")
+    }
 }
 
 // MARK: - Appearance

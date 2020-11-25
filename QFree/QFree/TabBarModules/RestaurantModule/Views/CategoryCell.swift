@@ -15,6 +15,7 @@ class CategoryCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         backgroundColor = Brandbook.defaultColor
         
         self.layer.cornerRadius = Brandbook.defaultCornerRadius
@@ -30,6 +31,7 @@ class CategoryCell: UICollectionViewCell {
         categoryName.frame = self.bounds
         categoryName.textColor = .white
         categoryName.textAlignment = .center
+        categoryName.font = Brandbook.font(size: 18)
     }
     
     func configure(categoryIndex: Int) {

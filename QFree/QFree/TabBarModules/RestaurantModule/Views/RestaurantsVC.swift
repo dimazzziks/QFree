@@ -10,7 +10,13 @@ import UIKit
 class RestaurantsVC: UIViewController {
     
     // TODO: Upload to Firebase
-    let restaurants: [Restaurant] = [Restaurant(name: "Столовая", image: UIImage(named: "Столовая")!, category: [.favourite, .dessert]), Restaurant(name: "Обеденный зал", image: UIImage(named: "Зал")!, category: [.coffee, .bakery]), Restaurant(name: "Кофейня", image: UIImage(named: "Кофейня")!, category: [.coffee]), Restaurant(name: "ГРУША", image: UIImage(named: "Груша")!, category: [.coffee])]
+    var restaurants: [Restaurant] = [
+        Restaurant(name: "Столовая", image: "https://www.hse.ru/pubs/share/direct/305134103.jpg", category: [.favourite, .dessert]),
+        Restaurant(name: "Обеденный зал (1 этаж)", image: "https://www.hse.ru/pubs/share/direct/305812280.jpg", category: [.coffee, .bakery]),
+        Restaurant(name: "Обеденный зал (2 этаж)", image: "https://www.hse.ru/pubs/share/direct/305813043.jpg", category: [.coffee, .bakery]),
+        Restaurant(name: "Кофейня", image: "https://www.hse.ru/pubs/share/direct/305838462.jpg", category: [.coffee]),
+        Restaurant(name: "Кофейня «ГРУША»", image: "https://www.hse.ru/pubs/share/direct/308136212.jpg", category: [.coffee]),
+        Restaurant(name: "Кофейня JEFFREY S", image: "https://www.hse.ru/pubs/share/direct/344663514.jpg", category: [.coffee])]
     
     var restaurantsCollectionView: UICollectionView!
     var categoryCollectionView: UICollectionView!
@@ -32,20 +38,30 @@ class RestaurantsVC: UIViewController {
         
     }
     
+    var height: CGFloat {
+        get {
+            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            return (window?.windowScene?.statusBarManager?.statusBarFrame.height)! + (self.navigationController?.navigationBar.frame.height)!
+        }
+    }
+    
     func setupCollectionView() {
-        restaurantsCollectionView = UICollectionView(frame: CGRect(x: 0, y: 130, width: self.view.frame.width, height: self.view.frame.height), collectionViewLayout: createRestaurantLayout())
+        categoryCollectionView = UICollectionView(frame: CGRect(x: 0, y: height, width: self.view.frame.width, height: 64), collectionViewLayout: createCategoryLayout())
+        categoryCollectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        categoryCollectionView.backgroundColor = .systemBackground
+        
+        let bottom = categoryCollectionView.frame.origin.y + categoryCollectionView.frame.size.height
+        restaurantsCollectionView = UICollectionView(frame: CGRect(x: 0, y: bottom, width: self.view.frame.width, height: self.view.frame.height), collectionViewLayout: createRestaurantLayout())
         restaurantsCollectionView.autoresizingMask = [.flexibleWidth]
         restaurantsCollectionView.backgroundColor = .systemBackground
-        
-        categoryCollectionView = UICollectionView(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: self.view.frame.width/6), collectionViewLayout: createCategoryLayout())
-        categoryCollectionView.autoresizingMask = [.flexibleWidth]
-        categoryCollectionView.backgroundColor = .systemBackground
         
         self.view.addSubview(restaurantsCollectionView)
         self.view.addSubview(categoryCollectionView)
         
         restaurantsCollectionView.register(RestaurantCell.self, forCellWithReuseIdentifier: RestaurantCell.reuseId)
         categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseId)
+        
+        categoryCollectionView.alwaysBounceVertical = false
         
         restaurantsCollectionView.delegate = self
         restaurantsCollectionView.dataSource = self
@@ -75,14 +91,14 @@ class RestaurantsVC: UIViewController {
     func createCategories() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        layoutItem.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 8, bottom: 0, trailing: 8)
+        layoutItem.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 12)
         
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .estimated(130), heightDimension: .estimated(40))
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .estimated(140), heightDimension: .estimated(40))
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
         
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
         layoutSection.orthogonalScrollingBehavior = .continuous
-        layoutSection.contentInsets = NSDirectionalEdgeInsets.init(top: 10, leading: 10, bottom: 0, trailing: 10)
+        layoutSection.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 12, bottom: 0, trailing: 0)
         
         return layoutSection
     }
@@ -90,14 +106,14 @@ class RestaurantsVC: UIViewController {
     func createRestaurants() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(self.view.frame.width*0.75))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 40, trailing: 0)
+        item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 12, trailing: 0)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .estimated(1))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 45, leading: 20, bottom: 110, trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 12, bottom: height*2, trailing: 12)
         
         return section
     }

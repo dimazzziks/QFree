@@ -11,39 +11,77 @@ class RestaurantCell: UICollectionViewCell {
     
     static var reuseId: String = "ListCell"
     
+    let mainView = UIView()
+    let underMainView = UIView()
     let restaurantImageView = UIImageView()
+    let whiteView = UIView()
     let name = UILabel()
+    let activityIndicator = UIActivityIndicatorView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(white: 1, alpha: 1)
-        
-        self.layer.cornerRadius = Brandbook.defaultCornerRadius
-        self.clipsToBounds = true
-        
+        backgroundColor = .white
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemUltraThinMaterial)
-        let blurEffectView: UIVisualEffectView = UIVisualEffectView(effect: blurEffect)
+        self.addSubview(underMainView)
+        underMainView.frame = self.bounds
+        underMainView.layer.shadowColor = UIColor.black.cgColor
+        underMainView.layer.shadowOpacity = 0.3
+        underMainView.layer.shadowOffset = .zero
+        underMainView.layer.shadowRadius = 5
         
-        addSubview(restaurantImageView)
-        addSubview(blurEffectView)
-        addSubview(name)
+        underMainView.addSubview(mainView)
+        mainView.frame = self.bounds
+        mainView.layer.cornerRadius = Brandbook.defaultCornerRadius
+        mainView.layer.masksToBounds = true
         
+        mainView.addSubview(restaurantImageView)
         restaurantImageView.frame = self.bounds
-        name.frame = CGRect(x: 15, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/5)
-        blurEffectView.frame = CGRect(x: 0, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/4)
         
+        restaurantImageView.addSubview(activityIndicator)
+        activityIndicator.frame = self.bounds
+        
+        mainView.addSubview(whiteView)
+        whiteView.frame = CGRect(x: 0, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/4)
+        whiteView.backgroundColor = .white
+        
+        mainView.addSubview(name)
+        name.frame = CGRect(x: 15, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/5)
         name.textColor = .label
-        name.font = Brandbook.font(size: 25, weight: .regular)
+        name.font = Brandbook.font()
+    }
+    
+    func getImage(urlString: String) -> UIImage {
+        let imageURL = URL(string: urlString)!
+        var resImage = UIImage()
+        if let data = try? Data(contentsOf: imageURL){
+            resImage = UIImage(data: data)!
+        }
+        let queue = DispatchQueue.global(qos: .utility)
+            queue.async{
+                
+            }
+        
+        return resImage
     }
     
     func configure(with restaurant: Restaurant) {
         name.text = restaurant.name
-        restaurantImageView.image = restaurant.image
+        
+        let imageURL: URL = URL(string: restaurant.image)!
+        DispatchQueue.global(qos: .utility).async {
+            if let data = try? Data(contentsOf: imageURL) {
+                DispatchQueue.main.async {
+                    self.restaurantImageView.image = UIImage(data: data)!
+                    self.activityIndicator.isHidden = true
+                }
+            }
+        }
     }
 
     required init?(coder: NSCoder) {

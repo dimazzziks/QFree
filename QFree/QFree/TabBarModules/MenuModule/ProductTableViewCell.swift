@@ -67,7 +67,7 @@ class ProductTableViewCell: UITableViewCell {
         l.text = "Латте"
         l.textAlignment = .left
         l.backgroundColor = .clear
-        l.textColor = .darkGray
+        l.textColor = Brandbook.textColor
         l.font = Brandbook.font(size: 20, weight: .bold)
         return l
     }()
@@ -78,7 +78,7 @@ class ProductTableViewCell: UITableViewCell {
         l.text = "199р"
         l.textAlignment = .left
         l.backgroundColor = .clear
-        l.textColor = .darkGray
+        l.textColor = Brandbook.textColor
         l.font = Brandbook.font(size: 20, weight: .bold)
         return l
     }()
