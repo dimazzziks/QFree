@@ -30,50 +30,60 @@ class EmailConfirmationViewController : BaseViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupConfirmationForm()
+        setupUI()
         presenter?.resendEmailVerification()
     }
     
-    private func addConstraints(item : UIView, centerX : Double, centerY : Double, width : Double, height : Double){
-        let horizontalConstraint = NSLayoutConstraint(item: item, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: CGFloat(centerX))
-        let verticalConstraint = NSLayoutConstraint(item: item, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: CGFloat(centerY))
-        let widthConstraint = NSLayoutConstraint(item: item, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: CGFloat(width))
-        let heightConstraint = NSLayoutConstraint(item: item, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: CGFloat(height))
-        self.view.addSubview(item)
-        self.view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
-    }
-    
-    private func setupConfirmationForm(){
-        
-        let screenSize = UIScreen.main.bounds
+    private func setupUI() {
         
         infoLabel = UILabel()
-        infoLabel.text = "Письмо с подтверждением было выслано на вашу электронную почту. Пожалуйста, подтвердите свою почту, перейдя по ссылке из письма."
-        infoLabel.numberOfLines = 3
+        infoLabel.text = "Письмо с подтверждением было выслано на вашу электронную почту. \nПожалуйста, подтвердите свою почту, перейдя по ссылке из письма."
+        infoLabel.font = Brandbook.font(size: 16, weight: .bold)
+        infoLabel.numberOfLines = 0
         infoLabel.textAlignment = .center
+        view.addSubview(infoLabel)
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(item: infoLabel, centerX: 5, centerY: Double(screenSize.size.height)/3, width: Double(screenSize.size.width) - 10, height: 100)
+        NSLayoutConstraint.activate([
+            infoLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            infoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        loadingIndicator = UIActivityIndicatorView()
+        loadingIndicator.startAnimating()
+        view.addSubview(loadingIndicator)
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
         
         resendLinkButton = BaseButton()
         resendLinkButton.setTitle("Отправить письмо заново", for: .normal)
-        resendLinkButton.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(item: resendLinkButton, centerX: 5, centerY: Double(screenSize.size.height)-200, width: Double(screenSize.size.width) - 10, height: 30)
         resendLinkButton.addTarget(self, action: #selector(resendVerificationEmail(_:)), for: .touchUpInside)
+        resendLinkButton.translatesAutoresizingMaskIntoConstraints = false
+        resendLinkButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         confirmEmailButton = BaseButton()
         confirmEmailButton.setTitle("Подтвердить почту", for: .normal)
-        confirmEmailButton.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(item: confirmEmailButton, centerX: 5, centerY: Double(screenSize.size.height)-130, width: Double(screenSize.size.width) - 10, height: 30)
         confirmEmailButton.addTarget(self, action: #selector(confirmEmail(_:)), for: .touchUpInside)
+        confirmEmailButton.translatesAutoresizingMaskIntoConstraints = false
+        confirmEmailButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
-        loadingIndicator = UIActivityIndicatorView()
-        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(item: loadingIndicator, centerX: Double(screenSize.midX) - 50, centerY: Double(screenSize.midY) - 50, width: 100, height: 100)
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.startAnimating()
-        
+        let stackView = FormStackView()
+        stackView.spacing = 16
+        stackView.addArrangedSubviews(
+            resendLinkButton,
+            confirmEmailButton
+        )
+        view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        ])
     }
-    
 }
 extension EmailConfirmationViewController : EmailConfirmationViewProtocol{
     

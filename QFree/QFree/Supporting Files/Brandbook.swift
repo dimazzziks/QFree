@@ -47,3 +47,9 @@ extension Brandbook {
         return 8
     }
 }
+
+extension Brandbook {
+    static var defaultButtonHeight: CGFloat {
+        return 48.0
+    }
+}

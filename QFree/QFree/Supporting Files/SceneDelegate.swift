@@ -16,8 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         FirebaseApp.configure()
         
-//        FOR DEBUG
+        #if DEBUG
 //        signOut()
+        #endif
         
         print("CURRENT USER:", Auth.auth().currentUser?.email ?? "nil")
         
@@ -30,27 +31,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private var initialViewController: UIViewController {
+        #if DEBUG
+//        return EmailConfirmationModuleBuilder.build()
+        #endif
+        
         if Auth.auth().currentUser == nil {
             return BaseNavigationController(rootViewController: EntranceModuleBuilder.build())
-        } else {
-            // TODO: - Show main menu
-//            let currentUserViewController = BaseViewController()
-            let tabBarController = TabBarController()
-//            let currentUserEmail = Auth.auth().currentUser?.email ?? "nil"
-//            let currentUserEmailLabel = UILabel()
-//            currentUserEmailLabel.font = Brandbook.font()
-//            currentUserEmailLabel.text = currentUserEmail
-//            currentUserViewController.view.addSubview(currentUserEmailLabel)
-//            currentUserEmailLabel.translatesAutoresizingMaskIntoConstraints = false
-//            NSLayoutConstraint.activate([
-//                currentUserEmailLabel.centerXAnchor.constraint(equalTo: currentUserViewController.view.centerXAnchor),
-//                currentUserEmailLabel.centerYAnchor.constraint(equalTo: currentUserViewController.view.centerYAnchor)
-//            ])
-            return tabBarController
         }
+        let tabBarController = TabBarController()
+        return tabBarController
     }
     
-//    FOR DEBUG
+    #if DEBUG
     private func signOut() {
         do {
             try Auth.auth().signOut()
@@ -58,5 +50,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print("SIGN OUT ERROR")
         }
     }
+    #endif
 }
 

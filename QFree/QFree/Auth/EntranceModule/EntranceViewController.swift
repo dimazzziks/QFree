@@ -8,14 +8,14 @@
 import UIKit
 
 protocol EntranceViewProtocol: class {
-    func showPasswordIsNotValid()
-    func showEmailIsNotValid()
     func pushToCreateAccount()
+    func showInfoLabel(text: String)
 }
 
 class EntranceViewController: BaseViewController {
     public var presenter: EntrancePresenterProtocol?
     
+    private var infoLabel: UILabel!
     private var stackView: FormStackView!
     private var emailTextField: BaseTextField!
     private var passwordTextField: BaseTextField!
@@ -35,33 +35,30 @@ class EntranceViewController: BaseViewController {
     }
     
     private func setupEnterForm() {
-        
-        let elementHeight: CGFloat = 48
-        
         emailTextField = BaseTextField()
         emailTextField.keyboardType = .emailAddress
         emailTextField.placeholder = "Почта"
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        emailTextField.heightAnchor.constraint(equalToConstant: elementHeight).isActive = true
+        emailTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         passwordTextField = BaseTextField()
         passwordTextField.isSecureTextEntry = true
         passwordTextField.placeholder = "Пароль"
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.heightAnchor.constraint(equalToConstant: elementHeight).isActive = true
+        passwordTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         enterButton = BaseButton()
         enterButton.addTarget(self, action: #selector(enterButtonAction(_:)), for: .touchUpInside)
         enterButton.setTitle("Войти", for: .normal)
         enterButton.translatesAutoresizingMaskIntoConstraints = false
-        enterButton.heightAnchor.constraint(equalToConstant: elementHeight).isActive = true
+        enterButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         createAccountButton = BaseButton()
         createAccountButton.addTarget(self, action: #selector(createAccountButtonAction(_:)), for: .touchUpInside)
         createAccountButton.setTitle("Создать аккаунт", for: .normal)
         createAccountButton.filled = false
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
-        createAccountButton.heightAnchor.constraint(equalToConstant: elementHeight).isActive = true
+        createAccountButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         stackView = FormStackView()
         stackView.spacing = 16
@@ -79,6 +76,19 @@ class EntranceViewController: BaseViewController {
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackViewCenterYConstraint,
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+        ])
+        
+        infoLabel = UILabel()
+        infoLabel.font = Brandbook.font(size: 16, weight: .bold)
+        infoLabel.textColor = .red
+        infoLabel.alpha = 0.0
+        infoLabel.textAlignment = .center
+        view.addSubview(infoLabel)
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            infoLabel.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -16),
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
     }
 }
@@ -118,15 +128,22 @@ extension EntranceViewController {
 
 
 extension EntranceViewController: EntranceViewProtocol {
-    func showEmailIsNotValid() {
-        print(#function)
-    }
-    
-    func showPasswordIsNotValid() {
-        print(#function)
-    }
-    
     func pushToCreateAccount() {
         navigationController?.pushViewController(RegistrationModuleBuilder.build(), animated: true)
+    }
+    
+    func showInfoLabel(text: String) {
+        infoLabel.text = text
+        
+        let animationDuration: TimeInterval = 0.3
+        let delayDuration: TimeInterval = 3
+        
+        UIView.animate(withDuration: animationDuration) {
+            self.infoLabel.alpha = 1.0
+        } completion: { _ in
+            UIView.animate(withDuration: animationDuration, delay: delayDuration, animations: {
+                self.infoLabel.alpha = 0.0
+            }, completion: nil)
+        }
     }
 }

@@ -32,19 +32,28 @@ extension RegistrationPresenter: RegistrationPresenterProtocol {
         guard nameIsValid && emailIsValid && passwordIsValid else {
             if !nameIsValid {
                 print("NAME IS NOT VALID")
+                view?.showInfoLabel(text: "Введите имя")
+                return
             }
             if !emailIsValid {
                 print("EMAIL IS NOT VALID")
+                view?.showInfoLabel(text: "Некорректная почта")
+                return
             }
             if !passwordIsValid {
                 print("PASSWORD IS NOT VALID")
+                view?.showInfoLabel(text: "Некорректный пароль")
+                return
             }
             return
         }
         interactor.createNewAccount(email!, password!) { (authError) in
             guard authError == nil else {
                 // TODO: - handle error
-                print("ERROR:", authError)
+                #if DEBUG
+                print(#function)
+                print("ERROR:", authError ?? "authError")
+                #endif
                 return
             }
             // TODO: - go to main menu

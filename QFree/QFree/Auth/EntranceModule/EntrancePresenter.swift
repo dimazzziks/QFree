@@ -33,11 +33,13 @@ extension EntrancePresenter: EntrancePresenterProtocol {
         guard emailIsValid && passwordIsValid else {
             if !emailIsValid {
                 print("EMAIL IS NOT VALID")
-                view?.showEmailIsNotValid()
+                view?.showInfoLabel(text: "Некорректная почта")
+                return
             }
             if !passwordIsValid {
                 print("PASSWORD IS NOT VALID")
-                view?.showPasswordIsNotValid()
+                view?.showInfoLabel(text: "Некорректный пароль")
+                return
             }
             return
         }
@@ -46,7 +48,8 @@ extension EntrancePresenter: EntrancePresenterProtocol {
         interactor.signInAccount(email!, password!) { (authError) in
             guard authError == nil else {
                 // TODO: - handle error
-                print("ERROR:", authError)
+                print("ERROR:", authError ?? "authError")
+                self.view?.showInfoLabel(text: "Некооректная информация")
                 return
             }
             // TODO: Go to Tab Bar
