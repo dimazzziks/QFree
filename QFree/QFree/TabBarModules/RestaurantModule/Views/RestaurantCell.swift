@@ -22,7 +22,6 @@ class RestaurantCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = .white
         activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
     }
     
     override func layoutSubviews() {
@@ -52,22 +51,8 @@ class RestaurantCell: UICollectionViewCell {
         
         mainView.addSubview(name)
         name.frame = CGRect(x: 15, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/5)
-        name.textColor = .label
+        name.textColor = Brandbook.textColor
         name.font = Brandbook.font()
-    }
-    
-    func getImage(urlString: String) -> UIImage {
-        let imageURL = URL(string: urlString)!
-        var resImage = UIImage()
-        if let data = try? Data(contentsOf: imageURL){
-            resImage = UIImage(data: data)!
-        }
-        let queue = DispatchQueue.global(qos: .utility)
-            queue.async{
-                
-            }
-        
-        return resImage
     }
     
     func configure(with restaurant: Restaurant) {
@@ -78,7 +63,7 @@ class RestaurantCell: UICollectionViewCell {
             if let data = try? Data(contentsOf: imageURL) {
                 DispatchQueue.main.async {
                     self.restaurantImageView.image = UIImage(data: data)!
-                    self.activityIndicator.isHidden = true
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }
