@@ -6,17 +6,13 @@
 //
 
 import UIKit
+import Firebase
 
 class RestaurantsVC: UIViewController {
     
-    // TODO: Upload to Firebase
-    var restaurants: [Restaurant] = [
-        Restaurant(name: "Столовая", image: "https://www.hse.ru/pubs/share/direct/305134103.jpg", category: [.favourite, .dessert]),
-        Restaurant(name: "Обеденный зал (1 этаж)", image: "https://www.hse.ru/pubs/share/direct/305812280.jpg", category: [.coffee, .bakery]),
-        Restaurant(name: "Обеденный зал (2 этаж)", image: "https://www.hse.ru/pubs/share/direct/305813043.jpg", category: [.coffee, .bakery]),
-        Restaurant(name: "Кофейня", image: "https://www.hse.ru/pubs/share/direct/305838462.jpg", category: [.coffee]),
-        Restaurant(name: "Кофейня «ГРУША»", image: "https://www.hse.ru/pubs/share/direct/308136212.jpg", category: [.coffee]),
-        Restaurant(name: "Кофейня JEFFREY S", image: "https://www.hse.ru/pubs/share/direct/344663514.jpg", category: [.coffee])]
+    var ref: DatabaseReference! = Database.database().reference()
+    
+    var restaurants: [Restaurant] = []
     
     var restaurantsCollectionView: UICollectionView!
     var categoryCollectionView: UICollectionView!
@@ -24,8 +20,9 @@ class RestaurantsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Рестораны"
+        fetchJson()
         
+        self.title = "Рестораны"
         self.view.backgroundColor = .systemBackground
         
         setupCollectionView()
@@ -34,8 +31,24 @@ class RestaurantsVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+    
+    // TODO: - Get from Firebase
+    func fetchJson() {
+        let jsonUrlString = "https://json.extendsclass.com/bin/31fefb669e0e"
         
+        guard let url = URL(string: jsonUrlString) else { return }
         
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { return }
+            
+            do {
+                self.restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
+            } catch {
+                print("Database error")
+            }
+            
+        }.resume()
     }
     
     var height: CGFloat {
