@@ -21,13 +21,16 @@ class CategoryCell: UICollectionViewCell {
         self.layer.cornerRadius = Brandbook.defaultCornerRadius
         self.clipsToBounds = true
         
+        setupViews()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
         addSubview(categoryName)
-        
+    }
+    
+    func setupViews() {
         categoryName.frame = self.bounds
         categoryName.textColor = .white
         categoryName.textAlignment = .center

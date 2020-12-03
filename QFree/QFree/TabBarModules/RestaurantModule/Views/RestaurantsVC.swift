@@ -26,11 +26,13 @@ class RestaurantsVC: UIViewController {
         self.view.backgroundColor = .systemBackground
         
         setupCollectionView()
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        self.view.addSubview(restaurantsCollectionView)
+        self.view.addSubview(categoryCollectionView)
     }
     
     // TODO: - Get from Firebase
@@ -51,15 +53,8 @@ class RestaurantsVC: UIViewController {
         }.resume()
     }
     
-    var height: CGFloat {
-        get {
-            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-            return (window?.windowScene?.statusBarManager?.statusBarFrame.height)! + (self.navigationController?.navigationBar.frame.height)!
-        }
-    }
-    
     func setupCollectionView() {
-        categoryCollectionView = UICollectionView(frame: CGRect(x: 0, y: height, width: self.view.frame.width, height: 64), collectionViewLayout: createCategoryLayout())
+        categoryCollectionView = UICollectionView(frame: CGRect(x: 0, y: Brandbook.viewHeight, width: self.view.frame.width, height: 64), collectionViewLayout: createCategoryLayout())
         categoryCollectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         categoryCollectionView.backgroundColor = .systemBackground
         
@@ -67,9 +62,6 @@ class RestaurantsVC: UIViewController {
         restaurantsCollectionView = UICollectionView(frame: CGRect(x: 0, y: bottom, width: self.view.frame.width, height: self.view.frame.height), collectionViewLayout: createRestaurantLayout())
         restaurantsCollectionView.autoresizingMask = [.flexibleWidth]
         restaurantsCollectionView.backgroundColor = .systemBackground
-        
-        self.view.addSubview(restaurantsCollectionView)
-        self.view.addSubview(categoryCollectionView)
         
         restaurantsCollectionView.register(RestaurantCell.self, forCellWithReuseIdentifier: RestaurantCell.reuseId)
         categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseId)
@@ -126,7 +118,7 @@ class RestaurantsVC: UIViewController {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 12, bottom: height*2, trailing: 12)
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 12, bottom: Brandbook.viewHeight*2, trailing: 12)
         
         return section
     }
