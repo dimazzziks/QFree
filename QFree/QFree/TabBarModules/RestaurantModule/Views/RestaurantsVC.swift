@@ -10,6 +10,8 @@ import Firebase
 
 class RestaurantsVC: UIViewController {
     
+    var thread = Thread()
+    
     var ref: DatabaseReference! = Database.database().reference()
     
     var restaurants: [Restaurant] = []
@@ -20,24 +22,22 @@ class RestaurantsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchJson()
-        
         self.title = "Рестораны"
         self.view.backgroundColor = .systemBackground
         
-        setupCollectionView()
+        setupCategoryCV()
+        fetchJson()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        self.view.addSubview(restaurantsCollectionView)
         self.view.addSubview(categoryCollectionView)
     }
     
     // TODO: - Get from Firebase
     func fetchJson() {
-        let jsonUrlString = "https://json.extendsclass.com/bin/31fefb669e0e"
+        let jsonUrlString = "https://api.jsonbin.io/b/5fca4ad265c249127ba329e2"
         
         guard let url = URL(string: jsonUrlString) else { return }
         
@@ -46,6 +46,9 @@ class RestaurantsVC: UIViewController {
             
             do {
                 self.restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
+                DispatchQueue.main.async {
+                    self.setupRestaurantsCV()
+                }
             } catch {
                 print("Database error")
             }
@@ -53,26 +56,30 @@ class RestaurantsVC: UIViewController {
         }.resume()
     }
     
-    func setupCollectionView() {
+    func setupCategoryCV() {
         categoryCollectionView = UICollectionView(frame: CGRect(x: 0, y: Brandbook.viewHeight, width: self.view.frame.width, height: 64), collectionViewLayout: createCategoryLayout())
         categoryCollectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         categoryCollectionView.backgroundColor = .systemBackground
         
+        categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseId)
+        
+        categoryCollectionView.alwaysBounceVertical = false
+        
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
+    }
+    
+    func setupRestaurantsCV() {
         let bottom = categoryCollectionView.frame.origin.y + categoryCollectionView.frame.size.height
         restaurantsCollectionView = UICollectionView(frame: CGRect(x: 0, y: bottom, width: self.view.frame.width, height: self.view.frame.height), collectionViewLayout: createRestaurantLayout())
         restaurantsCollectionView.autoresizingMask = [.flexibleWidth]
         restaurantsCollectionView.backgroundColor = .systemBackground
         
         restaurantsCollectionView.register(RestaurantCell.self, forCellWithReuseIdentifier: RestaurantCell.reuseId)
-        categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseId)
-        
-        categoryCollectionView.alwaysBounceVertical = false
+        self.view.addSubview(restaurantsCollectionView)
         
         restaurantsCollectionView.delegate = self
         restaurantsCollectionView.dataSource = self
-        categoryCollectionView.delegate = self
-        categoryCollectionView.dataSource = self
-        
     }
     
     func createRestaurantLayout() -> UICollectionViewLayout {
