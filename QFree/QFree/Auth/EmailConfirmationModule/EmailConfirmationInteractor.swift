@@ -37,6 +37,7 @@ class EmailConfirmationInteractor : EmailConfirmationInteractorProtocol{
         })
     }
     
+    
     func deleteUser(completion : @escaping ()->()){
         Auth.auth().currentUser?.delete(completion: { (error) in
             if let error = error{

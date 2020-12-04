@@ -16,8 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         FirebaseApp.configure()
         
-//        FOR DEBUG
-//        signOut()
+        #if DEBUG
+        signOut()
+        #endif
         
         print("CURRENT USER:", Auth.auth().currentUser?.email ?? "nil")
         
