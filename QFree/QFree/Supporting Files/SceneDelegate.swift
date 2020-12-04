@@ -11,14 +11,10 @@ import Firebase
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    static let shared = SceneDelegate()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         FirebaseApp.configure()
-        
-        #if DEBUG
-//        signOut()
-        #endif
         
         print("CURRENT USER:", Auth.auth().currentUser?.email ?? "nil")
         
@@ -34,18 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if Auth.auth().currentUser == nil {
             return BaseNavigationController(rootViewController: EntranceModuleBuilder.build())
         }
-        let tabBarController = TabBarController()
-        return tabBarController
+        
+        return TabBarController()
     }
-    
-    #if DEBUG
-    private func signOut() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("SIGN OUT ERROR")
-        }
-    }
-    #endif
 }
-

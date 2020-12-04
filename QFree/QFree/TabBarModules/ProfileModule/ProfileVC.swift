@@ -6,24 +6,38 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileVC: UIViewController {
 
+    var logOutLabel: BaseButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Профиль"
+        self.view.backgroundColor = .white
+        
+        setupButton()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLayoutSubviews() {
+        self.view.addSubview(logOutLabel)
     }
-    */
+    
+    func setupButton() {
+        logOutLabel = BaseButton(frame: CGRect(x: 12, y: Brandbook.viewHeight + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
+        logOutLabel.setTitle("Выйти", for: .normal)
+        logOutLabel.addTarget(self, action: #selector(logOutLabelAction(_:)), for: .touchUpInside)
+    }
+}
 
+extension ProfileVC {
+    @objc func logOutLabelAction(_ sender: BaseButton) {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("Sigh out error")
+        }
+    }
 }

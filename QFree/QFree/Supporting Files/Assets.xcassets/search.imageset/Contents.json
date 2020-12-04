@@ -1,8 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "search.png",
-      "idiom" : "universal"
+      "filename" : "magnifier.pdf",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

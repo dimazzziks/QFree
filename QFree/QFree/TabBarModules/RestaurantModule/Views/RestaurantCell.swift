@@ -22,52 +22,41 @@ class RestaurantCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = .white
         activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
+        setupViews()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
         self.addSubview(underMainView)
+        underMainView.addSubview(mainView)
+        mainView.addSubview(restaurantImageView)
+        restaurantImageView.addSubview(activityIndicator)
+        mainView.addSubview(whiteView)
+        mainView.addSubview(name)
+    }
+    
+    func setupViews() {
         underMainView.frame = self.bounds
         underMainView.layer.shadowColor = UIColor.black.cgColor
         underMainView.layer.shadowOpacity = 0.3
         underMainView.layer.shadowOffset = .zero
         underMainView.layer.shadowRadius = 5
         
-        underMainView.addSubview(mainView)
         mainView.frame = self.bounds
         mainView.layer.cornerRadius = Brandbook.defaultCornerRadius
         mainView.layer.masksToBounds = true
         
-        mainView.addSubview(restaurantImageView)
         restaurantImageView.frame = self.bounds
         
-        restaurantImageView.addSubview(activityIndicator)
         activityIndicator.frame = self.bounds
         
-        mainView.addSubview(whiteView)
         whiteView.frame = CGRect(x: 0, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/4)
         whiteView.backgroundColor = .white
         
-        mainView.addSubview(name)
         name.frame = CGRect(x: 15, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/5)
-        name.textColor = .label
+        name.textColor = Brandbook.textColor
         name.font = Brandbook.font()
-    }
-    
-    func getImage(urlString: String) -> UIImage {
-        let imageURL = URL(string: urlString)!
-        var resImage = UIImage()
-        if let data = try? Data(contentsOf: imageURL){
-            resImage = UIImage(data: data)!
-        }
-        let queue = DispatchQueue.global(qos: .utility)
-            queue.async{
-                
-            }
-        
-        return resImage
     }
     
     func configure(with restaurant: Restaurant) {
@@ -78,7 +67,7 @@ class RestaurantCell: UICollectionViewCell {
             if let data = try? Data(contentsOf: imageURL) {
                 DispatchQueue.main.async {
                     self.restaurantImageView.image = UIImage(data: data)!
-                    self.activityIndicator.isHidden = true
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }
