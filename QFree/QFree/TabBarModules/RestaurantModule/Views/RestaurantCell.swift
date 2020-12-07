@@ -32,6 +32,7 @@ class RestaurantCell: UICollectionViewCell {
         underMainView.addSubview(mainView)
         mainView.addSubview(restaurantImageView)
         restaurantImageView.addSubview(activityIndicator)
+        restaurantImageView.contentMode = .scaleAspectFill
         mainView.addSubview(whiteView)
         mainView.addSubview(name)
     }

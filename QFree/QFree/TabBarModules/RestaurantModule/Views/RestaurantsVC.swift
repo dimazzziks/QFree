@@ -31,9 +31,9 @@ class RestaurantsVC: UIViewController {
     func getRestaurants() {
         firebaseHandler.getRestaurantsInfo { [weak self] restaurants in
             guard let restaurants = restaurants else {
-                
                 return
             }
+            print(restaurants)
             self?.restaurants = restaurants
             self?.restaurantsCollectionView.reloadData()
         }

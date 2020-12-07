@@ -116,17 +116,13 @@ class ProductTableViewCell: UITableViewCell {
         underMainView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         
         underMainView.addSubview(mainView)
+        mainView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         mainView.leftAnchor.constraint(equalTo: underMainView.leftAnchor, constant: 12).isActive = true
         mainView.rightAnchor.constraint(equalTo: underMainView.rightAnchor, constant: -12).isActive = true
         mainView.bottomAnchor.constraint(equalTo: underMainView.bottomAnchor, constant: -6).isActive = true
         mainView.topAnchor.constraint(equalTo: underMainView.topAnchor, constant: 6).isActive = true
         
-        mainView.layer.cornerRadius = Brandbook.defaultCornerRadius
-        mainView.backgroundColor = .white
-        mainView.layer.shadowColor = UIColor.black.cgColor
-        mainView.layer.shadowOpacity = 0.3
-        mainView.layer.shadowOffset = .zero
-        mainView.layer.shadowRadius = 5
+        mainView.addShadow()
         
     }
     
