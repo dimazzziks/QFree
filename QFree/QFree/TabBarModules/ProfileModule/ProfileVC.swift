@@ -10,7 +10,8 @@ import Firebase
 
 class ProfileVC: UIViewController {
 
-    var logOutLabel: BaseButton!
+    var logOutButton: BaseButton!
+    var changePassButton: BaseButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,17 +19,25 @@ class ProfileVC: UIViewController {
         self.title = "Профиль"
         self.view.backgroundColor = .white
         
-        setupButton()
+        setupChanePassButton()
+        setupLogOutButton()
     }
     
     override func viewDidLayoutSubviews() {
-        self.view.addSubview(logOutLabel)
+        self.view.addSubview(changePassButton)
+        self.view.addSubview(logOutButton)
     }
     
-    func setupButton() {
-        logOutLabel = BaseButton(frame: CGRect(x: 12, y: Brandbook.viewHeight + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
-        logOutLabel.setTitle("Выйти", for: .normal)
-        logOutLabel.addTarget(self, action: #selector(logOutLabelAction(_:)), for: .touchUpInside)
+    func setupChanePassButton() {
+        changePassButton = BaseButton(frame: CGRect(x: 12, y: Brandbook.viewHeight + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
+        changePassButton.setTitle("Сменить пароль", for: .normal)
+        changePassButton.addTarget(self, action: #selector(changePassAction(_:)), for: .touchUpInside)
+    }
+    
+    func setupLogOutButton() {
+        logOutButton = BaseButton(frame: CGRect(x: 12, y: changePassButton.frame.origin.y + changePassButton.frame.height + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
+        logOutButton.setTitle("Выйти", for: .normal)
+        logOutButton.addTarget(self, action: #selector(logOutLabelAction(_:)), for: .touchUpInside)
     }
 }
 
@@ -40,5 +49,9 @@ extension ProfileVC {
         } catch {
             print("Sigh out error")
         }
+    }
+    
+    @objc func changePassAction(_ sender: BaseButton) {
+        // TODO: - Change password
     }
 }

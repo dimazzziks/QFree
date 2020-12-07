@@ -7,8 +7,10 @@
 
 import Foundation
 import Firebase
+
 class FirebaseHandler {
     var ref : DatabaseReference!
+    
     init() {
         self.ref = Database.database().reference()
     }
