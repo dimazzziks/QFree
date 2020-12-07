@@ -10,73 +10,103 @@ import Firebase
 
 class RestaurantsVC: UIViewController {
     
+    var firebaseHandler = FirebaseHandler()
     var thread = Thread()
     
     var ref: DatabaseReference! = Database.database().reference()
     
     var restaurants: [Restaurant] = []
-    
     var restaurantsCollectionView: UICollectionView!
     var categoryCollectionView: UICollectionView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Рестораны"
         self.view.backgroundColor = .systemBackground
-        
         setupCategoryCV()
-        fetchJson()
+        setupRestaurantsCV()
+        firebaseHandler.getRestaurantsInfo { [weak self] restaurants in
+            guard let restaurants = restaurants else {
+                
+                return
+            }
+            self?.restaurants = restaurants
+            self?.restaurantsCollectionView.reloadData()
+        }
+        
+
+//        fetchJson()
+        
+        
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        self.view.addSubview(categoryCollectionView)
-    }
+    // From Dima
+
+    
     
     // TODO: - Get from Firebase
-    func fetchJson() {
-        let jsonUrlString = "https://api.jsonbin.io/b/5fca4ad265c249127ba329e2"
-        
-        guard let url = URL(string: jsonUrlString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
-            
-            do {
-                self.restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
-                DispatchQueue.main.async {
-                    self.setupRestaurantsCV()
-                }
-            } catch {
-                print("Database error")
-            }
-            
-        }.resume()
-    }
+//    func fetchJson() {
+//        let jsonUrlString = "https://api.jsonbin.io/b/5fca4ad265c249127ba329e2"
+//        
+//        guard let url = URL(string: jsonUrlString) else { return }
+//        
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            guard let data = data else { return }
+//            
+//            do {
+//                self.restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
+//                DispatchQueue.main.async {
+//                    self.setupRestaurantsCV()
+//                }
+//            } catch {
+//                print("Database error")
+//            }
+//            
+//        }.resume()
+//    }
+    
+    
     
     func setupCategoryCV() {
-        categoryCollectionView = UICollectionView(frame: CGRect(x: 0, y: Brandbook.viewHeight, width: self.view.frame.width, height: 64), collectionViewLayout: createCategoryLayout())
+        categoryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createCategoryLayout())
+        view.addSubview(categoryCollectionView)
+        categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            categoryCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            categoryCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            categoryCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            categoryCollectionView.heightAnchor.constraint(equalToConstant: 64)
+            
+        ])
         categoryCollectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         categoryCollectionView.backgroundColor = .systemBackground
         
         categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseId)
         
         categoryCollectionView.alwaysBounceVertical = false
-        
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
     }
     
     func setupRestaurantsCV() {
-        let bottom = categoryCollectionView.frame.origin.y + categoryCollectionView.frame.size.height
-        restaurantsCollectionView = UICollectionView(frame: CGRect(x: 0, y: bottom, width: self.view.frame.width, height: self.view.frame.height), collectionViewLayout: createRestaurantLayout())
+        restaurantsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createRestaurantLayout())
+        view.addSubview(restaurantsCollectionView)
+        restaurantsCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            restaurantsCollectionView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor),
+            restaurantsCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            restaurantsCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            restaurantsCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            
+        ])
+        
+        
+        
         restaurantsCollectionView.autoresizingMask = [.flexibleWidth]
         restaurantsCollectionView.backgroundColor = .systemBackground
         
         restaurantsCollectionView.register(RestaurantCell.self, forCellWithReuseIdentifier: RestaurantCell.reuseId)
-        self.view.addSubview(restaurantsCollectionView)
+        
         
         restaurantsCollectionView.delegate = self
         restaurantsCollectionView.dataSource = self
@@ -164,13 +194,14 @@ extension RestaurantsVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == restaurantsCollectionView {
-            pushMenuVC(name: restaurants[indexPath.row].name)
+            pushMenuVC(name: restaurants[indexPath.row].name, restaurantID : String(indexPath.row))
         }
     }
     
-    func pushMenuVC(name: String) {
+    func pushMenuVC(name: String, restaurantID: String) {
         let menuVC = RestaurantMenuTableViewController()
         menuVC.title = name
+        menuVC.restaurantID = restaurantID
         self.navigationController?.pushViewController(menuVC, animated: true)
     }
 

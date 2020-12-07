@@ -9,11 +9,23 @@ import UIKit
 
 class RestaurantMenuTableViewController: UITableViewController {
     var restaurntName = "ГРУША"
-    var restaurnts = ["ГРУША" : [Product(name: "Эспрессо",  image: UIImage(named: "coffee")!, price: 123, category: [.favourite, .dessert]), Product(name: "Латте",  image: UIImage(named: "coffee")!, price: 124, category: [.favourite, .dessert])]]
-    
+    var restaurantID : String = "1"
+    var firebaseHandler = FirebaseHandler()
+    var products : [Product] = []
+//    var restaurnts = ["ГРУША" : [Product(name: "Эспрессо",  image: UIImage(named: "coffee")!, price: 123, category: [.favourite, .dessert]), Product(name: "Латте",  image: UIImage(named: "coffee")!, price: 124, category: [.favourite, .dessert])]]
+//
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorColor = .clear
+        print(self.restaurantID)
+        firebaseHandler.getProductsByIDRestaurant(id: restaurantID, completion: { products in
+            guard let products = products else {
+                return
+            }
+            self.products = products
+            self.tableView.reloadData()
+        })
+        
     }
 
     // MARK: - Table view data source
@@ -23,15 +35,15 @@ class RestaurantMenuTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurnts[restaurntName]!.count
+        return products.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ProductTableViewCell()
-        cell.nameLabel.text = String(restaurnts[restaurntName]![indexPath.row].name)
-        cell.priceLabel.text = String(restaurnts[restaurntName]![indexPath.row].price) + "₽"
-        cell.productImageView.image = restaurnts[restaurntName]![indexPath.row].image
+        cell.nameLabel.text = String(products[indexPath.row].name)
+        cell.priceLabel.text = String(products[indexPath.row].price) + "₽"
+        //cell.productImageView.image = products[indexPath.row].image
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = backgroundView
