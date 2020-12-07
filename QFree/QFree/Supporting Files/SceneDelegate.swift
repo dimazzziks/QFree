@@ -27,11 +27,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private var initialViewController: UIViewController {
-        do{
-            try Auth.auth().signOut()
-        } catch{
-            
-        }
         if Auth.auth().currentUser == nil {
             return BaseNavigationController(rootViewController: EntranceModuleBuilder.build())
         }
