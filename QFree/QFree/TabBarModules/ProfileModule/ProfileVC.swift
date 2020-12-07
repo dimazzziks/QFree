@@ -36,6 +36,7 @@ extension ProfileVC {
     @objc func logOutLabelAction(_ sender: BaseButton) {
         do {
             try Auth.auth().signOut()
+            Coordinator.presentVC(vc: EntranceModuleBuilder.build())
         } catch {
             print("Sigh out error")
         }

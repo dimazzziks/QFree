@@ -52,8 +52,8 @@ extension EntrancePresenter: EntrancePresenterProtocol {
                 self.view?.showInfoLabel(text: "Некооректная информация")
                 return
             }
-            // TODO: Go to Tab Bar
-            print("SHOW MAIN MENU")
+            
+            Coordinator.presentVC(vc: TabBarController())
         }
     }
     

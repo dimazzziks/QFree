@@ -11,20 +11,24 @@ import Firebase
 class RestaurantsVC: UIViewController {
     
     var firebaseHandler = FirebaseHandler()
-    var thread = Thread()
-    
-    var ref: DatabaseReference! = Database.database().reference()
     
     var restaurants: [Restaurant] = []
+    
     var restaurantsCollectionView: UICollectionView!
     var categoryCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Рестораны"
         self.view.backgroundColor = .systemBackground
+        
         setupCategoryCV()
         setupRestaurantsCV()
+        getRestaurants()
+    }
+    
+    func getRestaurants() {
         firebaseHandler.getRestaurantsInfo { [weak self] restaurants in
             guard let restaurants = restaurants else {
                 
@@ -33,39 +37,7 @@ class RestaurantsVC: UIViewController {
             self?.restaurants = restaurants
             self?.restaurantsCollectionView.reloadData()
         }
-        
-
-//        fetchJson()
-        
-        
     }
-    
-    // From Dima
-
-    
-    
-    // TODO: - Get from Firebase
-//    func fetchJson() {
-//        let jsonUrlString = "https://api.jsonbin.io/b/5fca4ad265c249127ba329e2"
-//        
-//        guard let url = URL(string: jsonUrlString) else { return }
-//        
-//        URLSession.shared.dataTask(with: url) { (data, response, error) in
-//            guard let data = data else { return }
-//            
-//            do {
-//                self.restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
-//                DispatchQueue.main.async {
-//                    self.setupRestaurantsCV()
-//                }
-//            } catch {
-//                print("Database error")
-//            }
-//            
-//        }.resume()
-//    }
-    
-    
     
     func setupCategoryCV() {
         categoryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createCategoryLayout())
@@ -76,13 +48,12 @@ class RestaurantsVC: UIViewController {
             categoryCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             categoryCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             categoryCollectionView.heightAnchor.constraint(equalToConstant: 64)
-            
         ])
+        
         categoryCollectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         categoryCollectionView.backgroundColor = .systemBackground
         
         categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseId)
-        
         categoryCollectionView.alwaysBounceVertical = false
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
@@ -97,17 +68,12 @@ class RestaurantsVC: UIViewController {
             restaurantsCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             restaurantsCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             restaurantsCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            
         ])
-        
-        
         
         restaurantsCollectionView.autoresizingMask = [.flexibleWidth]
         restaurantsCollectionView.backgroundColor = .systemBackground
         
         restaurantsCollectionView.register(RestaurantCell.self, forCellWithReuseIdentifier: RestaurantCell.reuseId)
-        
-        
         restaurantsCollectionView.delegate = self
         restaurantsCollectionView.dataSource = self
     }
@@ -155,7 +121,7 @@ class RestaurantsVC: UIViewController {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 12, bottom: Brandbook.viewHeight*2, trailing: 12)
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 12, bottom: 0, trailing: 12)
         
         return section
     }
@@ -189,7 +155,6 @@ extension RestaurantsVC: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.configure(categoryIndex: indexPath.row)
             return cell
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -198,11 +163,15 @@ extension RestaurantsVC: UICollectionViewDelegate, UICollectionViewDataSource {
         }
     }
     
+}
+
+extension RestaurantsVC {
+    
     func pushMenuVC(name: String, restaurantID: String) {
         let menuVC = RestaurantMenuTableViewController()
         menuVC.title = name
         menuVC.restaurantID = restaurantID
         self.navigationController?.pushViewController(menuVC, animated: true)
     }
-
+    
 }
