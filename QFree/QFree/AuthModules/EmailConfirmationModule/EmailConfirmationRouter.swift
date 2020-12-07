@@ -10,11 +10,3 @@ import Foundation
 protocol EmailConfirmationRouterProtocol {
         var viewController: EmailConfirmationViewProtocol { get set }
 }
-
-class EmailConfirmationRouter : EmailConfirmationRouterProtocol{
-    var viewController: EmailConfirmationViewProtocol
-    
-    init(view : EmailConfirmationViewProtocol){
-        self.viewController = view
-    }
-}

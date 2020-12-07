@@ -21,17 +21,42 @@ class EmailConfirmationViewController : BaseViewController{
     private var confirmEmailButton : BaseButton!
     private var loadingIndicator : UIActivityIndicatorView!
     
+    private var stopAnimating = false
+    
     var presenter : EmailConfirmationPresenterProtocol?
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        self.presenter?.deleteUser()
+        if(stopAnimating){
+            self.presenter?.deleteUser()
+        }
+        else{
+            stopAnimating = true
+        }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         presenter?.resendEmailVerification()
+        let queue = DispatchQueue.global()
+        queue.async {
+            while(!self.stopAnimating && !Auth.auth().currentUser!.isEmailVerified){
+                Auth.auth().currentUser?.reload(completion: nil)
+                sleep(1)
+            }
+            if(!self.stopAnimating)
+            {
+                DispatchQueue.main.async {
+                    Coordinator.presentVC(vc: TabBarController())
+                }
+            }
+            else{
+                self.presenter?.deleteUser()
+            }
+            
+        }
     }
     
     private func setupUI() {
