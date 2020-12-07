@@ -12,12 +12,11 @@ class RestaurantMenuTableViewController: UITableViewController {
     var restaurantID : String = "1"
     var firebaseHandler = FirebaseHandler()
     var products : [Product] = []
-//    var restaurnts = ["ГРУША" : [Product(name: "Эспрессо",  image: UIImage(named: "coffee")!, price: 123, category: [.favourite, .dessert]), Product(name: "Латте",  image: UIImage(named: "coffee")!, price: 124, category: [.favourite, .dessert])]]
-//
+    var basket : [Product : Int] = [Product : Int]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorColor = .clear
-        print(self.restaurantID)
+        
         firebaseHandler.getProductsByIDRestaurant(id: restaurantID, completion: { products in
             guard let products = products else {
                 return
@@ -25,6 +24,20 @@ class RestaurantMenuTableViewController: UITableViewController {
             self.products = products
             self.tableView.reloadData()
         })
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        firebaseHandler.getBasket {basket in
+            guard let basket = basket else {
+                return
+            }
+            self.basket = basket
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("basket before  post", basket)
+        firebaseHandler.postBasket(products: self.basket)
         
     }
 
@@ -50,9 +63,15 @@ class RestaurantMenuTableViewController: UITableViewController {
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
-    }
+        if basket[products[indexPath.row]] == nil {
+            basket[products[indexPath.row]] = 0
+        }
+        basket[products[indexPath.row]]! += 1
+   }
+  
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
