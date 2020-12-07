@@ -39,6 +39,7 @@ class OrderViewController: UIViewController {
     private func setupTableView() {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: "ProductTableViewCell")
