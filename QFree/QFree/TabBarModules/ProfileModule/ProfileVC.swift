@@ -71,15 +71,14 @@ extension ProfileVC : ProfileViewProtocol {
     }
     
     @objc func changePassAction(_ sender: BaseButton) {
-        presenter?.changePassword{
-            
-                let alert = UIAlertController(title: "Письмо для смены пароля было отправлено на вашу электронную почту", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
+        presenter?.changePassword {
+            let alert = UIAlertController(title: "Письмо для смены пароля было отправлено на вашу электронную почту", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
         }
     }
     
     @objc func changeEmailAction(_ sender: BaseButton) {
-        // TODO: - Change email
+        navigationController?.pushViewController(ChangeEmailVC(), animated: true)
     }
 }
