@@ -14,7 +14,7 @@ protocol ProfileRouterProtocol {
 class ProfileRouter : ProfileRouterProtocol{
     var viewController: ProfileViewProtocol
     
-    init(view : ProfileViewProtocol){
+    init(view : ProfileViewProtocol, changeEmailView : ChangeEmailProtocol ){
         self.viewController = view
     }
 }

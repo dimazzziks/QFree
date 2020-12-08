@@ -12,10 +12,13 @@ protocol ProfileViewProtocol : class{
     func logOutLabelAction(_ sender: BaseButton)
     func changePassAction(_ sender: BaseButton)
     func changeEmailAction(_ sender: BaseButton)
+    func showAlertMessage()
 }
 
 class ProfileVC: BaseViewController {
     public var presenter: ProfilePresenterProtocol?
+    
+    public var changeEmailVC: ChangeEmailVC?
 
     var changePassButton: BaseButton!
     var changeEmailButton: BaseButton!
@@ -71,14 +74,18 @@ extension ProfileVC : ProfileViewProtocol {
     }
     
     @objc func changePassAction(_ sender: BaseButton) {
-        presenter?.changePassword {
-            let alert = UIAlertController(title: "Письмо для смены пароля было отправлено на вашу электронную почту", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-        }
+        presenter?.changePassword()
     }
+    func showAlertMessage(){
+        let alert = UIAlertController(title: "Письмо для смены пароля было отправлено на вашу электронную почту", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
+            self.presenter?.logOut()
+        }))
+        self.present(alert, animated: true)
+    }
+
     
     @objc func changeEmailAction(_ sender: BaseButton) {
-        navigationController?.pushViewController(ChangeEmailVC(), animated: true)
+        navigationController?.pushViewController(changeEmailVC!, animated: true)
     }
 }

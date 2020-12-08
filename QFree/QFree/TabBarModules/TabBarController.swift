@@ -16,7 +16,7 @@ class TabBarController: UITabBarController {
         let ordersVC = UINavigationController(rootViewController: OrderModuleBuilder.build())
         let basketVC = UINavigationController(rootViewController: BasketViewController())
         let searchVC = UINavigationController(rootViewController: SearchVC())
-        let profileVC = UINavigationController(rootViewController: ProfileVC())
+        let profileVC = UINavigationController(rootViewController: ProfileModuleBuilder.build())
 
         restaurantVC.title = "Рестораны"
         ordersVC.title = "Заказы"

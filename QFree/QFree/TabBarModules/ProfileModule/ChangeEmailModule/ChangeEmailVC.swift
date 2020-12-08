@@ -7,7 +7,13 @@
 
 import UIKit
 
-class ChangeEmailVC: UIViewController {
+protocol ChangeEmailProtocol{
+    func changeEmailButtonAction(_ sender: BaseButton)
+    func showAlertMessage()
+}
+
+class ChangeEmailVC: BaseViewController {
+    var presenter: ProfilePresenter?
     
     private var stackView: FormStackView!
     private var oldEmailTextField: BaseTextField!
@@ -26,20 +32,15 @@ class ChangeEmailVC: UIViewController {
     }
     
     private func setupEnterForm() {
-        oldEmailTextField = BaseTextField()
-        oldEmailTextField.keyboardType = .emailAddress
-        oldEmailTextField.placeholder = "Старая почта"
-        oldEmailTextField.translatesAutoresizingMaskIntoConstraints = false
-        oldEmailTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         newEmailTextField = BaseTextField()
-        newEmailTextField.isSecureTextEntry = true
+        newEmailTextField.isSecureTextEntry = false
         newEmailTextField.placeholder = "Новая почта"
         newEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         newEmailTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         enterButton = BaseButton()
-        enterButton.addTarget(self, action: #selector(chaneEmailButtonAction(_:)), for: .touchUpInside)
+        enterButton.addTarget(self, action: #selector(changeEmailButtonAction(_:)), for: .touchUpInside)
         enterButton.setTitle("Сменить почту", for: .normal)
         enterButton.translatesAutoresizingMaskIntoConstraints = false
         enterButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
@@ -47,7 +48,6 @@ class ChangeEmailVC: UIViewController {
         stackView = FormStackView()
         stackView.spacing = 16
         stackView.addArrangedSubviews(
-            oldEmailTextField,
             newEmailTextField,
             enterButton
         )
@@ -77,10 +77,19 @@ class ChangeEmailVC: UIViewController {
 
 }
 
-extension ChangeEmailVC {
+extension ChangeEmailVC : ChangeEmailProtocol {
     
-    @objc func chaneEmailButtonAction(_ sender: BaseButton) {
-        // TODO: - Change Email Action
+    @objc func changeEmailButtonAction(_ sender: BaseButton) {
+        print("button pressed")
+        presenter?.changeEmail(email: newEmailTextField.text!)
+    }
+    
+    func showAlertMessage(){
+        let alert = UIAlertController(title: "На вашу электронную почту было отправлено письмо для авторизации", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in 
+            self.presenter?.logOut()
+        }))
+        self.present(alert, animated: true)
     }
     
 }
