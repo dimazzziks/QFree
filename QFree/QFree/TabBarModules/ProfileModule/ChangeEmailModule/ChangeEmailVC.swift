@@ -33,7 +33,6 @@ class ChangeEmailVC: UIViewController {
         oldEmailTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         newEmailTextField = BaseTextField()
-        newEmailTextField.isSecureTextEntry = true
         newEmailTextField.placeholder = "Новая почта"
         newEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         newEmailTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true

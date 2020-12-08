@@ -62,12 +62,12 @@ class ProfileVC: BaseViewController {
 extension ProfileVC : ProfileViewProtocol {
     @objc func logOutLabelAction(_ sender: BaseButton) {
         presenter?.logOut()
-        /*do {
+        do {
             try Auth.auth().signOut()
             Coordinator.rootVC(vc: BaseNavigationController(rootViewController: EntranceModuleBuilder.build()))
         } catch {
             print("Sigh out error")
-        }*/
+        }
     }
     
     @objc func changePassAction(_ sender: BaseButton) {
