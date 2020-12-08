@@ -34,7 +34,10 @@ class ChangeEmailVC: BaseViewController {
     private func setupEnterForm() {
         
         newEmailTextField = BaseTextField()
+<<<<<<< HEAD
         newEmailTextField.isSecureTextEntry = false
+=======
+>>>>>>> 72f11d0f582e338c63a70a1c621605c893baa6d5
         newEmailTextField.placeholder = "Новая почта"
         newEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         newEmailTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true

@@ -36,7 +36,7 @@ class ProfileInteractor : ProfileInteractorProtocol{
     }
     
     func changePassword(completion: @escaping ()->()){
-        Auth.auth().sendPasswordReset(withEmail: Auth.auth().currentUser?.email ?? "") { (error) in
+        Auth.auth().sendPasswordReset(withEmail: Auth.auth().currentUser!.email!) { (error) in
             if let e = error{
                 print(e.localizedDescription)
             } else{

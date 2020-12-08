@@ -16,13 +16,15 @@ class TabBarController: UITabBarController {
         let ordersVC = UINavigationController(rootViewController: OrderModuleBuilder.build())
         let basketVC = UINavigationController(rootViewController: BasketViewController())
         let searchVC = UINavigationController(rootViewController: SearchVC())
-        let profileVC = UINavigationController(rootViewController: ProfileVC())
+        let profileVC = UINavigationController(rootViewController: ProfileModuleBuilder.build())
 
         restaurantVC.title = "Рестораны"
         ordersVC.title = "Заказы"
         basketVC.title = "Корзина"
         searchVC.title = "Поиск"
         profileVC.title = "Профиль"
+        
+        searchVC.navigationBar.barStyle = .black
         
         setViewControllers([restaurantVC, ordersVC, basketVC, searchVC, profileVC], animated: true)
         tabBar.tintColor = Brandbook.defaultColor

@@ -9,21 +9,23 @@ import Foundation
 import UIKit
 
 protocol ProfilePresenterProtocol {
-    func changeEmail(email: String, completion: @escaping ()->())
-    func changePassword(completion: @escaping ()->())
+    func changeEmail(email: String)
+    func changePassword()
     func logOut()
 }
 
 class ProfilePresenter{
     
     var view: ProfileViewProtocol
+    var changeEmailview: ChangeEmailProtocol
     var interactor: ProfileInteractorProtocol
     var router: ProfileRouterProtocol
     
     var isGoingForward = false
     
-    init(view: ProfileViewProtocol, interactor: ProfileInteractorProtocol, router: ProfileRouterProtocol) {
+    init(view: ProfileViewProtocol,changeEmailview: ChangeEmailProtocol, interactor: ProfileInteractorProtocol, router: ProfileRouterProtocol) {
         self.view = view
+        self.changeEmailview = changeEmailview
         self.interactor = interactor
         self.router = router
     }
@@ -32,9 +34,9 @@ class ProfilePresenter{
 
 
 extension ProfilePresenter : ProfilePresenterProtocol{
-    func changeEmail(email: String, completion: @escaping () -> ()) {
+    func changeEmail(email: String) {
         interactor.changeEmail(email: email) {
-            completion()
+            self.changeEmailview.showAlertMessage()
         }
     }
     
@@ -44,9 +46,10 @@ extension ProfilePresenter : ProfilePresenterProtocol{
         }
     }
     
-    func changePassword(completion: @escaping ()->()){
+    func changePassword(){
+        print("action button tapped")
         interactor.changePassword {
-            completion()
+            self.view.showAlertMessage()
         }
     }
 }
