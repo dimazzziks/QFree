@@ -8,7 +8,14 @@
 import UIKit
 import Firebase
 
-class ProfileVC: UIViewController {
+protocol ProfileViewProtocol : class{
+    func logOutLabelAction(_ sender: BaseButton)
+    func changePassAction(_ sender: BaseButton)
+    func changeEmailAction(_ sender: BaseButton)
+}
+
+class ProfileVC: BaseViewController {
+    public var presenter: ProfilePresenterProtocol?
 
     var changePassButton: BaseButton!
     var changeEmailButton: BaseButton!
@@ -52,18 +59,24 @@ class ProfileVC: UIViewController {
     }
 }
 
-extension ProfileVC {
+extension ProfileVC : ProfileViewProtocol {
     @objc func logOutLabelAction(_ sender: BaseButton) {
-        do {
+        presenter?.logOut()
+        /*do {
             try Auth.auth().signOut()
             Coordinator.rootVC(vc: BaseNavigationController(rootViewController: EntranceModuleBuilder.build()))
         } catch {
             print("Sigh out error")
-        }
+        }*/
     }
     
     @objc func changePassAction(_ sender: BaseButton) {
-        // TODO: - Change password
+        presenter?.changePassword{
+            
+                let alert = UIAlertController(title: "Письмо для смены пароля было отправлено на вашу электронную почту", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+        }
     }
     
     @objc func changeEmailAction(_ sender: BaseButton) {

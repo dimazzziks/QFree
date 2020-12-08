@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+protocol ProfileRouterProtocol {
+        var viewController: ProfileViewProtocol { get set }
+}
+
+class ProfileRouter : ProfileRouterProtocol{
+    var viewController: ProfileViewProtocol
+    
+    init(view : ProfileViewProtocol){
+        self.viewController = view
+    }
+}
