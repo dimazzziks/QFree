@@ -29,7 +29,6 @@
 		344B8E7E2544803C00B1A671 /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E7D2544803C00B1A671 /* RegistrationRouter.swift */; };
 		344B8E812544806E00B1A671 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E802544806E00B1A671 /* RegistrationViewController.swift */; };
 		344B8E84254480CD00B1A671 /* RegistrationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E83254480CD00B1A671 /* RegistrationModuleBuilder.swift */; };
-		344EC52C257ED07A001AADF6 /* UIView+cornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC52B257ED07A001AADF6 /* UIView+cornerRadius.swift */; };
 		344EC535257ED0A2001AADF6 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC52F257ED0A1001AADF6 /* BasketViewController.swift */; };
 		344EC536257ED0A2001AADF6 /* BasketModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC530257ED0A1001AADF6 /* BasketModuleBuilder.swift */; };
 		344EC538257ED0A2001AADF6 /* BasketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC532257ED0A1001AADF6 /* BasketRouter.swift */; };
@@ -106,7 +105,6 @@
 		344B8E7D2544803C00B1A671 /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		344B8E802544806E00B1A671 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		344B8E83254480CD00B1A671 /* RegistrationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleBuilder.swift; sourceTree = "<group>"; };
-		344EC52B257ED07A001AADF6 /* UIView+cornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+cornerRadius.swift"; path = "../../../../../../../Desktop/QFree/QFree/QFree/Helpers/Extensions/UIView+cornerRadius.swift"; sourceTree = "<group>"; };
 		344EC52F257ED0A1001AADF6 /* BasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		344EC530257ED0A1001AADF6 /* BasketModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketModuleBuilder.swift; sourceTree = "<group>"; };
 		344EC532257ED0A1001AADF6 /* BasketRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketRouter.swift; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				341184F72543891C006D1361 /* UIColor+hex.swift */,
-				344EC52B257ED07A001AADF6 /* UIView+cornerRadius.swift */,
 				344EC543257ED156001AADF6 /* UIView+addShadow.swift */,
 			);
 			path = Extensions;
@@ -582,7 +579,6 @@
 				B78228E92548EAC10052A546 /* ProfileVC.swift in Sources */,
 				CE62277F25598EA500DC01AB /* EmailConfirmationInteractor.swift in Sources */,
 				B78228E62548EAC10052A546 /* ProfileInteractor.swift in Sources */,
-				344EC52C257ED07A001AADF6 /* UIView+cornerRadius.swift in Sources */,
 				344B8E812544806E00B1A671 /* RegistrationViewController.swift in Sources */,
 				B78229042548EADE0052A546 /* SearchModuleBuilder.swift in Sources */,
 				344EC562257EE4CC001AADF6 /* OrderViewController.swift in Sources */,
