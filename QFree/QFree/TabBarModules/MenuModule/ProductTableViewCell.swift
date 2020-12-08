@@ -96,9 +96,10 @@ class ProductTableViewCell: UITableViewCell {
         
         mainView.addSubview(productImageView)
         productImageView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -12).isActive = true
-        productImageView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12).isActive = true
+        //productImageView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12).isActive = true
         productImageView.heightAnchor.constraint(equalToConstant: 114).isActive = true
         productImageView.widthAnchor.constraint(equalToConstant: 114).isActive = true
+        productImageView.centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true
         
         mainView.addSubview(labels)
         labels.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 12).isActive = true
