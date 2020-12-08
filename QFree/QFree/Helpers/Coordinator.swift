@@ -8,7 +8,7 @@
 import UIKit
 
 class Coordinator {
-    static func presentVC(vc: UIViewController) {
+    static func rootVC(vc: UIViewController) {
         let sceneDelegate = UIApplication.shared.connectedScenes
                 .first!.delegate as! SceneDelegate
         sceneDelegate.window!.rootViewController = vc

@@ -10,8 +10,9 @@ import Firebase
 
 class ProfileVC: UIViewController {
 
-    var logOutButton: BaseButton!
     var changePassButton: BaseButton!
+    var changeEmailButton: BaseButton!
+    var logOutButton: BaseButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +21,13 @@ class ProfileVC: UIViewController {
         self.view.backgroundColor = .white
         
         setupChanePassButton()
+        setupChangeEmailButton()
         setupLogOutButton()
     }
     
     override func viewDidLayoutSubviews() {
         self.view.addSubview(changePassButton)
+        self.view.addSubview(changeEmailButton)
         self.view.addSubview(logOutButton)
     }
     
@@ -34,8 +37,16 @@ class ProfileVC: UIViewController {
         changePassButton.addTarget(self, action: #selector(changePassAction(_:)), for: .touchUpInside)
     }
     
+    func setupChangeEmailButton() {
+        changeEmailButton = BaseButton(frame: CGRect(x: 12, y: changePassButton.frame.origin.y + changePassButton.frame.height + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
+        changeEmailButton.setTitle("Сменить почту", for: .normal)
+        changeEmailButton.addTarget(self, action: #selector(changeEmailAction(_:)), for: .touchUpInside)
+        
+    }
+    
     func setupLogOutButton() {
-        logOutButton = BaseButton(frame: CGRect(x: 12, y: changePassButton.frame.origin.y + changePassButton.frame.height + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
+        logOutButton = BaseButton(frame: CGRect(x: 12, y: changeEmailButton.frame.origin.y + changeEmailButton.frame.height + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
+        logOutButton.filled = false
         logOutButton.setTitle("Выйти", for: .normal)
         logOutButton.addTarget(self, action: #selector(logOutLabelAction(_:)), for: .touchUpInside)
     }
@@ -45,7 +56,7 @@ extension ProfileVC {
     @objc func logOutLabelAction(_ sender: BaseButton) {
         do {
             try Auth.auth().signOut()
-            Coordinator.presentVC(vc: EntranceModuleBuilder.build())
+            Coordinator.rootVC(vc: BaseNavigationController(rootViewController: EntranceModuleBuilder.build()))
         } catch {
             print("Sigh out error")
         }
@@ -53,5 +64,9 @@ extension ProfileVC {
     
     @objc func changePassAction(_ sender: BaseButton) {
         // TODO: - Change password
+    }
+    
+    @objc func changeEmailAction(_ sender: BaseButton) {
+        // TODO: - Change email
     }
 }
