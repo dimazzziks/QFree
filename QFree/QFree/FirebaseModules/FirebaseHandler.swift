@@ -55,6 +55,19 @@ class FirebaseHandler {
         }
     }
     
+    func getProductsInBasket(email: String, completion: @escaping ([Product]?) -> ()) {
+        let query = ref.child("Users").child("\"zhbannikov_dima@mailru\"")
+        var products: [Product] = []
+        query.observeSingleEvent(of: .value) { snapshot in
+            // FIXME: fetch snapshot
+            products = [
+                Product(name: "1", imageLink: "1", price: 1, category: [.coffee], restaurantID: "1"),
+                Product(name: "2", imageLink: "2", price: 2, category: [.coffee], restaurantID: "2"),
+                Product(name: "3", imageLink: "3", price: 3, category: [.coffee], restaurantID: "3")
+            ]
+            completion(products)
+        }
+    }
     func getBasket(completion: @escaping ([Product : Int]?) -> ()) {
         var basket : [Product : Int] = [Product : Int]()
         self.ref.child("Users").child(self.user).child("basket").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -90,8 +103,20 @@ class FirebaseHandler {
         self.ref.child("Users").child(self.user).child("basket").setValue(arr)
     }
     
-    
-    
+    func getCurrentOrderInfo(email: String, completion: @escaping (OrderInfo?) ->()) {
+        let query = ref.child("Users").child("\"zhbannikov_dima@mailru\"")
+        var currentOrderInfo: OrderInfo?
+        query.observeSingleEvent(of: .value) { snapshot in
+            // FIXME: fetch snapshot
+            currentOrderInfo = OrderInfo(
+                restaurantName: "Name",
+                completionTime: "17:00",
+                number: "123",
+                restaurantImageUrl: "https://www.hse.ru/pubs/share/direct/305134103.jpg"
+            )
+            completion(currentOrderInfo)
+        }
+    }
 }
 
 //SERCH

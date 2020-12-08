@@ -24,12 +24,24 @@
 		3442CA0B254392130079B5AB /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */; };
 		3442CA0F254394B40079B5AB /* FormStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA0E254394B40079B5AB /* FormStackView.swift */; };
 		3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA13254398DB0079B5AB /* BaseButton.swift */; };
-		3442CA1925439CB30079B5AB /* UIView+cornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */; };
 		344B8E7625447F4600B1A671 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E7525447F4600B1A671 /* RegistrationInteractor.swift */; };
 		344B8E7B25447FEF00B1A671 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E7A25447FEF00B1A671 /* RegistrationPresenter.swift */; };
 		344B8E7E2544803C00B1A671 /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E7D2544803C00B1A671 /* RegistrationRouter.swift */; };
 		344B8E812544806E00B1A671 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E802544806E00B1A671 /* RegistrationViewController.swift */; };
 		344B8E84254480CD00B1A671 /* RegistrationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B8E83254480CD00B1A671 /* RegistrationModuleBuilder.swift */; };
+		344EC535257ED0A2001AADF6 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC52F257ED0A1001AADF6 /* BasketViewController.swift */; };
+		344EC536257ED0A2001AADF6 /* BasketModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC530257ED0A1001AADF6 /* BasketModuleBuilder.swift */; };
+		344EC538257ED0A2001AADF6 /* BasketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC532257ED0A1001AADF6 /* BasketRouter.swift */; };
+		344EC53A257ED0A2001AADF6 /* BasketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC534257ED0A2001AADF6 /* BasketPresenter.swift */; };
+		344EC53D257ED0AC001AADF6 /* OrderStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC53C257ED0AC001AADF6 /* OrderStateCell.swift */; };
+		344EC544257ED156001AADF6 /* UIView+addShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC543257ED156001AADF6 /* UIView+addShadow.swift */; };
+		344EC548257ED86B001AADF6 /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC547257ED86B001AADF6 /* OrderInfo.swift */; };
+		344EC54D257EE442001AADF6 /* BasketInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC54C257EE442001AADF6 /* BasketInteractor.swift */; };
+		344EC552257EE467001AADF6 /* OrderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC551257EE467001AADF6 /* OrderInteractor.swift */; };
+		344EC556257EE4A3001AADF6 /* OrderModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC555257EE4A3001AADF6 /* OrderModuleBuilder.swift */; };
+		344EC55A257EE4B1001AADF6 /* OrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC559257EE4B1001AADF6 /* OrderPresenter.swift */; };
+		344EC55E257EE4BD001AADF6 /* OrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC55D257EE4BD001AADF6 /* OrderRouter.swift */; };
+		344EC562257EE4CC001AADF6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC561257EE4CC001AADF6 /* OrderViewController.swift */; };
 		345522D62544B02800495E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 345522D52544B02800495E5F /* GoogleService-Info.plist */; };
 		34585921256F08E300E47E7E /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34585920256F08E300E47E7E /* MapManager.swift */; };
 		34585927256F0B9E00E47E7E /* BaseMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34585926256F0B9E00E47E7E /* BaseMapView.swift */; };
@@ -40,16 +52,6 @@
 		B708655A255AE6CB00665E2C /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086557255AE6CA00665E2C /* ProductModel.swift */; };
 		B738CB08257E717F00D8D2E7 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738CB07257E717F00D8D2E7 /* Coordinator.swift */; };
 		B78228C42548EA480052A546 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228C32548EA480052A546 /* TabBarController.swift */; };
-		B78228D02548EA9E0052A546 /* BasketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228CB2548EA9D0052A546 /* BasketVC.swift */; };
-		B78228D12548EA9E0052A546 /* BasketModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228CC2548EA9D0052A546 /* BasketModuleBuilder.swift */; };
-		B78228D22548EA9E0052A546 /* BasketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228CD2548EA9D0052A546 /* BasketPresenter.swift */; };
-		B78228D32548EA9E0052A546 /* BasketInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228CE2548EA9D0052A546 /* BasketInteractor.swift */; };
-		B78228D42548EA9E0052A546 /* BasketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228CF2548EA9E0052A546 /* BasketRouter.swift */; };
-		B78228DB2548EAAB0052A546 /* OrderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228D62548EAAB0052A546 /* OrderInteractor.swift */; };
-		B78228DC2548EAAB0052A546 /* OrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228D72548EAAB0052A546 /* OrderRouter.swift */; };
-		B78228DD2548EAAB0052A546 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228D82548EAAB0052A546 /* OrdersVC.swift */; };
-		B78228DE2548EAAB0052A546 /* OrderModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228D92548EAAB0052A546 /* OrderModuleBuilder.swift */; };
-		B78228DF2548EAAB0052A546 /* OrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228DA2548EAAB0052A546 /* OrderPresenter.swift */; };
 		B78228E62548EAC10052A546 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228E12548EAC00052A546 /* ProfileInteractor.swift */; };
 		B78228E72548EAC10052A546 /* ProfileModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228E22548EAC00052A546 /* ProfileModuleBuilder.swift */; };
 		B78228E82548EAC10052A546 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228E32548EAC10052A546 /* ProfileRouter.swift */; };
@@ -98,12 +100,24 @@
 		3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		3442CA0E254394B40079B5AB /* FormStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStackView.swift; sourceTree = "<group>"; };
 		3442CA13254398DB0079B5AB /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
-		3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+cornerRadius.swift"; sourceTree = "<group>"; };
 		344B8E7525447F4600B1A671 /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
 		344B8E7A25447FEF00B1A671 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		344B8E7D2544803C00B1A671 /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		344B8E802544806E00B1A671 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		344B8E83254480CD00B1A671 /* RegistrationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleBuilder.swift; sourceTree = "<group>"; };
+		344EC52F257ED0A1001AADF6 /* BasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
+		344EC530257ED0A1001AADF6 /* BasketModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketModuleBuilder.swift; sourceTree = "<group>"; };
+		344EC532257ED0A1001AADF6 /* BasketRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketRouter.swift; sourceTree = "<group>"; };
+		344EC534257ED0A2001AADF6 /* BasketPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketPresenter.swift; sourceTree = "<group>"; };
+		344EC53C257ED0AC001AADF6 /* OrderStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStateCell.swift; sourceTree = "<group>"; };
+		344EC543257ED156001AADF6 /* UIView+addShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+addShadow.swift"; sourceTree = "<group>"; };
+		344EC547257ED86B001AADF6 /* OrderInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfo.swift; sourceTree = "<group>"; };
+		344EC54C257EE442001AADF6 /* BasketInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketInteractor.swift; sourceTree = "<group>"; };
+		344EC551257EE467001AADF6 /* OrderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInteractor.swift; sourceTree = "<group>"; };
+		344EC555257EE4A3001AADF6 /* OrderModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModuleBuilder.swift; sourceTree = "<group>"; };
+		344EC559257EE4B1001AADF6 /* OrderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPresenter.swift; sourceTree = "<group>"; };
+		344EC55D257EE4BD001AADF6 /* OrderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRouter.swift; sourceTree = "<group>"; };
+		344EC561257EE4CC001AADF6 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		345522D52544B02800495E5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		34585920256F08E300E47E7E /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		34585926256F0B9E00E47E7E /* BaseMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapView.swift; sourceTree = "<group>"; };
@@ -116,16 +130,6 @@
 		B7086557255AE6CA00665E2C /* ProductModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		B738CB07257E717F00D8D2E7 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B78228C32548EA480052A546 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		B78228CB2548EA9D0052A546 /* BasketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketVC.swift; sourceTree = "<group>"; };
-		B78228CC2548EA9D0052A546 /* BasketModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketModuleBuilder.swift; sourceTree = "<group>"; };
-		B78228CD2548EA9D0052A546 /* BasketPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketPresenter.swift; sourceTree = "<group>"; };
-		B78228CE2548EA9D0052A546 /* BasketInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketInteractor.swift; sourceTree = "<group>"; };
-		B78228CF2548EA9E0052A546 /* BasketRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketRouter.swift; sourceTree = "<group>"; };
-		B78228D62548EAAB0052A546 /* OrderInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInteractor.swift; sourceTree = "<group>"; };
-		B78228D72548EAAB0052A546 /* OrderRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderRouter.swift; sourceTree = "<group>"; };
-		B78228D82548EAAB0052A546 /* OrdersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
-		B78228D92548EAAB0052A546 /* OrderModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderModuleBuilder.swift; sourceTree = "<group>"; };
-		B78228DA2548EAAB0052A546 /* OrderPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPresenter.swift; sourceTree = "<group>"; };
 		B78228E12548EAC00052A546 /* ProfileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		B78228E22548EAC00052A546 /* ProfileModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModuleBuilder.swift; sourceTree = "<group>"; };
 		B78228E32548EAC10052A546 /* ProfileRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
@@ -241,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				341184F72543891C006D1361 /* UIColor+hex.swift */,
-				3442CA1825439CB30079B5AB /* UIView+cornerRadius.swift */,
+				344EC543257ED156001AADF6 /* UIView+addShadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -285,6 +289,22 @@
 				344B8E7425447F1E00B1A671 /* RegistrationModule */,
 			);
 			path = AuthModules;
+			sourceTree = "<group>";
+		};
+		344EC540257ED0B8001AADF6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				344EC53C257ED0AC001AADF6 /* OrderStateCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		344EC546257ED85C001AADF6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				344EC547257ED86B001AADF6 /* OrderInfo.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3458591F256F08BB00E47E7E /* Map */ = {
@@ -364,11 +384,11 @@
 		B78228C62548EA5B0052A546 /* BasketModule */ = {
 			isa = PBXGroup;
 			children = (
-				B78228CE2548EA9D0052A546 /* BasketInteractor.swift */,
-				B78228CC2548EA9D0052A546 /* BasketModuleBuilder.swift */,
-				B78228CD2548EA9D0052A546 /* BasketPresenter.swift */,
-				B78228CF2548EA9E0052A546 /* BasketRouter.swift */,
-				B78228CB2548EA9D0052A546 /* BasketVC.swift */,
+				344EC54C257EE442001AADF6 /* BasketInteractor.swift */,
+				344EC530257ED0A1001AADF6 /* BasketModuleBuilder.swift */,
+				344EC534257ED0A2001AADF6 /* BasketPresenter.swift */,
+				344EC532257ED0A1001AADF6 /* BasketRouter.swift */,
+				344EC52F257ED0A1001AADF6 /* BasketViewController.swift */,
 			);
 			path = BasketModule;
 			sourceTree = "<group>";
@@ -376,11 +396,13 @@
 		B78228C72548EA670052A546 /* OrderModule */ = {
 			isa = PBXGroup;
 			children = (
-				B78228D62548EAAB0052A546 /* OrderInteractor.swift */,
-				B78228D92548EAAB0052A546 /* OrderModuleBuilder.swift */,
-				B78228DA2548EAAB0052A546 /* OrderPresenter.swift */,
-				B78228D72548EAAB0052A546 /* OrderRouter.swift */,
-				B78228D82548EAAB0052A546 /* OrdersVC.swift */,
+				344EC551257EE467001AADF6 /* OrderInteractor.swift */,
+				344EC555257EE4A3001AADF6 /* OrderModuleBuilder.swift */,
+				344EC559257EE4B1001AADF6 /* OrderPresenter.swift */,
+				344EC55D257EE4BD001AADF6 /* OrderRouter.swift */,
+				344EC561257EE4CC001AADF6 /* OrderViewController.swift */,
+				344EC540257ED0B8001AADF6 /* Views */,
+				344EC546257ED85C001AADF6 /* Models */,
 			);
 			path = OrderModule;
 			sourceTree = "<group>";
@@ -550,68 +572,70 @@
 			files = (
 				B7086558255AE6CB00665E2C /* RestaurantMenuTableViewController.swift in Sources */,
 				B7086559255AE6CB00665E2C /* ProductTableViewCell.swift in Sources */,
+				344EC54D257EE442001AADF6 /* BasketInteractor.swift in Sources */,
 				340F1A9825420961000A381D /* EntranceRouter.swift in Sources */,
 				B78229022548EADE0052A546 /* SearchRouter.swift in Sources */,
 				340F1A9F25420AB4000A381D /* EntranceModuleBuilder.swift in Sources */,
 				B78228E92548EAC10052A546 /* ProfileVC.swift in Sources */,
 				CE62277F25598EA500DC01AB /* EmailConfirmationInteractor.swift in Sources */,
 				B78228E62548EAC10052A546 /* ProfileInteractor.swift in Sources */,
-				B78228D22548EA9E0052A546 /* BasketPresenter.swift in Sources */,
 				344B8E812544806E00B1A671 /* RegistrationViewController.swift in Sources */,
 				B78229042548EADE0052A546 /* SearchModuleBuilder.swift in Sources */,
+				344EC562257EE4CC001AADF6 /* OrderViewController.swift in Sources */,
 				B78228F42548EAD10052A546 /* RestaurantModuleBuilder.swift in Sources */,
 				340F1A9525420924000A381D /* EntrancePresenter.swift in Sources */,
 				B78228F92548EAD10052A546 /* RestaurantCell.swift in Sources */,
-				B78228D02548EA9E0052A546 /* BasketVC.swift in Sources */,
 				3442CA0B254392130079B5AB /* BaseNavigationViewController.swift in Sources */,
 				34585921256F08E300E47E7E /* MapManager.swift in Sources */,
 				B78228C42548EA480052A546 /* TabBarController.swift in Sources */,
-				B78228DF2548EAAB0052A546 /* OrderPresenter.swift in Sources */,
 				B78229062548EADE0052A546 /* SearchVC.swift in Sources */,
 				B78229032548EADE0052A546 /* SearchPresenter.swift in Sources */,
-				B78228DD2548EAAB0052A546 /* OrdersVC.swift in Sources */,
-				B78228D42548EA9E0052A546 /* BasketRouter.swift in Sources */,
 				B78228E82548EAC10052A546 /* ProfileRouter.swift in Sources */,
 				B78228F62548EAD10052A546 /* RestaurantsVC.swift in Sources */,
 				9D5ED244257D016C006EF47E /* FirebaseHandler.swift in Sources */,
-				3442CA1925439CB30079B5AB /* UIView+cornerRadius.swift in Sources */,
 				344B8E7E2544803C00B1A671 /* RegistrationRouter.swift in Sources */,
 				B78228FA2548EAD10052A546 /* RestaurantModel.swift in Sources */,
-				B78228DC2548EAAB0052A546 /* OrderRouter.swift in Sources */,
 				CE62278225598EBF00DC01AB /* EmailConfirmationRouter.swift in Sources */,
+				344EC556257EE4A3001AADF6 /* OrderModuleBuilder.swift in Sources */,
 				344B8E7B25447FEF00B1A671 /* RegistrationPresenter.swift in Sources */,
 				3458592A256F149B00E47E7E /* MapViewController.swift in Sources */,
+				344EC55A257EE4B1001AADF6 /* OrderPresenter.swift in Sources */,
 				B78228F52548EAD10052A546 /* CategoryCell.swift in Sources */,
 				340F1A91254208F0000A381D /* EntranceInteractor.swift in Sources */,
 				3442CA0F254394B40079B5AB /* FormStackView.swift in Sources */,
 				B78228E72548EAC10052A546 /* ProfileModuleBuilder.swift in Sources */,
 				344B8E84254480CD00B1A671 /* RegistrationModuleBuilder.swift in Sources */,
-				B78228D32548EA9E0052A546 /* BasketInteractor.swift in Sources */,
 				3411850225438C1C006D1361 /* BaseTextField.swift in Sources */,
 				340F1A9C254209BE000A381D /* EntranceViewController.swift in Sources */,
-				B78228DB2548EAAB0052A546 /* OrderInteractor.swift in Sources */,
 				B78229052548EADE0052A546 /* SearchInteractor.swift in Sources */,
 				340F1AA325420D91000A381D /* BaseViewController.swift in Sources */,
+				344EC535257ED0A2001AADF6 /* BasketViewController.swift in Sources */,
+				344EC55E257EE4BD001AADF6 /* OrderRouter.swift in Sources */,
+				344EC544257ED156001AADF6 /* UIView+addShadow.swift in Sources */,
 				341184F4254385C0006D1361 /* Brandbook.swift in Sources */,
+				344EC538257ED0A2001AADF6 /* BasketRouter.swift in Sources */,
 				34585927256F0B9E00E47E7E /* BaseMapView.swift in Sources */,
 				3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */,
 				3438507B2544C1DA0048B43B /* AuthError.swift in Sources */,
+				344EC552257EE467001AADF6 /* OrderInteractor.swift in Sources */,
 				B738CB08257E717F00D8D2E7 /* Coordinator.swift in Sources */,
 				B78228FB2548EAD10052A546 /* RestaurantRouter.swift in Sources */,
 				B78228EA2548EAC10052A546 /* ProfilePresenter.swift in Sources */,
 				CE6227792559835000DC01AB /* EmailConfirmationPresenter.swift in Sources */,
 				341184F82543891C006D1361 /* UIColor+hex.swift in Sources */,
 				344B8E7625447F4600B1A671 /* RegistrationInteractor.swift in Sources */,
+				344EC53A257ED0A2001AADF6 /* BasketPresenter.swift in Sources */,
 				340F1A7A25420773000A381D /* AppDelegate.swift in Sources */,
+				344EC548257ED86B001AADF6 /* OrderInfo.swift in Sources */,
 				B78228F82548EAD10052A546 /* RestaurantPresenter.swift in Sources */,
-				B78228DE2548EAAB0052A546 /* OrderModuleBuilder.swift in Sources */,
 				340F1A7C25420773000A381D /* SceneDelegate.swift in Sources */,
 				B708655A255AE6CB00665E2C /* ProductModel.swift in Sources */,
 				CE6227762559769200DC01AB /* EmailConfirmationViewController.swift in Sources */,
-				B78228D12548EA9E0052A546 /* BasketModuleBuilder.swift in Sources */,
 				341A00A625448418006F0523 /* AuthValidator.swift in Sources */,
+				344EC53D257ED0AC001AADF6 /* OrderStateCell.swift in Sources */,
 				B78228F72548EAD10052A546 /* RestaurantInteractor.swift in Sources */,
 				CE62277C25598E3B00DC01AB /* EmailConfirmationModuleBuilder.swift in Sources */,
+				344EC536257ED0A2001AADF6 /* BasketModuleBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,7 +53,7 @@ extension EntrancePresenter: EntrancePresenterProtocol {
                 return
             }
             
-            Coordinator.presentVC(vc: TabBarController())
+            Coordinator.rootVC(vc: TabBarController())
         }
     }
     

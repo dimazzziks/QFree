@@ -1,5 +1,5 @@
 //
-//  OrdersVC.swift
+//  BasketVC.swift
 //  QFree
 //
 //  Created by Саид Дагалаев on 27.10.2020.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class OrdersVC: UIViewController {
+class BasketVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = "Заказы"
+        self.title = "Корзина"
     }
+    
     
 
     /*

@@ -49,7 +49,7 @@ class EmailConfirmationViewController : BaseViewController{
             if(!self.stopAnimating)
             {
                 DispatchQueue.main.async {
-                    Coordinator.presentVC(vc: TabBarController())
+                    Coordinator.rootVC(vc: TabBarController())
                 }
             }
             else{
