@@ -7,8 +7,8 @@
 
 import UIKit
 
-class EmailConfirmationModuleBuilder{
-    static func build() -> BaseViewController{
+class EmailConfirmationModuleBuilder {
+    static func build() -> BaseViewController {
         let view = EmailConfirmationViewController()
         let interactor = EmailConfirmationInteractor()
         let router = EmailConfirmationRouter(view: view)

@@ -14,7 +14,7 @@ protocol EmailConfirmationPresenterProtocol {
     func deleteUser()
 }
 
-class EmailConfirmationPresenter{
+class EmailConfirmationPresenter {
     
     var view: EmailConfirmationViewProtocol
     var interactor: EmailConfirmationInteractorProtocol
@@ -30,8 +30,8 @@ class EmailConfirmationPresenter{
     
 }
 
-extension EmailConfirmationPresenter: EmailConfirmationPresenterProtocol{
-    func confirmEmail(){
+extension EmailConfirmationPresenter: EmailConfirmationPresenterProtocol {
+    func confirmEmail() {
         let user =  Auth.auth().currentUser!
         interactor.confirmEmail(completion: {
             if user.isEmailVerified{
@@ -45,13 +45,13 @@ extension EmailConfirmationPresenter: EmailConfirmationPresenterProtocol{
         })
     }
     
-    func resendEmailVerification(){
+    func resendEmailVerification() {
         interactor.resendVerificationEmail()
     }
     
-    func deleteUser(){
-        if !isGoingForward{
-            interactor.deleteUser(){}
+    func deleteUser() {
+        if !isGoingForward {
+            interactor.deleteUser() {}
         }
     }
 }
