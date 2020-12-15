@@ -14,7 +14,7 @@ class BaseTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
         font = Brandbook.font(size: 18, weight: .regular)
-        cornerRadius = Brandbook.defaultCornerRadius
+        self.layer.cornerRadius = Brandbook.defaultCornerRadius
         layer.borderColor = Brandbook.defaultColor.cgColor
         tintColor = Brandbook.defaultColor
         setInitialAppearance()

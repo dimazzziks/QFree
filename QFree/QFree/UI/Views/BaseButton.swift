@@ -25,7 +25,7 @@ class BaseButton: UIButton {
         super.init(frame: frame)
         setTitleColor(.white, for: .normal)
         backgroundColor = Brandbook.defaultColor
-        cornerRadius = Brandbook.defaultCornerRadius
+        self.layer.cornerRadius = Brandbook.defaultCornerRadius
         titleLabel?.font = Brandbook.font()
     }
     
