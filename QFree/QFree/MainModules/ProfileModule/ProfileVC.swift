@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import Firebase
 
-protocol ProfileViewProtocol : class {
+protocol ProfileViewProtocol: class {
     func logOutLabelAction(_ sender: BaseButton)
     func changePassAction(_ sender: BaseButton)
     func changeEmailAction(_ sender: BaseButton)
@@ -17,52 +16,97 @@ protocol ProfileViewProtocol : class {
 
 class ProfileVC: BaseViewController {
     public var presenter: ProfilePresenterProtocol?
-    
     public var changeEmailVC: ChangeEmailVC?
 
-    var changePassButton: BaseButton!
-    var changeEmailButton: BaseButton!
-    var logOutButton: BaseButton!
+    private var stackView: FormStackView!
+    private var infoLabel: InfoLabel!
+    private var changePassButton: BaseButton!
+    private var changeEmailButton: BaseButton!
+    private var logOutButton: BaseButton!
+    
+    private var stackViewCenterYConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTitle()
+        setupProfileForm()
+    }
+    
+    private func setupTitle() {
         self.title = "Профиль"
         self.view.backgroundColor = .white
-        
-        setupChanePassButton()
+    }
+    
+    private func setupProfileForm() {
+        setupChangePassButton()
         setupChangeEmailButton()
         setupLogOutButton()
+        setupStackView()
+        setupInfoLabel()
     }
     
-    override func viewDidLayoutSubviews() {
-        self.view.addSubview(changePassButton)
-        self.view.addSubview(changeEmailButton)
-        self.view.addSubview(logOutButton)
-    }
-    
-    func setupChanePassButton() {
-        changePassButton = BaseButton(frame: CGRect(x: 12, y: Brandbook.viewHeight + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
+    private func setupChangePassButton() {
+        changePassButton = BaseButton()
         changePassButton.setTitle("Сменить пароль", for: .normal)
         changePassButton.addTarget(self, action: #selector(changePassAction(_:)), for: .touchUpInside)
+        
+        changePassButton.translatesAutoresizingMaskIntoConstraints = false
+        changePassButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
     }
-    
-    func setupChangeEmailButton() {
-        changeEmailButton = BaseButton(frame: CGRect(x: 12, y: changePassButton.frame.origin.y + changePassButton.frame.height + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
+
+    private func setupChangeEmailButton() {
+        changeEmailButton = BaseButton()
         changeEmailButton.setTitle("Сменить почту", for: .normal)
         changeEmailButton.addTarget(self, action: #selector(changeEmailAction(_:)), for: .touchUpInside)
         
+        changeEmailButton.translatesAutoresizingMaskIntoConstraints = false
+        changeEmailButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
     }
-    
-    func setupLogOutButton() {
-        logOutButton = BaseButton(frame: CGRect(x: 12, y: changeEmailButton.frame.origin.y + changeEmailButton.frame.height + 12, width: self.view.frame.width - 24, height: Brandbook.defaultButtonHeight))
+
+    private func setupLogOutButton() {
+        logOutButton = BaseButton()
         logOutButton.filled = false
         logOutButton.setTitle("Выйти", for: .normal)
         logOutButton.addTarget(self, action: #selector(logOutLabelAction(_:)), for: .touchUpInside)
+        
+        logOutButton.translatesAutoresizingMaskIntoConstraints = false
+        logOutButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
+    }
+    
+    private func setupStackView() {
+        stackView = FormStackView()
+        stackView.spacing = 16
+        stackView.addArrangedSubviews(
+            changePassButton,
+            changeEmailButton,
+            logOutButton
+        )
+        
+        view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackViewCenterYConstraint = stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackViewCenterYConstraint,
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+        ])
+    }
+    
+    private func setupInfoLabel() {
+        infoLabel = InfoLabel()
+        infoLabel.showInfoLabel(text: (presenter?.getEmail())!)
+        view.addSubview(infoLabel)
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            infoLabel.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -16),
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+        ])
     }
 }
 
-extension ProfileVC : ProfileViewProtocol {
+extension ProfileVC: ProfileViewProtocol {
     @objc func logOutLabelAction(_ sender: BaseButton) {
         presenter?.logOut()
     }

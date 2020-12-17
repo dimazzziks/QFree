@@ -50,9 +50,4 @@ extension Brandbook {
     static var defaultButtonHeight: CGFloat {
         return 48.0
     }
-    
-    static var viewHeight: CGFloat {
-        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-        return (window?.windowScene?.statusBarManager?.statusBarFrame.height)! + BaseNavigationController().navigationBar.frame.height
-    }
 }

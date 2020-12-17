@@ -56,6 +56,7 @@
 		B738CB762586DA3200B81422 /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738CB752586DA3200B81422 /* TabBarModuleBuilder.swift */; };
 		B738CB792586DAE900B81422 /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738CB782586DAE900B81422 /* TabBarPresenter.swift */; };
 		B738CB7C2586DB8200B81422 /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738CB7B2586DB8200B81422 /* TabBarRouter.swift */; };
+		B770B972258BF210005DAED2 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B770B971258BF210005DAED2 /* InfoLabel.swift */; };
 		B78228C42548EA480052A546 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228C32548EA480052A546 /* TabBarController.swift */; };
 		B78228E62548EAC10052A546 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228E12548EAC00052A546 /* ProfileInteractor.swift */; };
 		B78228E72548EAC10052A546 /* ProfileModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228E22548EAC00052A546 /* ProfileModuleBuilder.swift */; };
@@ -139,6 +140,7 @@
 		B738CB752586DA3200B81422 /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		B738CB782586DAE900B81422 /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
 		B738CB7B2586DB8200B81422 /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
+		B770B971258BF210005DAED2 /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		B78228C32548EA480052A546 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B78228E12548EAC00052A546 /* ProfileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		B78228E22548EAC00052A546 /* ProfileModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModuleBuilder.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				3411850125438C1C006D1361 /* BaseTextField.swift */,
 				3442CA13254398DB0079B5AB /* BaseButton.swift */,
 				3442CA0E254394B40079B5AB /* FormStackView.swift */,
+				B770B971258BF210005DAED2 /* InfoLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -377,14 +380,6 @@
 			path = MenuModule;
 			sourceTree = "<group>";
 		};
-		B7373A93257FA5EC00E8442A /* ChangeEmailModule */ = {
-			isa = PBXGroup;
-			children = (
-				B7373A94257FA60800E8442A /* ChangeEmailVC.swift */,
-			);
-			path = ChangeEmailModule;
-			sourceTree = "<group>";
-		};
 		B78228C22548EA250052A546 /* MainModules */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,8 +423,8 @@
 		B78228C82548EA760052A546 /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
-				B7373A93257FA5EC00E8442A /* ChangeEmailModule */,
 				B78228E42548EAC10052A546 /* ProfileVC.swift */,
+				B7373A94257FA60800E8442A /* ChangeEmailVC.swift */,
 				B78228E12548EAC00052A546 /* ProfileInteractor.swift */,
 				B78228E52548EAC10052A546 /* ProfilePresenter.swift */,
 				B78228E32548EAC10052A546 /* ProfileRouter.swift */,
@@ -655,6 +650,7 @@
 				B738CB792586DAE900B81422 /* TabBarPresenter.swift in Sources */,
 				B738CB08257E717F00D8D2E7 /* Coordinator.swift in Sources */,
 				B78228FB2548EAD10052A546 /* RestaurantRouter.swift in Sources */,
+				B770B972258BF210005DAED2 /* InfoLabel.swift in Sources */,
 				B78228EA2548EAC10052A546 /* ProfilePresenter.swift in Sources */,
 				CE6227792559835000DC01AB /* EmailConfirmationPresenter.swift in Sources */,
 				341184F82543891C006D1361 /* UIColor+hex.swift in Sources */,

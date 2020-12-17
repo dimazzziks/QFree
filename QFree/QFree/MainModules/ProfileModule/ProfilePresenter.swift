@@ -12,6 +12,7 @@ protocol ProfilePresenterProtocol {
     func changeEmail(email: String)
     func changePassword()
     func logOut()
+    func getEmail() -> String
 }
 
 class ProfilePresenter {
@@ -32,11 +33,13 @@ class ProfilePresenter {
     
 }
 
-
-extension ProfilePresenter : ProfilePresenterProtocol{
+extension ProfilePresenter: ProfilePresenterProtocol {
     func changeEmail(email: String) {
         interactor.changeEmail(email: email) {
             self.changeEmailview.showAlertMessage()
+        }
+        errorCompletion: {
+            self.changeEmailview.showInfoLabel(text: "Некорректная почта")
         }
     }
     
@@ -46,9 +49,13 @@ extension ProfilePresenter : ProfilePresenterProtocol{
         }
     }
     
-    func changePassword(){
+    func changePassword() {
         interactor.changePassword {
             self.view.showAlertMessage()
         }
+    }
+    
+    func getEmail() -> String {
+        interactor.getEmail()
     }
 }

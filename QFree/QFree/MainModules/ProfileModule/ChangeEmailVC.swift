@@ -7,49 +7,62 @@
 
 import UIKit
 
-protocol ChangeEmailProtocol {
+protocol ChangeEmailProtocol: class {
     func changeEmailButtonAction(_ sender: BaseButton)
     func showAlertMessage()
+    func showInfoLabel(text: String)
 }
 
 class ChangeEmailVC: BaseViewController {
     var presenter: ProfilePresenter?
     
     private var stackView: FormStackView!
-    private var oldEmailTextField: BaseTextField!
+    private var infoLabel: InfoLabel!
     private var newEmailTextField: BaseTextField!
-    private var enterButton: BaseButton!
-    private var infoLabel: UILabel!
+    private var changeButton: BaseButton!
     
     private var stackViewCenterYConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
-        
-        setupEnterForm()
+        setupTitle()
+        setupChangeEmailForm()
     }
     
-    private func setupEnterForm() {
-        
+    private func setupTitle() {
+        self.title = "Смена почты"
+        self.view.backgroundColor = .white
+    }
+    
+    private func setupChangeEmailForm() {
+        setupNewEmailTextField()
+        setupChangeButton()
+        setupStackView()
+        setupInfoLabel()
+    }
+    
+    private func setupNewEmailTextField() {
         newEmailTextField = BaseTextField()
-        newEmailTextField.isSecureTextEntry = false
         newEmailTextField.placeholder = "Новая почта"
         newEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         newEmailTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
-        
-        enterButton = BaseButton()
-        enterButton.addTarget(self, action: #selector(changeEmailButtonAction(_:)), for: .touchUpInside)
-        enterButton.setTitle("Сменить почту", for: .normal)
-        enterButton.translatesAutoresizingMaskIntoConstraints = false
-        enterButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
-        
+    }
+    
+    private func setupChangeButton() {
+        changeButton = BaseButton()
+        changeButton.addTarget(self, action: #selector(changeEmailButtonAction(_:)), for: .touchUpInside)
+        changeButton.setTitle("Сменить почту", for: .normal)
+        changeButton.translatesAutoresizingMaskIntoConstraints = false
+        changeButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
+    }
+    
+    private func setupStackView() {
         stackView = FormStackView()
         stackView.spacing = 16
         stackView.addArrangedSubviews(
             newEmailTextField,
-            enterButton
+            changeButton
         )
         
         view.addSubview(stackView)
@@ -60,12 +73,10 @@ class ChangeEmailVC: BaseViewController {
             stackViewCenterYConstraint,
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
-        
-        infoLabel = UILabel()
-        infoLabel.font = Brandbook.font(size: 16, weight: .bold)
-        infoLabel.textColor = .red
-        infoLabel.alpha = 0.0
-        infoLabel.textAlignment = .center
+    }
+    
+    private func setupInfoLabel() {
+        infoLabel = InfoLabel()
         view.addSubview(infoLabel)
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -74,13 +85,10 @@ class ChangeEmailVC: BaseViewController {
             infoLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
     }
-
 }
 
-extension ChangeEmailVC : ChangeEmailProtocol {
-    
+extension ChangeEmailVC: ChangeEmailProtocol {
     @objc func changeEmailButtonAction(_ sender: BaseButton) {
-        print("button pressed")
         presenter?.changeEmail(email: newEmailTextField.text!)
     }
     
@@ -92,4 +100,7 @@ extension ChangeEmailVC : ChangeEmailProtocol {
         self.present(alert, animated: true)
     }
     
+    func showInfoLabel(text: String) {
+        infoLabel.showInfoLabel(text: text)
+    }
 }
