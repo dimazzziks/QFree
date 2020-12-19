@@ -13,15 +13,14 @@ class RestaurantCell: UICollectionViewCell {
     
     let mainView = UIView()
     let underMainView = UIView()
-    let restaurantImageView = UIImageView()
+    var restaurantImageView: CachedImageView!
     let whiteView = UIView()
     let name = UILabel()
-    let activityIndicator = UIActivityIndicatorView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        activityIndicator.startAnimating()
+        
         setupViews()
     }
     
@@ -30,9 +29,8 @@ class RestaurantCell: UICollectionViewCell {
         
         self.addSubview(underMainView)
         underMainView.addSubview(mainView)
+        
         mainView.addSubview(restaurantImageView)
-        restaurantImageView.addSubview(activityIndicator)
-        restaurantImageView.contentMode = .scaleAspectFill
         mainView.addSubview(whiteView)
         mainView.addSubview(name)
     }
@@ -48,10 +46,8 @@ class RestaurantCell: UICollectionViewCell {
         mainView.layer.cornerRadius = Brandbook.defaultCornerRadius
         mainView.layer.masksToBounds = true
         
-        restaurantImageView.frame = self.bounds
-        
-        activityIndicator.frame = self.bounds
-        
+        restaurantImageView = CachedImageView(frame: self.bounds)
+                
         whiteView.frame = CGRect(x: 0, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/4)
         whiteView.backgroundColor = .white
         
@@ -63,15 +59,8 @@ class RestaurantCell: UICollectionViewCell {
     func configure(with restaurant: Restaurant) {
         name.text = restaurant.name
         
-        let imageURL: URL = URL(string: restaurant.image)!
-        DispatchQueue.global(qos: .utility).async {
-            if let data = try? Data(contentsOf: imageURL) {
-                DispatchQueue.main.async {
-                    self.restaurantImageView.image = UIImage(data: data)!
-                    self.activityIndicator.stopAnimating()
-                }
-            }
-        }
+        restaurantImageView.imageUrl = restaurant.image
+        restaurantImageView.loadImage(from: restaurantImageView.imageUrl)
     }
 
     required init?(coder: NSCoder) {

@@ -50,6 +50,7 @@
 		B7086558255AE6CB00665E2C /* RestaurantMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086555255AE6CA00665E2C /* RestaurantMenuTableViewController.swift */; };
 		B7086559255AE6CB00665E2C /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086556255AE6CA00665E2C /* ProductTableViewCell.swift */; };
 		B708655A255AE6CB00665E2C /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086557255AE6CA00665E2C /* ProductModel.swift */; };
+		B71E8C6D258E5CF0007C881D /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71E8C6C258E5CF0007C881D /* CachedImageView.swift */; };
 		B7373A95257FA60800E8442A /* ChangeEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7373A94257FA60800E8442A /* ChangeEmailVC.swift */; };
 		B738CB08257E717F00D8D2E7 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738CB07257E717F00D8D2E7 /* Coordinator.swift */; };
 		B738CB732586DA0300B81422 /* TabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738CB722586DA0300B81422 /* TabBarInteractor.swift */; };
@@ -134,6 +135,7 @@
 		B7086555255AE6CA00665E2C /* RestaurantMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantMenuTableViewController.swift; sourceTree = "<group>"; };
 		B7086556255AE6CA00665E2C /* ProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		B7086557255AE6CA00665E2C /* ProductModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		B71E8C6C258E5CF0007C881D /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		B7373A94257FA60800E8442A /* ChangeEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailVC.swift; sourceTree = "<group>"; };
 		B738CB07257E717F00D8D2E7 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B738CB722586DA0300B81422 /* TabBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarInteractor.swift; sourceTree = "<group>"; };
@@ -350,9 +352,10 @@
 		B708653D255A07B300665E2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B78228EE2548EAD00052A546 /* RestaurantVC.swift */,
 				B78228ED2548EAD00052A546 /* CategoryCell.swift */,
 				B78228F12548EAD10052A546 /* RestaurantCell.swift */,
-				B78228EE2548EAD00052A546 /* RestaurantVC.swift */,
+				B71E8C6C258E5CF0007C881D /* CachedImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				CE6227792559835000DC01AB /* EmailConfirmationPresenter.swift in Sources */,
 				341184F82543891C006D1361 /* UIColor+hex.swift in Sources */,
 				344B8E7625447F4600B1A671 /* RegistrationInteractor.swift in Sources */,
+				B71E8C6D258E5CF0007C881D /* CachedImageView.swift in Sources */,
 				344EC53A257ED0A2001AADF6 /* BasketPresenter.swift in Sources */,
 				340F1A7A25420773000A381D /* AppDelegate.swift in Sources */,
 				344EC548257ED86B001AADF6 /* OrderInfo.swift in Sources */,

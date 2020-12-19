@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import Firebase
 
 protocol RestaurantViewProtocol: class {
     func pushMenuVC(name: String, restaurantID: String)
+    func update(_ restaurants: [Restaurant])
 }
 
 class RestaurantVC: UIViewController {
@@ -19,29 +19,35 @@ class RestaurantVC: UIViewController {
     
     var restaurants: [Restaurant] = []
     
-    var restaurantsCollectionView: UICollectionView!
-    var categoryCollectionView: UICollectionView!
+    private var restaurantsCollectionView: UICollectionView!
+    private var categoryCollectionView: UICollectionView!
     
+    private var activityIndicator = UIActivityIndicatorView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Рестораны"
-        self.view.backgroundColor = .systemBackground
+        setupTitle()
+        setupActivityIndicator()
         
         setupCategoryCV()
         setupRestaurantsCV()
         getRestaurants()
     }
     
+    func setupTitle() {
+        self.title = "Рестораны"
+        self.view.backgroundColor = .white
+    }
+    
+    func setupActivityIndicator() {
+        self.activityIndicator.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/1.5)
+        self.activityIndicator.startAnimating()
+        
+    }
+    
     func getRestaurants() {
-        firebaseHandler.getRestaurantsInfo { [weak self] restaurants in
-            guard let restaurants = restaurants else {
-                return
-            }
-            print(restaurants)
-            self?.restaurants = restaurants
-            self?.restaurantsCollectionView.reloadData()
-        }
+        presenter?.viewDidLoad()
     }
     
     func setupCategoryCV() {
@@ -67,6 +73,7 @@ class RestaurantVC: UIViewController {
     func setupRestaurantsCV() {
         restaurantsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createRestaurantLayout())
         view.addSubview(restaurantsCollectionView)
+        restaurantsCollectionView.addSubview(activityIndicator)
         restaurantsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             restaurantsCollectionView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor),
@@ -171,6 +178,12 @@ extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
 }
 
 extension RestaurantVC: RestaurantViewProtocol {
+    func update(_ restaurants: [Restaurant]) {
+        self.restaurants = restaurants
+        self.restaurantsCollectionView.reloadData()
+        self.activityIndicator.stopAnimating()
+    }
+    
     func pushMenuVC(name: String, restaurantID: String) {
         let menuVC = RestaurantMenuTableViewController()
         menuVC.title = name

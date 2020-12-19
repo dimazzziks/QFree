@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RestaurantPresenterProtocol {
-    
+    func viewDidLoad()
 }
 
 class RestaurantPresenter {
@@ -24,5 +24,12 @@ class RestaurantPresenter {
 }
 
 extension RestaurantPresenter: RestaurantPresenterProtocol {
-    
+    func viewDidLoad() {
+        interactor.fetchRestaurantsInfo { restaurants in
+            guard let restaurants = restaurants else {
+                return
+            }
+            self.view?.update(restaurants)
+        }
+    }
 }
