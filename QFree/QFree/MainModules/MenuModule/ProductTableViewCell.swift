@@ -9,31 +9,29 @@ import UIKit
 
 class ProductTableViewCell: UITableViewCell {
     var indView = UIView()
-    var message : String?
-    var mainImage : UIImage?
-    var link : String?
+    var message: String?
+    var mainImage: UIImage?
+    var link: String?
     
-    var backgroundViewClear : UIView = {
+    var backgroundViewClear: UIView = {
         var v = UIView()
         v.backgroundColor = UIColor.clear
         return v
     }()
-      
-    var mainView : UIView = {
+    
+    var mainView: UIView = {
         var mv = UIView()
         mv.translatesAutoresizingMaskIntoConstraints = false
         return mv
-        
     }()
     
-    var underMainView : UIView = {
+    var underMainView: UIView = {
         var mv = UIView()
         mv.translatesAutoresizingMaskIntoConstraints = false
         return mv
-        
     }()
     
-    var addButton : UIButton = {
+    var addButton: UIButton = {
         var b = UIButton()
         b.translatesAutoresizingMaskIntoConstraints = false
         b.setImage(UIImage(named: "addButton"), for: .normal)
@@ -42,16 +40,15 @@ class ProductTableViewCell: UITableViewCell {
         return b
     }()
     
-    var productImageView : UIImageView = {
+    var productImageView: UIImageView = {
         var i = UIImageView(image: UIImage(named: "coffee"))
         i.translatesAutoresizingMaskIntoConstraints = false
         i.layer.cornerRadius = Brandbook.defaultCornerRadius
         i.layer.masksToBounds = true
         return i
-
     }()
     
-    var labels : UIStackView = {
+    var labels: UIStackView = {
         var s = UIStackView()
         s.axis = .horizontal
         s.alignment = .fill
@@ -61,7 +58,7 @@ class ProductTableViewCell: UITableViewCell {
         return s
     }()
     
-    var nameLabel : UILabel = {
+    var nameLabel: UILabel = {
         var l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.text = "Латте"
@@ -72,7 +69,7 @@ class ProductTableViewCell: UITableViewCell {
         return l
     }()
     
-    var priceLabel : UILabel = {
+    var priceLabel: UILabel = {
         var l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.text = "199р"
@@ -83,8 +80,8 @@ class ProductTableViewCell: UITableViewCell {
         return l
     }()
     
-    override init(style : UITableViewCell.CellStyle, reuseIdentifier : String?) {
-        super.init(style : style, reuseIdentifier : reuseIdentifier)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
         self.selectedBackgroundView = backgroundViewClear
         
@@ -124,7 +121,6 @@ class ProductTableViewCell: UITableViewCell {
         mainView.topAnchor.constraint(equalTo: underMainView.topAnchor, constant: 6).isActive = true
         
         mainView.addShadow()
-        
     }
     
     required init?(coder: NSCoder) {

@@ -5,8 +5,6 @@
 //  Created by Maxim V. Sidorov on 12/8/20.
 //
 
-import Foundation
-
 protocol OrderInteractorProtocol {
     func fetchCurrentOrderInfo(completion: @escaping (OrderInfo?) -> ())
     func fetchBasket(completion: @escaping ([Product]?) -> ())
@@ -22,6 +20,7 @@ extension OrderInteractor: OrderInteractorProtocol {
             completion(orderInfo)
         }
     }
+    
     func fetchBasket(completion: @escaping ([Product]?) -> ()) {
         firebaseHandler.getProductsInBasket(email: "") { products in
             completion(products)

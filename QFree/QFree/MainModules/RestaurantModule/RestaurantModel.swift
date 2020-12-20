@@ -5,8 +5,6 @@
 //  Created by Саид Дагалаев on 24.10.2020.
 //
 
-import UIKit
-
 struct Restaurant: Hashable, Codable {
     let name: String
     let image: String
@@ -23,7 +21,7 @@ struct Restaurant: Hashable, Codable {
     }
 }
 
-enum Category: String, Hashable, Codable {
+enum Category: String, Hashable, Codable, CaseIterable {
     case favourite = "Избранное"
     case bakery = "Выпечка"
     case coffee = "Кофе"

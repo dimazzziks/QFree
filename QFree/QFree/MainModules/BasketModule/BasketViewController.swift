@@ -11,22 +11,21 @@ protocol BasketViewProtocol: class {
     
 }
 
-class BasketViewController: UIViewController {
+class BasketViewController: BaseViewController {
     var presenter: BasketPresenterProtocol?
     
-    var basket : [Product : Int] = [Product : Int]()
-    var products : [Product] = [Product]()
+    var basket: [Product : Int] = [Product : Int]()
+    var products: [Product] = [Product]()
     var firebaseHandler = FirebaseHandler()
     var orderButton = BaseButton()
-    var tableView1 : UITableView = UITableView()
+    var tableView1: UITableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Корзина"
-        self.view.backgroundColor = .white
-        self.setOrderButton()
-        self.setTabelView()
         
+        setupTitle()
+        setOrderButton()
+        setTabelView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +38,10 @@ class BasketViewController: UIViewController {
             self.tableView1.reloadData()
             print("products", self.products.count)
         }
+    }
+    
+    func setupTitle() {
+        self.title = "Корзина"
     }
     
     func setOrderButton() {
@@ -63,7 +66,6 @@ class BasketViewController: UIViewController {
         self.tableView1.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.tableView1.bottomAnchor.constraint(equalTo: self.orderButton.topAnchor, constant: -12).isActive = true
     }
-    
 }
 
 extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
@@ -74,7 +76,7 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ProductTableViewCell()
         cell.nameLabel.text = String(products[indexPath.row].name)

@@ -5,10 +5,8 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-import UIKit
-
 class BasketModuleBuilder {
-    static func build() -> UIViewController {
+    static func build() -> BaseViewController {
         let view = BasketViewController()
         let interactor = BasketInteractor()
         let router = BasketRouter(view: view)

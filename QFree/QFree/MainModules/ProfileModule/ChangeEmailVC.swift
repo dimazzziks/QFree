@@ -32,7 +32,6 @@ class ChangeEmailVC: BaseViewController {
     
     private func setupTitle() {
         self.title = "Смена почты"
-        self.view.backgroundColor = .white
     }
     
     private func setupChangeEmailForm() {

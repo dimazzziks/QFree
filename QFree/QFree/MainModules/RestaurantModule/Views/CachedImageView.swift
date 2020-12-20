@@ -34,7 +34,6 @@ class CachedImageView: UIImageView {
     }
     
     func loadImage(from urlStr: String?) {
-        
         guard urlStr != nil else {
             return
         }

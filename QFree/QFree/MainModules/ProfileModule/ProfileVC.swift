@@ -17,7 +17,7 @@ protocol ProfileViewProtocol: class {
 class ProfileVC: BaseViewController {
     public var presenter: ProfilePresenterProtocol?
     public var changeEmailVC: ChangeEmailVC?
-
+    
     private var stackView: FormStackView!
     private var infoLabel: InfoLabel!
     private var changePassButton: BaseButton!
@@ -28,14 +28,13 @@ class ProfileVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTitle()
         setupProfileForm()
     }
     
     private func setupTitle() {
         self.title = "Профиль"
-        self.view.backgroundColor = .white
     }
     
     private func setupProfileForm() {
@@ -54,7 +53,7 @@ class ProfileVC: BaseViewController {
         changePassButton.translatesAutoresizingMaskIntoConstraints = false
         changePassButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
     }
-
+    
     private func setupChangeEmailButton() {
         changeEmailButton = BaseButton()
         changeEmailButton.setTitle("Сменить почту", for: .normal)
@@ -63,7 +62,7 @@ class ProfileVC: BaseViewController {
         changeEmailButton.translatesAutoresizingMaskIntoConstraints = false
         changeEmailButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
     }
-
+    
     private func setupLogOutButton() {
         logOutButton = BaseButton()
         logOutButton.filled = false

@@ -5,8 +5,6 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-import Foundation
-
 protocol RestaurantPresenterProtocol {
     func viewDidLoad()
 }

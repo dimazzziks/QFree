@@ -8,7 +8,6 @@
 import UIKit
 
 class CategoryCell: UICollectionViewCell {
-    
     static var reuseId: String = "CategoryCell"
     
     let categoryName = UILabel()
@@ -16,11 +15,7 @@ class CategoryCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = Brandbook.defaultColor
-        
-        self.layer.cornerRadius = Brandbook.defaultCornerRadius
-        self.clipsToBounds = true
-        
+        configureCellUI()
         setupViews()
     }
     
@@ -28,6 +23,12 @@ class CategoryCell: UICollectionViewCell {
         super.layoutSubviews()
         
         addSubview(categoryName)
+    }
+    
+    func configureCellUI() {
+        self.backgroundColor = Brandbook.defaultColor
+        self.layer.cornerRadius = Brandbook.defaultCornerRadius
+        self.clipsToBounds = true
     }
     
     func setupViews() {
@@ -40,7 +41,7 @@ class CategoryCell: UICollectionViewCell {
     func configure(categoryIndex: Int) {
         categoryName.text = Category(id: categoryIndex)?.rawValue
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

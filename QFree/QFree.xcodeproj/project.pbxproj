@@ -352,7 +352,6 @@
 		B708653D255A07B300665E2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B78228EE2548EAD00052A546 /* RestaurantVC.swift */,
 				B78228ED2548EAD00052A546 /* CategoryCell.swift */,
 				B78228F12548EAD10052A546 /* RestaurantCell.swift */,
 				B71E8C6C258E5CF0007C881D /* CachedImageView.swift */,
@@ -440,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				B708653D255A07B300665E2C /* Views */,
+				B78228EE2548EAD00052A546 /* RestaurantVC.swift */,
 				B78228EF2548EAD00052A546 /* RestaurantInteractor.swift */,
 				B78228F02548EAD10052A546 /* RestaurantPresenter.swift */,
 				B78228F22548EAD10052A546 /* RestaurantModel.swift */,
@@ -466,9 +466,9 @@
 			children = (
 				B78228C32548EA480052A546 /* TabBarController.swift */,
 				B738CB722586DA0300B81422 /* TabBarInteractor.swift */,
-				B738CB752586DA3200B81422 /* TabBarModuleBuilder.swift */,
 				B738CB782586DAE900B81422 /* TabBarPresenter.swift */,
 				B738CB7B2586DB8200B81422 /* TabBarRouter.swift */,
+				B738CB752586DA3200B81422 /* TabBarModuleBuilder.swift */,
 			);
 			path = TabBarModule;
 			sourceTree = "<group>";

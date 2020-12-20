@@ -8,7 +8,6 @@
 import UIKit
 
 class RestaurantCell: UICollectionViewCell {
-    
     static var reuseId: String = "ListCell"
     
     let mainView = UIView()
@@ -19,6 +18,7 @@ class RestaurantCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         backgroundColor = .white
         
         setupViews()

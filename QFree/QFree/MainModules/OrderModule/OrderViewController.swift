@@ -12,7 +12,7 @@ protocol OrderViewProtocol: class {
     func update(_ products: [Product])
 }
 
-class OrderViewController: UIViewController {
+class OrderViewController: BaseViewController {
     var presenter: OrderPresenter?
     
     let tableView = UITableView()
@@ -28,12 +28,17 @@ class OrderViewController: UIViewController {
             tableView.reloadData()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Заказ"
+        
+        setupTitle()
         setupTableView()
         presenter?.viewDidLoad()
+    }
+    
+    func setupTitle() {
+        self.title = "Заказ"
     }
     
     private func setupTableView() {
@@ -81,6 +86,7 @@ extension OrderViewController: OrderViewProtocol {
     func update(_ currentOrderInfo: OrderInfo) {
         self.currentOrderInfo = currentOrderInfo
     }
+    
     func update(_ products: [Product]) {
         self.products = products
     }

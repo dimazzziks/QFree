@@ -89,7 +89,7 @@ class EntranceViewController: BaseViewController {
     }
 }
 
-extension EntranceViewController{
+extension EntranceViewController {
     @objc func enterButtonAction(_ sender: BaseButton) {
         presenter?.checkInfoAndEnter(emailTextField.text, passwordTextField.text)
     }

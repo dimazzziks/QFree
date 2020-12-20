@@ -5,8 +5,6 @@
 //  Created by Maxim Sidorov on 24.10.2020.
 //
 
-import Foundation
-
 protocol RegistrationPresenterProtocol {
     func checkInfoAndCreateAccount(name: String?, email: String?, password: String?)
 }
@@ -56,8 +54,6 @@ extension RegistrationPresenter: RegistrationPresenterProtocol {
                 #endif
                 return
             }
-            // TODO: - go to main menu
-            //print("SHOW MAIN MENU")
             self.router.pushEmailConfirmationController()
         }
     }

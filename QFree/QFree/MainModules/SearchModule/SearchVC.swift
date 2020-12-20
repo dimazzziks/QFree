@@ -11,31 +11,28 @@ protocol SearchViewProtocol: class {
     
 }
 
-class SearchVC: UIViewController {
+class SearchVC: BaseViewController {
     var presenter: SearchPresenterProtocol?
     
     let searchBar = UISearchBar()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureVC()
-        handleShowSearchBar()
     }
     
     func configureVC() {
         self.title = "Поиск"
-        self.view.backgroundColor = .white
         
         searchBar.sizeToFit()
         searchBar.delegate = self
-//        let app = UINavigationBarAppearance()
-//        app.backgroundColor = Brandbook.defaultColor
-//        app.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-//
-//        self.navigationController?.navigationBar.scrollEdgeAppearance = app
-//        navigationController?.navigationBar.barTintColor = Brandbook.defaultColor
-//        navigationController?.navigationBar.prefersLargeTitles = true
+        let app = UINavigationBarAppearance()
+        app.backgroundColor = Brandbook.defaultColor
+        app.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        self.navigationController?.navigationBar.scrollEdgeAppearance = app
+        navigationController?.navigationBar.barTintColor = Brandbook.defaultColor
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
@@ -56,7 +53,6 @@ class SearchVC: UIViewController {
         searchBar.showsCancelButton = shouldShow
         navigationItem.titleView = shouldShow ? searchBar : nil
     }
-
 }
 
 extension SearchVC: UISearchBarDelegate {

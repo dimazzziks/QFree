@@ -109,7 +109,6 @@ extension RegistrationViewController {
         stackViewCenterYConstraint.isActive = false
         self.stackViewCenterYConstraint = self.stackView.centerYAnchor.constraint(greaterThanOrEqualTo: self.view.centerYAnchor)
         updateStackViewCenterYConstraint()
-        
     }
     
     private func updateStackViewCenterYConstraint() {
@@ -122,7 +121,7 @@ extension RegistrationViewController {
 }
 
 extension RegistrationViewController: RegistrationViewProtocol {
-    func pushEmailConfirmationController(){
+    func pushEmailConfirmationController() {
         navigationController?.pushViewController(EmailConfirmationModuleBuilder.build(), animated: true)
     }
     

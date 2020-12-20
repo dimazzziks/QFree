@@ -5,9 +5,6 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-import Foundation
-import UIKit
-
 protocol ProfilePresenterProtocol {
     func changeEmail(email: String)
     func changePassword()
@@ -16,7 +13,6 @@ protocol ProfilePresenterProtocol {
 }
 
 class ProfilePresenter {
-    
     var view: ProfileViewProtocol
     var changeEmailview: ChangeEmailProtocol
     var interactor: ProfileInteractorProtocol
@@ -24,13 +20,12 @@ class ProfilePresenter {
     
     var isGoingForward = false
     
-    init(view: ProfileViewProtocol,changeEmailview: ChangeEmailProtocol, interactor: ProfileInteractorProtocol, router: ProfileRouterProtocol) {
+    init(view: ProfileViewProtocol, changeEmailview: ChangeEmailProtocol, interactor: ProfileInteractorProtocol, router: ProfileRouterProtocol) {
         self.view = view
         self.changeEmailview = changeEmailview
         self.interactor = interactor
         self.router = router
     }
-    
 }
 
 extension ProfilePresenter: ProfilePresenterProtocol {

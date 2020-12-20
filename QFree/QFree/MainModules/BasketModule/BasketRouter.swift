@@ -5,8 +5,6 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-import Foundation
-
 protocol BasketRouterProtocol {
     var viewController: BasketViewProtocol { get set }
 }

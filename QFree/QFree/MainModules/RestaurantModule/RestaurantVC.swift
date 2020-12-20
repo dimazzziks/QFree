@@ -12,10 +12,8 @@ protocol RestaurantViewProtocol: class {
     func update(_ restaurants: [Restaurant])
 }
 
-class RestaurantVC: UIViewController {
+class RestaurantVC: BaseViewController {
     var presenter: RestaurantPresenterProtocol?
-    
-    var firebaseHandler = FirebaseHandler()
     
     var restaurants: [Restaurant] = []
     
@@ -23,13 +21,12 @@ class RestaurantVC: UIViewController {
     private var categoryCollectionView: UICollectionView!
     
     private var activityIndicator = UIActivityIndicatorView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTitle()
         setupActivityIndicator()
-        
         setupCategoryCV()
         setupRestaurantsCV()
         getRestaurants()
@@ -37,13 +34,11 @@ class RestaurantVC: UIViewController {
     
     func setupTitle() {
         self.title = "Рестораны"
-        self.view.backgroundColor = .white
     }
     
     func setupActivityIndicator() {
         self.activityIndicator.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/1.5)
         self.activityIndicator.startAnimating()
-        
     }
     
     func getRestaurants() {
@@ -137,7 +132,7 @@ class RestaurantVC: UIViewController {
         
         return section
     }
-
+    
 }
 
 extension RestaurantVC: UICollectionViewDelegateFlowLayout {
@@ -147,15 +142,14 @@ extension RestaurantVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == restaurantsCollectionView {
             return restaurants.count
         } else {
-            return 6 //TODO: magic num
+            return Category.allCases.count
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == restaurantsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCell.reuseId, for: indexPath) as! RestaurantCell
@@ -172,9 +166,10 @@ extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == restaurantsCollectionView {
             pushMenuVC(name: restaurants[indexPath.row].name, restaurantID: String(indexPath.row))
+        } else {
+            print(Category.init(id: indexPath.row)!)
         }
     }
-    
 }
 
 extension RestaurantVC: RestaurantViewProtocol {

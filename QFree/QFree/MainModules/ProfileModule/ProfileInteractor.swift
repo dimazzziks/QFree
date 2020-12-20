@@ -5,19 +5,17 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-import Foundation
-import UIKit
 import FirebaseAuth
 
 protocol ProfileInteractorProtocol {
-    func changeEmail(email: String, completion: @escaping ()->(), errorCompletion: @escaping ()->())
-    func changePassword(completion: @escaping ()->())
-    func logOut(completion: @escaping ()->())
+    func changeEmail(email: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())
+    func changePassword(completion: @escaping () -> ())
+    func logOut(completion: @escaping () -> ())
     func getEmail() -> String
 }
 
-class ProfileInteractor : ProfileInteractorProtocol {
-    func changeEmail(email: String, completion: @escaping () -> (), errorCompletion: @escaping ()->()) {
+class ProfileInteractor: ProfileInteractorProtocol {
+    func changeEmail(email: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ()) {
         Auth.auth().currentUser?.updateEmail(to: email, completion: { (error) in
             if let e = error {
                 print(e.localizedDescription)
@@ -37,7 +35,7 @@ class ProfileInteractor : ProfileInteractorProtocol {
         }
     }
     
-    func changePassword(completion: @escaping ()->()) {
+    func changePassword(completion: @escaping () -> ()) {
         Auth.auth().sendPasswordReset(withEmail: Auth.auth().currentUser!.email!) { (error) in
             if let e = error {
                 print(e.localizedDescription)
