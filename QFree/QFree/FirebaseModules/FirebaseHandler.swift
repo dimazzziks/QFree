@@ -24,7 +24,7 @@ class FirebaseHandler {
             if data != nil {
                 for i in data! {
                     let rawValues = i["category"] as! [String]
-                    let categories = rawValues.map{ Category(rawValue: $0)!}
+                    let categories = rawValues.map { Category(rawValue: $0)! }
                     let restaurant: Restaurant = Restaurant(name: i["name"] as! String, image: i["image"] as! String, lat: i["lat"] as! String, long: i["long"] as! String, category: categories)
                     restaurants.append(restaurant)
                 }
@@ -44,7 +44,7 @@ class FirebaseHandler {
                 for i in data! {
                     print("i", i)
                     let rawValues = i["category"] as! [String]
-                    let categories = rawValues.map{ Category(rawValue: $0)!}
+                    let categories = rawValues.map { Category(rawValue: $0)! }
                     let product: Product = Product(name: i["name"] as! String, imageLink: i["image"] as! String, price: Int(i["price"] as! String)!, category: categories, restaurantID: i["restaurantID"] as! String)
                     products.append(product)
                 }
@@ -97,7 +97,7 @@ class FirebaseHandler {
             d["price"] = String(product.price) as NSString
             d["restaurantID"] = product.restaurantID as NSString
             d["amount"] = String(amount) as NSString
-            d["category"] = product.category.map{$0.rawValue} as NSArray
+            d["category"] = product.category.map { $0.rawValue } as NSArray
             arr.append(d)
         }
         self.ref.child("Users").child(self.user).child("basket").setValue(arr)
