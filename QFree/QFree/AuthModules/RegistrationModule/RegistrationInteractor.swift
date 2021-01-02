@@ -5,7 +5,6 @@
 //  Created by Maxim Sidorov on 24.10.2020.
 //
 
-import Foundation
 import FirebaseAuth
 
 protocol RegistrationInteractorProtocol {
@@ -18,6 +17,7 @@ protocol RegistrationInteractorProtocol {
 
 class RegistrationInteractor {
     let authValidator: AuthValidatorProtocol!
+    
     init(authValidator: AuthValidatorProtocol) {
         self.authValidator = authValidator
     }
@@ -27,6 +27,7 @@ extension RegistrationInteractor: RegistrationInteractorProtocol {
     func nameIsValid(_ name: String?) -> Bool {
         return authValidator.nameIsValid(name)
     }
+    
     func emailIsValid(_ email: String?) -> Bool {
         return authValidator.emailIsValid(email)
     }

@@ -5,7 +5,6 @@
 //  Created by User on 09.11.2020.
 //
 
-import Foundation
 import FirebaseAuth
 
 protocol EmailConfirmationPresenterProtocol {
@@ -14,8 +13,7 @@ protocol EmailConfirmationPresenterProtocol {
     func deleteUser()
 }
 
-class EmailConfirmationPresenter{
-    
+class EmailConfirmationPresenter {
     var view: EmailConfirmationViewProtocol
     var interactor: EmailConfirmationInteractorProtocol
     var router: EmailConfirmationRouterProtocol
@@ -27,31 +25,28 @@ class EmailConfirmationPresenter{
         self.interactor = interactor
         self.router = router
     }
-    
 }
 
-extension EmailConfirmationPresenter: EmailConfirmationPresenterProtocol{
-    func confirmEmail(){
-        let user =  Auth.auth().currentUser!
+extension EmailConfirmationPresenter: EmailConfirmationPresenterProtocol {
+    func confirmEmail() {
+        let user = Auth.auth().currentUser!
         interactor.confirmEmail(completion: {
-            if user.isEmailVerified{
+            if user.isEmailVerified {
                 self.isGoingForward = true
                 self.view.completeActivation()
-            }
-            else{
+            } else {
                 self.view.failActivation()
             }
-            
         })
     }
     
-    func resendEmailVerification(){
+    func resendEmailVerification() {
         interactor.resendVerificationEmail()
     }
     
-    func deleteUser(){
-        if !isGoingForward{
-            interactor.deleteUser(){}
+    func deleteUser() {
+        if !isGoingForward {
+            interactor.deleteUser() {}
         }
     }
 }

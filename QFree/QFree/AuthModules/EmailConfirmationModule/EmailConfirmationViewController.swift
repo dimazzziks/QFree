@@ -8,59 +8,55 @@
 import UIKit
 import FirebaseAuth
 
-protocol EmailConfirmationViewProtocol : class {
-    func confirmEmail(_ sender : BaseButton)
-    func resendVerificationEmail(_ sender : BaseButton)
+protocol EmailConfirmationViewProtocol: class {
+    func confirmEmail(_ sender: BaseButton)
+    func resendVerificationEmail(_ sender: BaseButton)
     func completeActivation()
     func failActivation()
 }
 
-class EmailConfirmationViewController : BaseViewController{
-    private var infoLabel : UILabel!
-    private var resendLinkButton : BaseButton!
-    private var confirmEmailButton : BaseButton!
-    private var loadingIndicator : UIActivityIndicatorView!
+class EmailConfirmationViewController: BaseViewController {
+    private var infoLabel: UILabel!
+    private var resendLinkButton: BaseButton!
+    private var confirmEmailButton: BaseButton!
+    private var loadingIndicator: UIActivityIndicatorView!
     
     private var stopAnimating = false
     
-    var presenter : EmailConfirmationPresenterProtocol?
+    var presenter: EmailConfirmationPresenterProtocol?
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        if(stopAnimating){
+        
+        if stopAnimating {
             self.presenter?.deleteUser()
-        }
-        else{
+        } else {
             stopAnimating = true
         }
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         presenter?.resendEmailVerification()
         let queue = DispatchQueue.global()
         queue.async {
-            while(!self.stopAnimating && !Auth.auth().currentUser!.isEmailVerified){
+            while(!self.stopAnimating && !Auth.auth().currentUser!.isEmailVerified) {
                 Auth.auth().currentUser?.reload(completion: nil)
                 sleep(1)
             }
-            if(!self.stopAnimating)
-            {
+            if !self.stopAnimating {
                 DispatchQueue.main.async {
-                    Coordinator.rootVC(vc: TabBarController())
+                    Coordinator.rootVC(vc: TabBarModuleBuilder.build())
                 }
-            }
-            else{
+            } else {
                 self.presenter?.deleteUser()
             }
-            
         }
     }
     
     private func setupUI() {
-        
         infoLabel = UILabel()
         infoLabel.text = "Письмо с подтверждением было выслано на вашу электронную почту. \nПожалуйста, подтвердите свою почту, перейдя по ссылке из письма."
         infoLabel.font = Brandbook.font(size: 16, weight: .bold)
@@ -110,24 +106,23 @@ class EmailConfirmationViewController : BaseViewController{
         ])
     }
 }
-extension EmailConfirmationViewController : EmailConfirmationViewProtocol{
-    
-    @objc func confirmEmail(_ sender : BaseButton){
+
+extension EmailConfirmationViewController: EmailConfirmationViewProtocol {
+    @objc func confirmEmail(_ sender: BaseButton) {
         presenter?.confirmEmail()
     }
     
-    @objc func resendVerificationEmail(_ sender : BaseButton){
+    @objc func resendVerificationEmail(_ sender: BaseButton) {
         presenter?.resendEmailVerification()
     }
     
-    func completeActivation(){
+    func completeActivation() {
         loadingIndicator.stopAnimating()
     }
     
-    func failActivation(){
+    func failActivation() {
         let alert = UIAlertController(title: "Почта не была активирована", message: "Попробуйте еще раз позже", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         self.present(alert, animated: true)
     }
-    
 }

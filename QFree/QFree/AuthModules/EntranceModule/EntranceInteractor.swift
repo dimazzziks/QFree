@@ -5,7 +5,6 @@
 //  Created by Maxim Sidorov on 22.10.2020.
 //
 
-import Foundation
 import FirebaseAuth
 
 protocol EntranceInteractorProtocol {
@@ -13,7 +12,6 @@ protocol EntranceInteractorProtocol {
     func passwordIsValid(_ password: String?) -> Bool
     func signInAccount(_ email: String, _ password: String, completion: @escaping(_ error: AuthError?) -> ())
 }
-
 
 class EntranceInteractor {
     let authValidator: AuthValidatorProtocol!

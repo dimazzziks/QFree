@@ -30,6 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return BaseNavigationController(rootViewController: EntranceModuleBuilder.build())
         }
         
-        return TabBarController()
+        return TabBarModuleBuilder.build()
     }
 }

@@ -5,8 +5,6 @@
 //  Created by Maxim Sidorov on 22.10.2020.
 //
 
-import UIKit
-
 class EntranceModuleBuilder {
     static func build() -> BaseViewController {
         let view = EntranceViewController()

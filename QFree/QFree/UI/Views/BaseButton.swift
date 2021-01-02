@@ -8,7 +8,6 @@
 import UIKit
 
 class BaseButton: UIButton {
-    
     public var filled: Bool = false {
         didSet {
             if filled {
@@ -23,6 +22,7 @@ class BaseButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setTitleColor(.white, for: .normal)
         backgroundColor = Brandbook.defaultColor
         self.layer.cornerRadius = Brandbook.defaultCornerRadius

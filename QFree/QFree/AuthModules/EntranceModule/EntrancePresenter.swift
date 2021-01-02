@@ -5,9 +5,6 @@
 //  Created by Maxim Sidorov on 22.10.2020.
 //
 
-import Foundation
-import UIKit
-
 protocol EntrancePresenterProtocol {
     func checkInfoAndEnter(_ email: String?, _ password: String?)
     func showRegistrationViewController()
@@ -53,7 +50,7 @@ extension EntrancePresenter: EntrancePresenterProtocol {
                 return
             }
             
-            Coordinator.rootVC(vc: TabBarController())
+            Coordinator.rootVC(vc: TabBarModuleBuilder.build())
         }
     }
     
