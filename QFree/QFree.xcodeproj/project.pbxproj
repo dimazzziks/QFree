@@ -42,6 +42,9 @@
 		344EC55A257EE4B1001AADF6 /* OrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC559257EE4B1001AADF6 /* OrderPresenter.swift */; };
 		344EC55E257EE4BD001AADF6 /* OrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC55D257EE4BD001AADF6 /* OrderRouter.swift */; };
 		344EC562257EE4CC001AADF6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC561257EE4CC001AADF6 /* OrderViewController.swift */; };
+		3451925825A271B400B075F2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451925725A271B400B075F2 /* Reachability.swift */; };
+		3451925E25A27FAD00B075F2 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451925D25A27FAD00B075F2 /* NetworkingError.swift */; };
+		3451926325A2874800B075F2 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451926225A2874800B075F2 /* BaseTableViewController.swift */; };
 		345522D62544B02800495E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 345522D52544B02800495E5F /* GoogleService-Info.plist */; };
 		34585921256F08E300E47E7E /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34585920256F08E300E47E7E /* MapManager.swift */; };
 		34585927256F0B9E00E47E7E /* BaseMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34585926256F0B9E00E47E7E /* BaseMapView.swift */; };
@@ -125,6 +128,9 @@
 		344EC559257EE4B1001AADF6 /* OrderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPresenter.swift; sourceTree = "<group>"; };
 		344EC55D257EE4BD001AADF6 /* OrderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRouter.swift; sourceTree = "<group>"; };
 		344EC561257EE4CC001AADF6 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		3451925725A271B400B075F2 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		3451925D25A27FAD00B075F2 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		3451926225A2874800B075F2 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		345522D52544B02800495E5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		34585920256F08E300E47E7E /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		34585926256F0B9E00E47E7E /* BaseMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapView.swift; sourceTree = "<group>"; };
@@ -211,7 +217,7 @@
 		340F1A7825420773000A381D /* QFree */ = {
 			isa = PBXGroup;
 			children = (
-				9D5ED242257D00E0006EF47E /* FirebaseModules */,
+				9D5ED242257D00E0006EF47E /* Networking */,
 				344B8E7825447F6100B1A671 /* AuthModules */,
 				B78228C22548EA250052A546 /* MainModules */,
 				B708653F255A0B6C00665E2C /* Supporting Files */,
@@ -269,6 +275,7 @@
 			children = (
 				3442CA0A254392130079B5AB /* BaseNavigationViewController.swift */,
 				340F1AA225420D91000A381D /* BaseViewController.swift */,
+				3451926225A2874800B075F2 /* BaseTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -341,12 +348,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		9D5ED242257D00E0006EF47E /* FirebaseModules */ = {
+		9D5ED242257D00E0006EF47E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				3451925725A271B400B075F2 /* Reachability.swift */,
+				3451925D25A27FAD00B075F2 /* NetworkingError.swift */,
 				9D5ED243257D016C006EF47E /* FirebaseHandler.swift */,
 			);
-			path = FirebaseModules;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		B708653D255A07B300665E2C /* Views */ = {
@@ -645,12 +654,14 @@
 				344EC544257ED156001AADF6 /* UIView+addShadow.swift in Sources */,
 				341184F4254385C0006D1361 /* Brandbook.swift in Sources */,
 				344EC538257ED0A2001AADF6 /* BasketRouter.swift in Sources */,
+				3451926325A2874800B075F2 /* BaseTableViewController.swift in Sources */,
 				34585927256F0B9E00E47E7E /* BaseMapView.swift in Sources */,
 				3442CA14254398DB0079B5AB /* BaseButton.swift in Sources */,
 				3438507B2544C1DA0048B43B /* AuthError.swift in Sources */,
 				344EC552257EE467001AADF6 /* OrderInteractor.swift in Sources */,
 				B738CB762586DA3200B81422 /* TabBarModuleBuilder.swift in Sources */,
 				B738CB792586DAE900B81422 /* TabBarPresenter.swift in Sources */,
+				3451925825A271B400B075F2 /* Reachability.swift in Sources */,
 				B738CB08257E717F00D8D2E7 /* Coordinator.swift in Sources */,
 				B78228FB2548EAD10052A546 /* RestaurantRouter.swift in Sources */,
 				B770B972258BF210005DAED2 /* InfoLabel.swift in Sources */,
@@ -663,6 +674,7 @@
 				340F1A7A25420773000A381D /* AppDelegate.swift in Sources */,
 				344EC548257ED86B001AADF6 /* OrderInfo.swift in Sources */,
 				B78228F82548EAD10052A546 /* RestaurantPresenter.swift in Sources */,
+				3451925E25A27FAD00B075F2 /* NetworkingError.swift in Sources */,
 				340F1A7C25420773000A381D /* SceneDelegate.swift in Sources */,
 				B708655A255AE6CB00665E2C /* ProductModel.swift in Sources */,
 				CE6227762559769200DC01AB /* EmailConfirmationViewController.swift in Sources */,

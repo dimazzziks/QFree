@@ -23,11 +23,15 @@ class RestaurantPresenter {
 
 extension RestaurantPresenter: RestaurantPresenterProtocol {
     func viewDidLoad() {
-        interactor.fetchRestaurantsInfo { restaurants in
-            guard let restaurants = restaurants else {
-                return
+        interactor.fetchRestaurantsInfo { result in
+            switch result {
+            case .success(let restaurants):
+                self.view?.update(restaurants)
+            case .failure(let error):
+                if error == .noInternetConnection {
+                    self.view?.showNoInternetAlert()
+                }
             }
-            self.view?.update(restaurants)
         }
     }
 }

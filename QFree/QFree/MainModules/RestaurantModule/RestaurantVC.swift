@@ -10,6 +10,7 @@ import UIKit
 protocol RestaurantViewProtocol: class {
     func pushMenuVC(name: String, restaurantID: String)
     func update(_ restaurants: [Restaurant])
+    func showNoInternetAlert()
 }
 
 class RestaurantVC: BaseViewController {

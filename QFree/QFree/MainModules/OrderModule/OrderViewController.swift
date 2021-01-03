@@ -10,6 +10,7 @@ import UIKit
 protocol OrderViewProtocol: class {
     func update(_ currentOrderInfo: OrderInfo)
     func update(_ products: [Product])
+    func showNoInternetAlert()
 }
 
 class OrderViewController: BaseViewController {

@@ -9,15 +9,26 @@ import Foundation
 import Firebase
 
 class FirebaseHandler {
-    var ref: DatabaseReference!
-    var user: String
+    private var reachabilityManager: ReachabilityManagerProtocol!
+    private var ref: DatabaseReference!
+    private var user: String!
+
+    static var shared: FirebaseHandler = {
+        let firebaseHandler = FirebaseHandler()
+        firebaseHandler.reachabilityManager = ReachabilityManager()
+        firebaseHandler.ref = Database.database().reference()
+        firebaseHandler.user = Auth.auth().currentUser!.email!.replacingOccurrences(of: ".", with: "")
+        return firebaseHandler
+    }()
+
+    private init() { }
     
-    init() {
-        self.ref = Database.database().reference()
-        self.user = Auth.auth().currentUser!.email!.replacingOccurrences(of: ".", with: "")
-    }
-    
-    func getRestaurantsInfo(completion: @escaping ([Restaurant]?) -> ()) {
+    func getRestaurantsInfo(completion: @escaping (Result<[Restaurant], NetworkingError>) -> ()) {
+        guard reachabilityManager.isConnected else {
+            completion(.failure(.noInternetConnection))
+            return
+        }
+
         var restaurants: [Restaurant] = []
         self.ref.child("Restaurants").observeSingleEvent(of: .value, with: { (snapshot) in
             let data = snapshot.value as? [[String : AnyObject]]
@@ -29,13 +40,18 @@ class FirebaseHandler {
                     restaurants.append(restaurant)
                 }
             }
-            completion(restaurants)
+            completion(.success(restaurants))
         }) { (error) in
-            completion(nil)
+            completion(.failure(.invalidResponse))
         }
     }
     
-    func getProductsByIDRestaurant(id: String, completion: @escaping ([Product]?) -> ()) {
+    func getProductsByIDRestaurant(id: String, completion: @escaping (Result<[Product], NetworkingError>) -> ()) {
+        guard reachabilityManager.isConnected else {
+            completion(.failure(.noInternetConnection))
+            return
+        }
+
         let query = self.ref.child("Products").queryOrdered(byChild: "restaurantID").queryEqual(toValue: id)
         var products: [Product] = []
         query.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -49,13 +65,18 @@ class FirebaseHandler {
                     products.append(product)
                 }
             }
-            completion(products)
+            completion(.success(products))
         }) { (error) in
-            completion(nil)
+            completion(.failure(.invalidResponse))
         }
     }
     
-    func getProductsInBasket(email: String, completion: @escaping ([Product]?) -> ()) {
+    func getProductsInBasket(email: String, completion: @escaping (Result<[Product], NetworkingError>) -> ()) {
+        guard reachabilityManager.isConnected else {
+            completion(.failure(.noInternetConnection))
+            return
+        }
+
         let query = ref.child("Users").child("\"zhbannikov_dima@mailru\"")
         var products: [Product] = []
         query.observeSingleEvent(of: .value) { snapshot in
@@ -65,11 +86,16 @@ class FirebaseHandler {
                 Product(name: "2", imageLink: "2", price: 2, category: [.coffee], restaurantID: "2"),
                 Product(name: "3", imageLink: "3", price: 3, category: [.coffee], restaurantID: "3")
             ]
-            completion(products)
+            completion(.success(products))
         }
     }
     
-    func getBasket(completion: @escaping ([Product : Int]?) -> ()) {
+    func getBasket(completion: @escaping (Result<[Product : Int], NetworkingError>) -> ()) {
+        guard reachabilityManager.isConnected else {
+            completion(.failure(.noInternetConnection))
+            return
+        }
+
         var basket: [Product : Int] = [Product : Int]()
         self.ref.child("Users").child(self.user).child("basket").observeSingleEvent(of: .value, with: { (snapshot) in
             let data = snapshot.value as? [[String: AnyObject]]
@@ -82,9 +108,9 @@ class FirebaseHandler {
                     basket[product] = Int(i["amount"] as! String)
                 }
             }
-            completion(basket)
+            completion(.success(basket))
         }) { (error) in
-            completion(nil)
+            completion(.failure(.invalidResponse))
         }
     }
     
@@ -116,6 +142,10 @@ class FirebaseHandler {
             )
             completion(currentOrderInfo)
         }
+    }
+
+    private func checkInternetConnection() {
+
     }
 }
 

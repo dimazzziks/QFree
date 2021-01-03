@@ -16,7 +16,6 @@ class BasketViewController: BaseViewController {
     
     var basket: [Product : Int] = [Product : Int]()
     var products: [Product] = [Product]()
-    var firebaseHandler = FirebaseHandler()
     var orderButton = BaseButton()
     var tableView1: UITableView = UITableView()
     
@@ -29,14 +28,17 @@ class BasketViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        firebaseHandler.getBasket {basket in
-            guard let basket = basket else {
-                return
+        FirebaseHandler.shared.getBasket { result in
+            switch result {
+            case .success(let basket):
+                self.basket = basket
+                self.products = basket.map{$0.key}
+                self.tableView1.reloadData()
+            case .failure(let error):
+                if error == .noInternetConnection {
+                    self.showNoInternetAlert()
+                }
             }
-            self.basket = basket
-            self.products = basket.map{$0.key}
-            self.tableView1.reloadData()
-            print("products", self.products.count)
         }
     }
     

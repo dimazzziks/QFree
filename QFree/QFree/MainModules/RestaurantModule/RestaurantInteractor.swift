@@ -6,17 +6,15 @@
 //
 
 protocol RestaurantInteractorProtocol {
-    func fetchRestaurantsInfo(completion: @escaping ([Restaurant]?) -> ())
+    func fetchRestaurantsInfo(completion: @escaping (Result<[Restaurant], NetworkingError>) -> ())
 }
 
-class RestaurantInteractor {
-    var firebaseHandler = FirebaseHandler()
-}
+class RestaurantInteractor { }
 
 extension RestaurantInteractor: RestaurantInteractorProtocol {
-    func fetchRestaurantsInfo(completion: @escaping ([Restaurant]?) -> ()) {
-        firebaseHandler.getRestaurantsInfo { restaurants in
-            completion(restaurants)
+    func fetchRestaurantsInfo(completion: @escaping (Result<[Restaurant], NetworkingError>) -> ()) {
+        FirebaseHandler.shared.getRestaurantsInfo { result in
+            completion(result)
         }
     }
 }
