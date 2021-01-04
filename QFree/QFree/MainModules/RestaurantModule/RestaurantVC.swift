@@ -17,7 +17,7 @@ class RestaurantVC: BaseViewController {
     var presenter: RestaurantPresenterProtocol?
     
     var restaurants: [Restaurant] = []
-    var selectedRes: [Restaurant] = []
+    var selectedRestaurants: [Restaurant] = []
     var categories: Set<Int> = []
     
     private var restaurantsCollectionView: UICollectionView!
@@ -147,7 +147,7 @@ extension RestaurantVC: UICollectionViewDelegateFlowLayout {
 extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == restaurantsCollectionView {
-            return selectedRes.count
+            return selectedRestaurants.count
         } else {
             return Category.allCases.count
         }
@@ -156,7 +156,7 @@ extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == restaurantsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCell.reuseId, for: indexPath) as! RestaurantCell
-            let restaurant = selectedRes[indexPath.row]
+            let restaurant = selectedRestaurants[indexPath.row]
             cell.configure(with: restaurant)
             return cell
         } else {
@@ -168,7 +168,7 @@ extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == restaurantsCollectionView {
-            pushMenuVC(name: restaurants[indexPath.row].name, restaurantID: String(indexPath.row))
+            pushMenuVC(name: selectedRestaurants[indexPath.row].name, restaurantID: String(describing: restaurants.firstIndex(of: selectedRestaurants[indexPath.row])!))
         } else {
             if categories.contains(indexPath.row) {
                 categories.remove(indexPath.row)
@@ -179,16 +179,16 @@ extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
             categoryCollectionView.reloadData()
 
             if !categories.isEmpty {
-                selectedRes.removeAll()
+                selectedRestaurants.removeAll()
                 for restaurant in restaurants {
                     if restaurant.category.contains(Category.init(id: indexPath.row)!) {
-                        if !selectedRes.contains(restaurant) {
-                            selectedRes.append(restaurant)
+                        if !selectedRestaurants.contains(restaurant) {
+                            selectedRestaurants.append(restaurant)
                         }
                     }
                 }
             } else {
-                selectedRes = restaurants
+                selectedRestaurants = restaurants
             }
             restaurantsCollectionView.reloadData()
         }
@@ -198,7 +198,7 @@ extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
 extension RestaurantVC: RestaurantViewProtocol {
     func update(_ restaurants: [Restaurant]) {
         self.restaurants = restaurants
-        self.selectedRes = self.restaurants
+        self.selectedRestaurants = self.restaurants
         self.restaurantsCollectionView.reloadData()
         self.activityIndicator.stopAnimating()
     }
