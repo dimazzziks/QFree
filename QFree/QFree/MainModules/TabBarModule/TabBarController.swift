@@ -29,10 +29,8 @@ class TabBarController: UITabBarController {
         searchVC.title = "Поиск"
         profileVC.title = "Профиль"
         
-        searchVC.navigationBar.barStyle = .black
-        
         setViewControllers([restaurantVC, ordersVC, basketVC, searchVC, profileVC], animated: true)
-        tabBar.tintColor = Brandbook.defaultColor
+        tabBar.tintColor = .black
         
         let barImages = ["restaurant", "order", "basket", "search", "profile"]
         guard let items = tabBar.items else { return }

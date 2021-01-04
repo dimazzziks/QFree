@@ -13,29 +13,25 @@ protocol SearchViewProtocol: class {
 
 class SearchVC: BaseViewController {
     var presenter: SearchPresenterProtocol?
-    
+    var searchText: String = ""
     let searchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configureVC()
+        searchBar.showsScopeBar = true
+        setTitle()
+        configureSearchBar()
     }
     
-    func configureVC() {
+    func setTitle() {
         self.title = "Поиск"
-        
+    }
+    
+    func configureSearchBar() {
         searchBar.sizeToFit()
         searchBar.delegate = self
-        let app = UINavigationBarAppearance()
-        app.backgroundColor = Brandbook.defaultColor
-        app.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
-        self.navigationController?.navigationBar.scrollEdgeAppearance = app
-        navigationController?.navigationBar.barTintColor = Brandbook.defaultColor
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.tintColor = .white
+        searchBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .black
         
         showSearchBarButton(shouldShow: true)
     }
@@ -60,6 +56,10 @@ extension SearchVC: UISearchBarDelegate {
         search(shouldShow: false)
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searched text is \(self.searchText)")
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         print("searchBar begin editing")
     }
@@ -69,7 +69,7 @@ extension SearchVC: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("searchText is \(searchText)")
+        self.searchText = searchText
     }
 }
 
