@@ -16,11 +16,14 @@ class SearchVC: BaseViewController {
     var searchText: String = ""
     let searchBar = UISearchBar()
     
+    var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.showsScopeBar = true
+        
         setTitle()
         configureSearchBar()
+        setCollectionView()
     }
     
     func setTitle() {
@@ -49,6 +52,18 @@ class SearchVC: BaseViewController {
         searchBar.showsCancelButton = shouldShow
         navigationItem.titleView = shouldShow ? searchBar : nil
     }
+    
+    func setCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        self.collectionView.backgroundColor = .white
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        collectionView.register(SearchCell.self, forCellWithReuseIdentifier: SearchCell.reuseId)
+        self.view.addSubview(self.collectionView)
+    }
 }
 
 extension SearchVC: UISearchBarDelegate {
@@ -70,6 +85,25 @@ extension SearchVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
+    }
+}
+
+extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCell.reuseId, for: indexPath) as! SearchCell
+        let restaurant = "Столовая"
+        cell.configure(with: restaurant)
+        return cell
+    }
+}
+
+extension SearchVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width-24, height: 150)
     }
 }
 

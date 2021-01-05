@@ -81,6 +81,7 @@
 		B78229052548EADE0052A546 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78229002548EADE0052A546 /* SearchInteractor.swift */; };
 		B78229062548EADE0052A546 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78229012548EADE0052A546 /* SearchVC.swift */; };
 		B7C9C03D25764CB500FBD340 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7C9C03C25764CB500FBD340 /* Assets.xcassets */; };
+		B7DBEB4425A5221600D724C7 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DBEB4325A5221600D724C7 /* SearchCell.swift */; };
 		C492985053D3D3655E7D980E /* Pods_QFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4276A4CA41B108E8576702E9 /* Pods_QFree.framework */; };
 		CE6227762559769200DC01AB /* EmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6227752559769200DC01AB /* EmailConfirmationViewController.swift */; };
 		CE6227792559835000DC01AB /* EmailConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6227782559835000DC01AB /* EmailConfirmationPresenter.swift */; };
@@ -169,6 +170,7 @@
 		B78229002548EADE0052A546 /* SearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		B78229012548EADE0052A546 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		B7C9C03C25764CB500FBD340 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B7DBEB4325A5221600D724C7 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		CE6227752559769200DC01AB /* EmailConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationViewController.swift; sourceTree = "<group>"; };
 		CE6227782559835000DC01AB /* EmailConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationPresenter.swift; sourceTree = "<group>"; };
 		CE62277B25598E3B00DC01AB /* EmailConfirmationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationModuleBuilder.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 		B78228CA2548EA8B0052A546 /* SearchModule */ = {
 			isa = PBXGroup;
 			children = (
+				B7DBEB4225A521F200D724C7 /* Views */,
 				B78229012548EADE0052A546 /* SearchVC.swift */,
 				B78229002548EADE0052A546 /* SearchInteractor.swift */,
 				B78228FE2548EADE0052A546 /* SearchPresenter.swift */,
@@ -480,6 +483,14 @@
 				B738CB752586DA3200B81422 /* TabBarModuleBuilder.swift */,
 			);
 			path = TabBarModule;
+			sourceTree = "<group>";
+		};
+		B7DBEB4225A521F200D724C7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B7DBEB4325A5221600D724C7 /* SearchCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CE6227732559752400DC01AB /* EmailConfirmationModule */ = {
@@ -653,6 +664,7 @@
 				344EC55E257EE4BD001AADF6 /* OrderRouter.swift in Sources */,
 				344EC544257ED156001AADF6 /* UIView+addShadow.swift in Sources */,
 				341184F4254385C0006D1361 /* Brandbook.swift in Sources */,
+				B7DBEB4425A5221600D724C7 /* SearchCell.swift in Sources */,
 				344EC538257ED0A2001AADF6 /* BasketRouter.swift in Sources */,
 				3451926325A2874800B075F2 /* BaseTableViewController.swift in Sources */,
 				34585927256F0B9E00E47E7E /* BaseMapView.swift in Sources */,
