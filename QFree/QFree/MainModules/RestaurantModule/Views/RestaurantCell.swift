@@ -11,15 +11,13 @@ class RestaurantCell: UICollectionViewCell {
     static var reuseId: String = "ListCell"
     
     let mainView = UIView()
-    let underMainView = UIView()
-    var restaurantImageView: CachedImageView!
     let whiteView = UIView()
     let name = UILabel()
     
+    var restaurantImageView: CachedImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .white
         
         setupViews()
     }
@@ -27,30 +25,36 @@ class RestaurantCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.addSubview(underMainView)
-        underMainView.addSubview(mainView)
-        
+        self.addSubview(mainView)
         mainView.addSubview(restaurantImageView)
         mainView.addSubview(whiteView)
         mainView.addSubview(name)
     }
     
     func setupViews() {
-        underMainView.frame = self.bounds
-        underMainView.layer.shadowColor = UIColor.black.cgColor
-        underMainView.layer.shadowOpacity = 0.3
-        underMainView.layer.shadowOffset = .zero
-        underMainView.layer.shadowRadius = 5
-        
+        addShadow()
+        setMainView()
+        setImageView()
+        setWhiteView()
+        setNameLabel()
+    }
+    
+    func setMainView() {
         mainView.frame = self.bounds
         mainView.layer.cornerRadius = Brandbook.defaultCornerRadius
         mainView.layer.masksToBounds = true
-        
+    }
+    
+    func setImageView() {
         restaurantImageView = CachedImageView(frame: self.bounds)
-                
+    }
+    
+    func setWhiteView() {
         whiteView.frame = CGRect(x: 0, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/4)
         whiteView.backgroundColor = .white
-        
+    }
+    
+    func setNameLabel() {
         name.frame = CGRect(x: 15, y: self.frame.height - self.frame.height/5, width: self.frame.width, height: self.frame.height/5)
         name.textColor = Brandbook.textColor
         name.font = Brandbook.font()
@@ -58,7 +62,6 @@ class RestaurantCell: UICollectionViewCell {
     
     func configure(with restaurant: Restaurant) {
         name.text = restaurant.name
-        
         restaurantImageView.imageUrl = restaurant.image
         restaurantImageView.loadImage(from: restaurantImageView.imageUrl)
     }

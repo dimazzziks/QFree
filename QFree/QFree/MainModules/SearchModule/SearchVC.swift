@@ -57,6 +57,7 @@ class SearchVC: BaseViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        layout.estimatedItemSize = CGSize(width: view.frame.width-24, height: 200)
         self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         self.collectionView.backgroundColor = .white
         self.collectionView.delegate = self
@@ -90,22 +91,22 @@ extension SearchVC: UISearchBarDelegate {
 
 extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCell.reuseId, for: indexPath) as! SearchCell
-        let restaurant = "Столовая"
+        let restaurant = "Место \(indexPath.row + 1)"
         cell.configure(with: restaurant)
         return cell
     }
 }
 
-extension SearchVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width-24, height: 150)
-    }
-}
+//extension SearchVC: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: view.frame.width-24, height: 200)
+//    }
+//}
 
 extension SearchVC {
     @objc func handleShowSearchBar() {

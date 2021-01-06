@@ -13,6 +13,8 @@ class SearchCell: UICollectionViewCell {
     let mainView = UIView()
     let name = UILabel()
     
+    var tableView = UITableView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -24,30 +26,33 @@ class SearchCell: UICollectionViewCell {
         
         self.addSubview(mainView)
         mainView.addSubview(name)
+        mainView.addSubview(tableView)
     }
     
     func setupViews() {
-        self.frame = self.bounds
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.3
-        self.layer.shadowOffset = .zero
-        self.layer.shadowRadius = 5
-        
         setMainView()
         setNameLabel()
+        setTableView()
     }
     
     func setMainView() {
         mainView.frame = self.bounds
-        mainView.layer.cornerRadius = Brandbook.defaultCornerRadius
-        mainView.layer.masksToBounds = true
+        mainView.addShadow()
         mainView.backgroundColor = Brandbook.defaultColor
     }
     
     func setNameLabel() {
-        name.frame = CGRect(x: 12, y: 12, width: self.frame.width, height: self.frame.height/5)
+        name.frame = CGRect(x: 16, y: 0, width: self.frame.width, height: self.frame.height/5)
         name.textColor = .white
         name.font = Brandbook.font()
+    }
+    
+    func setTableView() {
+        tableView.frame = CGRect(x: 0, y: 34, width: self.frame.width, height: self.frame.height)
+        tableView.backgroundColor = .clear
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: "ProductTableViewCell")
     }
     
     // TODO: Исправить
@@ -57,5 +62,17 @@ class SearchCell: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension SearchCell: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
+//        cell.nameLabel.text = "Еда"
+        return cell
     }
 }
