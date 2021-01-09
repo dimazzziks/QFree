@@ -114,7 +114,12 @@ class FirebaseHandler {
         }
     }
     
-    func postBasket(products: [Product : Int]) {
+    func postBasket(products: [Product : Int], completion: @escaping (NetworkingError?) -> ()) {
+        guard reachabilityManager.isConnected else {
+            completion(.noInternetConnection)
+            return
+        }
+
         var arr: [[NSString : NSObject]] = [[NSString : NSObject]]()
         for (product, amount) in products {
             var d: [NSString : NSObject] = [NSString : NSObject]()
@@ -127,6 +132,7 @@ class FirebaseHandler {
             arr.append(d)
         }
         self.ref.child("Users").child(self.user).child("basket").setValue(arr)
+        completion(nil)
     }
     
     func getCurrentOrderInfo(email: String, completion: @escaping (OrderInfo?) ->()) {

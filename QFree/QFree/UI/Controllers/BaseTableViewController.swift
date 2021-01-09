@@ -8,7 +8,7 @@
 import UIKit
 
 class BaseTableViewController: UITableViewController {
-    func showNoInternetAlert() {
-        BaseViewController().showNoInternetAlert()
+    func showNoInternetAlert(_ okAction: (() -> ())?) {
+        BaseViewController().showNoInternetAlert(okAction)
     }
 }

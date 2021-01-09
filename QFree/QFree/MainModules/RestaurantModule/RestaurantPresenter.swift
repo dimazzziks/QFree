@@ -23,13 +23,17 @@ class RestaurantPresenter {
 
 extension RestaurantPresenter: RestaurantPresenterProtocol {
     func viewDidLoad() {
+        fetchResultsInfo()
+    }
+
+    private func fetchResultsInfo() {
         interactor.fetchRestaurantsInfo { result in
             switch result {
             case .success(let restaurants):
                 self.view?.update(restaurants)
             case .failure(let error):
                 if error == .noInternetConnection {
-                    self.view?.showNoInternetAlert()
+                    self.view?.showNoInternetAlert(self.fetchResultsInfo)
                 }
             }
         }

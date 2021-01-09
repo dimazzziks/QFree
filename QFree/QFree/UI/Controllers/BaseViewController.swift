@@ -26,10 +26,11 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    func showNoInternetAlert() {
+    func showNoInternetAlert(_ okAction: (() -> ())?) {
         let alert = UIAlertController(title: "Внимание", message: "Вы не подключены к интернету", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Готово", style: .default, handler: nil)
-        alert.addAction(action)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { _ in
+            okAction?()
+        }))
         present(alert, animated: true, completion: nil)
     }
     
