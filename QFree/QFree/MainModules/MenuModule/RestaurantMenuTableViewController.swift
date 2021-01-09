@@ -16,7 +16,19 @@ class RestaurantMenuTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorColor = .clear
+        getProductsByIdRestaurants()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getBasket()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("basket before  post", basket)
+        FirebaseHandler.shared.postBasket(products: self.basket)
+    }
 
+    private func getProductsByIdRestaurants() {
         FirebaseHandler.shared.getProductsByIDRestaurant(id: restaurantID) { result in
             switch result {
             case .success(let products):
@@ -24,31 +36,25 @@ class RestaurantMenuTableViewController: BaseTableViewController {
                 self.tableView.reloadData()
             case .failure(let error):
                 if error == .noInternetConnection {
-                    self.showNoInternetAlert()
+                    self.showNoInternetAlert(self.getProductsByIdRestaurants)
                 }
             }
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+
+    private func getBasket() {
         FirebaseHandler.shared.getBasket { result in
             switch result {
             case .success(let basket):
                 self.basket = basket
             case .failure(let error):
                 if error == .noInternetConnection {
-                    self.showNoInternetAlert()
+                    self.showNoInternetAlert(self.getBasket)
                 }
             }
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        print("basket before  post", basket)
-        FirebaseHandler.shared.postBasket(products: self.basket)
-        
-    }
-    
+
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {

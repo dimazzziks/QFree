@@ -27,13 +27,17 @@ extension OrderPresenter: OrderPresenterProtocol {
             guard let currentOrderInfo = currentOrderInfo else { return }
             self.view?.update(currentOrderInfo)
         }
+        fetchBasket()
+    }
+
+    private func fetchBasket() {
         interactor.fetchBasket { result in
             switch result {
             case .success(let products):
                 self.view?.update(products)
             case .failure(let error):
                 if error == .noInternetConnection {
-                    self.view?.showNoInternetAlert()
+                    self.view?.showNoInternetAlert(self.fetchBasket)
                 }
             }
         }

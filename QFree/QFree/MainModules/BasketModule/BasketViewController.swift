@@ -28,6 +28,10 @@ class BasketViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getBasket()
+    }
+
+    private func getBasket() {
         FirebaseHandler.shared.getBasket { result in
             switch result {
             case .success(let basket):
@@ -36,17 +40,17 @@ class BasketViewController: BaseViewController {
                 self.tableView1.reloadData()
             case .failure(let error):
                 if error == .noInternetConnection {
-                    self.showNoInternetAlert()
+                    self.showNoInternetAlert(self.getBasket)
                 }
             }
         }
     }
     
-    func setupTitle() {
+    private func setupTitle() {
         self.title = "Корзина"
     }
     
-    func setOrderButton() {
+    private func setOrderButton() {
         self.view.addSubview(orderButton)
         self.orderButton.setTitle("Заказать", for: .normal)
         self.orderButton.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +61,7 @@ class BasketViewController: BaseViewController {
         self.orderButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
     }
     
-    func setTabelView() {
+    private func setTabelView() {
         self.view.addSubview(tableView1)
         self.tableView1.separatorColor = .clear
         self.tableView1.delegate = self
