@@ -23,11 +23,21 @@ class OrderPresenter {
 
 extension OrderPresenter: OrderPresenterProtocol {
     func viewDidLoad() {
-        interactor.fetchCurrentOrderInfo { currentOrderInfo in
-            guard let currentOrderInfo = currentOrderInfo else { return }
-            self.view?.update(currentOrderInfo)
-        }
+        fetchCurrentOrderInfo()
         fetchBasket()
+    }
+
+    private func fetchCurrentOrderInfo() {
+        interactor.fetchCurrentOrderInfo { result in
+            switch result {
+            case .success(let orderInfo):
+                self.view?.update(orderInfo)
+            case .failure(let error):
+                if error == .noInternetConnection {
+                    self.view?.showNoInternetAlert(self.fetchCurrentOrderInfo)
+                }
+            }
+        }
     }
 
     private func fetchBasket() {

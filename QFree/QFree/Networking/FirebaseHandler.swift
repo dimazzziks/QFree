@@ -135,41 +135,26 @@ class FirebaseHandler {
         completion(nil)
     }
     
-    func getCurrentOrderInfo(email: String, completion: @escaping (OrderInfo?) ->()) {
-        let query = ref.child("Users").child("\"zhbannikov_dima@mailru\"")
-        var currentOrderInfo: OrderInfo?
+    func getCurrentOrderInfo(completion: @escaping (Result<OrderInfo, NetworkingError>) ->()) {
+        guard reachabilityManager.isConnected else {
+            completion(.failure(.noInternetConnection))
+            return
+        }
+
+        let formattedEmail = getFormattedEmail(email: Auth.auth().currentUser?.email)
+        let query = ref.child("Users").child(formattedEmail)
         query.observeSingleEvent(of: .value) { snapshot in
-            // FIXME: fetch snapshot
-            currentOrderInfo = OrderInfo(
+            let currentOrderInfo = OrderInfo(
                 restaurantName: "Name",
                 completionTime: "17:00",
                 number: "123",
                 restaurantImageUrl: "https://www.hse.ru/pubs/share/direct/305134103.jpg"
             )
-            completion(currentOrderInfo)
+            completion(.success(currentOrderInfo))
         }
     }
 
-    private func checkInternetConnection() {
-
+    private func getFormattedEmail(email: String?) -> String {
+        return "\"\(email?.replacingOccurrences(of: ".", with: "") ?? "")\""
     }
 }
-
-//SERCH
-//let usersRef = self.ref.child("users")
-//
-//let input = "some display name"
-//let query = usersRef.queryOrdered(byChild: "displayName").queryEqual(toValue: input)
-//query.observeSingleEvent(of: .value, with: { snapshot in
-//    for child in snapshot.children {
-//        let snap = child as! DataSnapshot
-//        let dict = snap.value as! [String: Any]
-//        let email = dict["email"] as! String
-//        let displayName = dict["displayName"] as! String
-//        print(email)
-//        print(displayName)
-//
-//        let key = snapshot.key
-//        print(key)
-//    }
-//})
