@@ -41,16 +41,18 @@ class ProductTableViewCell: UITableViewCell {
     }()
     
     var productImageView: UIImageView = {
-        var i = UIImageView(image: UIImage(named: "coffee"))
+        var i = UIImageView(image: UIImage(named: "meal"))
         i.translatesAutoresizingMaskIntoConstraints = false
         i.layer.cornerRadius = Brandbook.defaultCornerRadius
         i.layer.masksToBounds = true
+        i.contentMode = .scaleAspectFill
         return i
     }()
     
     var labels: UIStackView = {
         var s = UIStackView()
-        s.axis = .horizontal
+        s.axis = .vertical
+        s.spacing = 6
         s.alignment = .fill
         s.distribution = .fillEqually
         s.translatesAutoresizingMaskIntoConstraints = false
@@ -102,7 +104,7 @@ class ProductTableViewCell: UITableViewCell {
         labels.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 12).isActive = true
         labels.rightAnchor.constraint(equalTo: productImageView.leftAnchor, constant: -12).isActive = true
         labels.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12).isActive = true
-        labels.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        labels.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         labels.addArrangedSubview(nameLabel)
         labels.addArrangedSubview(priceLabel)
@@ -121,6 +123,21 @@ class ProductTableViewCell: UITableViewCell {
         mainView.topAnchor.constraint(equalTo: underMainView.topAnchor, constant: 6).isActive = true
         
         mainView.addShadow()
+    }
+    
+    func configure(with product: Product) {
+        nameLabel.text = String(product.name)
+        priceLabel.text = String(product.price) + "₽"
+        
+        let imageURL: URL = URL(string: product.imageLink)!
+        DispatchQueue.global(qos: .utility).async {
+            if let data = try? Data(contentsOf: imageURL) {
+                DispatchQueue.main.async {
+                    self.productImageView.image = UIImage(data: data)!
+                }
+            }
+        }
+        
     }
     
     required init?(coder: NSCoder) {

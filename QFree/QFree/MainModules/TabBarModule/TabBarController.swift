@@ -29,10 +29,14 @@ class TabBarController: UITabBarController {
         searchVC.title = "Поиск"
         profileVC.title = "Профиль"
         
-        setViewControllers([restaurantVC, ordersVC, basketVC, searchVC, profileVC], animated: true)
+        setViewControllers([restaurantVC, ordersVC, basketVC,
+//                            searchVC,
+                            profileVC], animated: true)
         tabBar.tintColor = .black
         
-        let barImages = ["restaurant", "order", "basket", "search", "profile"]
+        let barImages = ["restaurant", "order", "basket",
+//                         "search",
+                         "profile"]
         guard let items = tabBar.items else { return }
         
         for i in 0..<items.count {

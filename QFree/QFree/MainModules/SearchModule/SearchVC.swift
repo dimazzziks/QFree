@@ -23,7 +23,8 @@ class SearchVC: BaseViewController {
         
         setTitle()
         configureSearchBar()
-        setCollectionView()
+        handleShowSearchBar()
+//                setCollectionView()
     }
     
     func setTitle() {
@@ -58,12 +59,12 @@ class SearchVC: BaseViewController {
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         layout.estimatedItemSize = CGSize(width: view.frame.width-24, height: 200)
-        self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
-        self.collectionView.backgroundColor = .white
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
+        collectionView.delegate = self
+        collectionView.dataSource = self
         collectionView.register(SearchCell.self, forCellWithReuseIdentifier: SearchCell.reuseId)
-        self.view.addSubview(self.collectionView)
+        view.addSubview(self.collectionView)
     }
 }
 

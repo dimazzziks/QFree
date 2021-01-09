@@ -61,9 +61,9 @@ class RestaurantMenuTableViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ProductTableViewCell()
-        cell.nameLabel.text = String(products[indexPath.row].name)
-        cell.priceLabel.text = String(products[indexPath.row].price) + "₽"
-        //cell.productImageView.image = products[indexPath.row].image
+        let product = products[indexPath.row]
+        cell.configure(with: product)
+        
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = backgroundView
