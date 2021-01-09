@@ -9,31 +9,29 @@ import UIKit
 
 class ProductTableViewCell: UITableViewCell {
     var indView = UIView()
-    var message : String?
-    var mainImage : UIImage?
-    var link : String?
+    var message: String?
+    var mainImage: UIImage?
+    var link: String?
     
-    var backgroundViewClear : UIView = {
+    var backgroundViewClear: UIView = {
         var v = UIView()
         v.backgroundColor = UIColor.clear
         return v
     }()
-      
-    var mainView : UIView = {
+    
+    var mainView: UIView = {
         var mv = UIView()
         mv.translatesAutoresizingMaskIntoConstraints = false
         return mv
-        
     }()
     
-    var underMainView : UIView = {
+    var underMainView: UIView = {
         var mv = UIView()
         mv.translatesAutoresizingMaskIntoConstraints = false
         return mv
-        
     }()
     
-    var addButton : UIButton = {
+    var addButton: UIButton = {
         var b = UIButton()
         b.translatesAutoresizingMaskIntoConstraints = false
         b.setImage(UIImage(named: "addButton"), for: .normal)
@@ -42,18 +40,19 @@ class ProductTableViewCell: UITableViewCell {
         return b
     }()
     
-    var productImageView : UIImageView = {
-        var i = UIImageView(image: UIImage(named: "coffee"))
+    var productImageView: UIImageView = {
+        var i = UIImageView(image: UIImage(named: "meal"))
         i.translatesAutoresizingMaskIntoConstraints = false
         i.layer.cornerRadius = Brandbook.defaultCornerRadius
         i.layer.masksToBounds = true
+        i.contentMode = .scaleAspectFill
         return i
-
     }()
     
-    var labels : UIStackView = {
+    var labels: UIStackView = {
         var s = UIStackView()
-        s.axis = .horizontal
+        s.axis = .vertical
+        s.spacing = 6
         s.alignment = .fill
         s.distribution = .fillEqually
         s.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +60,7 @@ class ProductTableViewCell: UITableViewCell {
         return s
     }()
     
-    var nameLabel : UILabel = {
+    var nameLabel: UILabel = {
         var l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.text = "Латте"
@@ -72,7 +71,7 @@ class ProductTableViewCell: UITableViewCell {
         return l
     }()
     
-    var priceLabel : UILabel = {
+    var priceLabel: UILabel = {
         var l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.text = "199р"
@@ -83,8 +82,8 @@ class ProductTableViewCell: UITableViewCell {
         return l
     }()
     
-    override init(style : UITableViewCell.CellStyle, reuseIdentifier : String?) {
-        super.init(style : style, reuseIdentifier : reuseIdentifier)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
         self.selectedBackgroundView = backgroundViewClear
         
@@ -105,7 +104,7 @@ class ProductTableViewCell: UITableViewCell {
         labels.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 12).isActive = true
         labels.rightAnchor.constraint(equalTo: productImageView.leftAnchor, constant: -12).isActive = true
         labels.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 12).isActive = true
-        labels.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        labels.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         labels.addArrangedSubview(nameLabel)
         labels.addArrangedSubview(priceLabel)
@@ -124,6 +123,20 @@ class ProductTableViewCell: UITableViewCell {
         mainView.topAnchor.constraint(equalTo: underMainView.topAnchor, constant: 6).isActive = true
         
         mainView.addShadow()
+    }
+    
+    func configure(with product: Product) {
+        nameLabel.text = String(product.name)
+        priceLabel.text = String(product.price) + "₽"
+        
+        let imageURL: URL = URL(string: product.imageLink)!
+        DispatchQueue.global(qos: .utility).async {
+            if let data = try? Data(contentsOf: imageURL) {
+                DispatchQueue.main.async {
+                    self.productImageView.image = UIImage(data: data)!
+                }
+            }
+        }
         
     }
     

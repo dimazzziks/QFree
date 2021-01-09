@@ -5,8 +5,6 @@
 //  Created by Maxim Sidorov on 24.10.2020.
 //
 
-import Foundation
-
 class RegistrationModuleBuilder {
     static func build() -> BaseViewController {
         let view = RegistrationViewController()
@@ -16,5 +14,4 @@ class RegistrationModuleBuilder {
         view.presenter = presenter
         return view
     }
-    
 }

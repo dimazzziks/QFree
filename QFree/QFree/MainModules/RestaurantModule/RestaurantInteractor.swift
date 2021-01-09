@@ -5,16 +5,16 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-import Foundation
-
 protocol RestaurantInteractorProtocol {
-    
+    func fetchRestaurantsInfo(completion: @escaping (Result<[Restaurant], NetworkingError>) -> ())
 }
 
-class RestaurantInteractor {
-    
-}
+class RestaurantInteractor { }
 
 extension RestaurantInteractor: RestaurantInteractorProtocol {
-    
+    func fetchRestaurantsInfo(completion: @escaping (Result<[Restaurant], NetworkingError>) -> ()) {
+        FirebaseHandler.shared.getRestaurantsInfo { result in
+            completion(result)
+        }
+    }
 }

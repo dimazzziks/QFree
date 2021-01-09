@@ -15,7 +15,7 @@ protocol EntranceViewProtocol: class {
 class EntranceViewController: BaseViewController {
     public var presenter: EntrancePresenterProtocol?
     
-    private var infoLabel: UILabel!
+    private var infoLabel: InfoLabel!
     private var stackView: FormStackView!
     private var emailTextField: BaseTextField!
     private var passwordTextField: BaseTextField!
@@ -78,11 +78,7 @@ class EntranceViewController: BaseViewController {
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
         
-        infoLabel = UILabel()
-        infoLabel.font = Brandbook.font(size: 16, weight: .bold)
-        infoLabel.textColor = .red
-        infoLabel.alpha = 0.0
-        infoLabel.textAlignment = .center
+        infoLabel = InfoLabel()
         view.addSubview(infoLabel)
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -93,7 +89,7 @@ class EntranceViewController: BaseViewController {
     }
 }
 
-extension EntranceViewController{
+extension EntranceViewController {
     @objc func enterButtonAction(_ sender: BaseButton) {
         presenter?.checkInfoAndEnter(emailTextField.text, passwordTextField.text)
     }
@@ -133,17 +129,6 @@ extension EntranceViewController: EntranceViewProtocol {
     }
     
     func showInfoLabel(text: String) {
-        infoLabel.text = text
-        
-        let animationDuration: TimeInterval = 0.3
-        let delayDuration: TimeInterval = 3
-        
-        UIView.animate(withDuration: animationDuration) {
-            self.infoLabel.alpha = 1.0
-        } completion: { _ in
-            UIView.animate(withDuration: animationDuration, delay: delayDuration, animations: {
-                self.infoLabel.alpha = 0.0
-            }, completion: nil)
-        }
+        infoLabel.showInfoLabel(text: text)
     }
 }

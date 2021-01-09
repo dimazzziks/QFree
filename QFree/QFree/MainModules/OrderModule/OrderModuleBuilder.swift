@@ -5,11 +5,8 @@
 //  Created by Maxim V. Sidorov on 12/8/20.
 //
 
-import Foundation
-import UIKit
-
 class OrderModuleBuilder {
-    static func build() -> UIViewController {
+    static func build() -> BaseViewController {
         let view = OrderViewController()
         let interactor = OrderInteractor()
         let router = OrderRouter(view: view)

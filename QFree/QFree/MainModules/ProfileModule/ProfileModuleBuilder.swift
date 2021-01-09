@@ -5,9 +5,7 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-import Foundation
-
-class ProfileModuleBuilder{
+class ProfileModuleBuilder {
     static func build() -> BaseViewController {
         let view = ProfileVC()
         let changeEmailVC = ChangeEmailVC()

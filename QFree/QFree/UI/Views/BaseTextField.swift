@@ -8,11 +8,11 @@
 import UIKit
 
 class BaseTextField: UITextField {
-    
     private let padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 5)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         font = Brandbook.font(size: 18, weight: .regular)
         self.layer.cornerRadius = Brandbook.defaultCornerRadius
         layer.borderColor = Brandbook.defaultColor.cgColor

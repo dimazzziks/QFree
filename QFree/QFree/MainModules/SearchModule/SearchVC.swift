@@ -11,34 +11,31 @@ protocol SearchViewProtocol: class {
     
 }
 
-class SearchVC: UIViewController {
+class SearchVC: BaseViewController {
     var presenter: SearchPresenterProtocol?
-    
+    var searchText: String = ""
     let searchBar = UISearchBar()
-
+    
+    var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        configureVC()
+        
+        setTitle()
+        configureSearchBar()
         handleShowSearchBar()
+//                setCollectionView()
     }
     
-    func configureVC() {
+    func setTitle() {
         self.title = "Поиск"
-        self.view.backgroundColor = .white
-        
+    }
+    
+    func configureSearchBar() {
         searchBar.sizeToFit()
         searchBar.delegate = self
-//        let app = UINavigationBarAppearance()
-//        app.backgroundColor = Brandbook.defaultColor
-//        app.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-//
-//        self.navigationController?.navigationBar.scrollEdgeAppearance = app
-//        navigationController?.navigationBar.barTintColor = Brandbook.defaultColor
-//        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.tintColor = .white
+        searchBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .black
         
         showSearchBarButton(shouldShow: true)
     }
@@ -56,12 +53,28 @@ class SearchVC: UIViewController {
         searchBar.showsCancelButton = shouldShow
         navigationItem.titleView = shouldShow ? searchBar : nil
     }
-
+    
+    func setCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        layout.estimatedItemSize = CGSize(width: view.frame.width-24, height: 200)
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(SearchCell.self, forCellWithReuseIdentifier: SearchCell.reuseId)
+        view.addSubview(self.collectionView)
+    }
 }
 
 extension SearchVC: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         search(shouldShow: false)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searched text is \(self.searchText)")
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -73,9 +86,28 @@ extension SearchVC: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("searchText is \(searchText)")
+        self.searchText = searchText
     }
 }
+
+extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCell.reuseId, for: indexPath) as! SearchCell
+        let restaurant = "Место \(indexPath.row + 1)"
+        cell.configure(with: restaurant)
+        return cell
+    }
+}
+
+//extension SearchVC: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: view.frame.width-24, height: 200)
+//    }
+//}
 
 extension SearchVC {
     @objc func handleShowSearchBar() {

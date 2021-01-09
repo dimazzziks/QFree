@@ -5,8 +5,6 @@
 //  Created by Maxim V. Sidorov on 12/8/20.
 //
 
-import Foundation
-
 protocol OrderPresenterProtocol {
     func viewDidLoad()
 }
@@ -29,9 +27,15 @@ extension OrderPresenter: OrderPresenterProtocol {
             guard let currentOrderInfo = currentOrderInfo else { return }
             self.view?.update(currentOrderInfo)
         }
-        interactor.fetchBasket { products in
-            guard let products = products else { return }
-            self.view?.update(products)
+        interactor.fetchBasket { result in
+            switch result {
+            case .success(let products):
+                self.view?.update(products)
+            case .failure(let error):
+                if error == .noInternetConnection {
+                    self.view?.showNoInternetAlert()
+                }
+            }
         }
     }
 }

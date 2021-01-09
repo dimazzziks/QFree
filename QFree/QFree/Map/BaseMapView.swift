@@ -9,9 +9,9 @@ import Foundation
 import MapKit
 
 class BaseMapView: MKMapView {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         delegate = self
     }
     

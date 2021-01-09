@@ -81,7 +81,7 @@ class OrderStateCell: UITableViewCell {
         timeLabel.font = Brandbook.font(size: 18, weight: .bold)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            timeLabel.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor, constant: 8.0),
+            timeLabel.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor, constant: inset),
             timeLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor),
             timeLabel.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: -inset),
             timeLabel.heightAnchor.constraint(equalToConstant: 30)

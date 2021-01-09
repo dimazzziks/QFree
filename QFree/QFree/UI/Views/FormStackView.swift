@@ -8,9 +8,9 @@
 import UIKit
 
 class FormStackView: UIStackView {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         axis = .vertical
         distribution = .fillEqually
     }

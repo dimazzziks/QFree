@@ -6,42 +6,46 @@
 //
 
 import UIKit
-import Firebase
 
 protocol RestaurantViewProtocol: class {
     func pushMenuVC(name: String, restaurantID: String)
+    func update(_ restaurants: [Restaurant])
+    func showNoInternetAlert()
 }
 
-class RestaurantVC: UIViewController {
+class RestaurantVC: BaseViewController {
     var presenter: RestaurantPresenterProtocol?
     
-    var firebaseHandler = FirebaseHandler()
-    
     var restaurants: [Restaurant] = []
+    var selectedRestaurants: [Restaurant] = []
+    var categories: Set<Int> = []
     
-    var restaurantsCollectionView: UICollectionView!
-    var categoryCollectionView: UICollectionView!
+    private var restaurantsCollectionView: UICollectionView!
+    private var categoryCollectionView: UICollectionView!
+    
+    private var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Рестораны"
-        self.view.backgroundColor = .systemBackground
-        
+        setupTitle()
+        setupActivityIndicator()
         setupCategoryCV()
         setupRestaurantsCV()
         getRestaurants()
     }
     
+    func setupTitle() {
+        self.title = "Рестораны"
+    }
+    
+    func setupActivityIndicator() {
+        self.activityIndicator.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/1.5)
+        self.activityIndicator.startAnimating()
+    }
+    
     func getRestaurants() {
-        firebaseHandler.getRestaurantsInfo { [weak self] restaurants in
-            guard let restaurants = restaurants else {
-                return
-            }
-            print(restaurants)
-            self?.restaurants = restaurants
-            self?.restaurantsCollectionView.reloadData()
-        }
+        presenter?.viewDidLoad()
     }
     
     func setupCategoryCV() {
@@ -67,6 +71,7 @@ class RestaurantVC: UIViewController {
     func setupRestaurantsCV() {
         restaurantsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createRestaurantLayout())
         view.addSubview(restaurantsCollectionView)
+        restaurantsCollectionView.addSubview(activityIndicator)
         restaurantsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             restaurantsCollectionView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor),
@@ -130,7 +135,7 @@ class RestaurantVC: UIViewController {
         
         return section
     }
-
+    
 }
 
 extension RestaurantVC: UICollectionViewDelegateFlowLayout {
@@ -140,37 +145,64 @@ extension RestaurantVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == restaurantsCollectionView {
-            return restaurants.count
+            return selectedRestaurants.count
         } else {
-            return 6 //TODO: magic num
+            return Category.allCases.count
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == restaurantsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCell.reuseId, for: indexPath) as! RestaurantCell
-            let restaurant = restaurants[indexPath.row]
+            let restaurant = selectedRestaurants[indexPath.row]
             cell.configure(with: restaurant)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseId, for: indexPath) as! CategoryCell
-            cell.configure(categoryIndex: indexPath.row)
+            cell.configure(categoryIndex: indexPath.row, filledSet: categories)
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == restaurantsCollectionView {
-            pushMenuVC(name: restaurants[indexPath.row].name, restaurantID: String(indexPath.row))
+            pushMenuVC(name: selectedRestaurants[indexPath.row].name, restaurantID: String(describing: restaurants.firstIndex(of: selectedRestaurants[indexPath.row])!))
+        } else {
+            if categories.contains(indexPath.row) {
+                categories.remove(indexPath.row)
+            } else {
+                categories.removeAll()
+                categories.insert(indexPath.row)
+            }
+            categoryCollectionView.reloadData()
+
+            if !categories.isEmpty {
+                selectedRestaurants.removeAll()
+                for restaurant in restaurants {
+                    if restaurant.category.contains(Category.init(id: indexPath.row)!) {
+                        if !selectedRestaurants.contains(restaurant) {
+                            selectedRestaurants.append(restaurant)
+                        }
+                    }
+                }
+            } else {
+                selectedRestaurants = restaurants
+            }
+            restaurantsCollectionView.reloadData()
         }
     }
-    
 }
 
 extension RestaurantVC: RestaurantViewProtocol {
+    func update(_ restaurants: [Restaurant]) {
+        self.restaurants = restaurants
+        self.selectedRestaurants = self.restaurants
+        self.restaurantsCollectionView.reloadData()
+        self.activityIndicator.stopAnimating()
+    }
+    
     func pushMenuVC(name: String, restaurantID: String) {
         let menuVC = RestaurantMenuTableViewController()
         menuVC.title = name

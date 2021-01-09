@@ -5,26 +5,23 @@
 //  Created by Maxim V. Sidorov on 12/8/20.
 //
 
-import Foundation
-
 protocol OrderInteractorProtocol {
     func fetchCurrentOrderInfo(completion: @escaping (OrderInfo?) -> ())
-    func fetchBasket(completion: @escaping ([Product]?) -> ())
+    func fetchBasket(completion: @escaping (Result<[Product], NetworkingError>) -> ())
 }
 
-class OrderInteractor {
-    var firebaseHandler = FirebaseHandler()
-}
+class OrderInteractor { }
 
 extension OrderInteractor: OrderInteractorProtocol {
     func fetchCurrentOrderInfo(completion: @escaping (OrderInfo?) -> ()) {
-        firebaseHandler.getCurrentOrderInfo(email: "") { orderInfo in
+        FirebaseHandler.shared.getCurrentOrderInfo(email: "") { orderInfo in
             completion(orderInfo)
         }
     }
-    func fetchBasket(completion: @escaping ([Product]?) -> ()) {
-        firebaseHandler.getProductsInBasket(email: "") { products in
-            completion(products)
+    
+    func fetchBasket(completion: @escaping (Result<[Product], NetworkingError>) -> ()) {
+        FirebaseHandler.shared.getProductsInBasket(email: "") { result in
+            completion(result)
         }
     }
 }

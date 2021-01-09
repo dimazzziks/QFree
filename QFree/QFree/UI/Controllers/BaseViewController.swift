@@ -25,6 +25,13 @@ class BaseViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
+
+    func showNoInternetAlert() {
+        let alert = UIAlertController(title: "Внимание", message: "Вы не подключены к интернету", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Готово", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
     
     private func setupView() {
         view.backgroundColor = .white

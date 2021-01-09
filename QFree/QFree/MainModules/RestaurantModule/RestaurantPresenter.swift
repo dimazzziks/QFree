@@ -5,10 +5,8 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-import Foundation
-
 protocol RestaurantPresenterProtocol {
-    
+    func viewDidLoad()
 }
 
 class RestaurantPresenter {
@@ -24,5 +22,16 @@ class RestaurantPresenter {
 }
 
 extension RestaurantPresenter: RestaurantPresenterProtocol {
-    
+    func viewDidLoad() {
+        interactor.fetchRestaurantsInfo { result in
+            switch result {
+            case .success(let restaurants):
+                self.view?.update(restaurants)
+            case .failure(let error):
+                if error == .noInternetConnection {
+                    self.view?.showNoInternetAlert()
+                }
+            }
+        }
+    }
 }
