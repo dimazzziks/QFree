@@ -25,7 +25,15 @@ class RestaurantMenuTableViewController: BaseTableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         print("basket before  post", basket)
-        FirebaseHandler.shared.postBasket(products: self.basket)
+        postBasket()
+    }
+
+    private func postBasket() {
+        FirebaseHandler.shared.postBasket(products: self.basket) { (error) in
+            if error != nil {
+                self.showNoInternetAlert(self.postBasket)
+            }
+        }
     }
 
     private func getProductsByIdRestaurants() {
