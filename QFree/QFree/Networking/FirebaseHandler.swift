@@ -120,18 +120,18 @@ class FirebaseHandler {
             return
         }
 
-        var arr: [[NSString : NSObject]] = [[NSString : NSObject]]()
+        var basket: [[NSString : NSObject]] = [[NSString : NSObject]]()
         for (product, amount) in products {
-            var d: [NSString : NSObject] = [NSString : NSObject]()
-            d["name"] = product.name as NSString
-            d["image"] = product.imageLink as NSString
-            d["price"] = String(product.price) as NSString
-            d["restaurantID"] = product.restaurantID as NSString
-            d["amount"] = String(amount) as NSString
-            d["category"] = product.category.map { $0.rawValue } as NSArray
-            arr.append(d)
+            var item: [NSString : NSObject] = [NSString : NSObject]()
+            item["name"] = product.name as NSString
+            item["image"] = product.imageLink as NSString
+            item["price"] = String(product.price) as NSString
+            item["restaurantID"] = product.restaurantID as NSString
+            item["amount"] = String(amount) as NSString
+            item["category"] = product.category.map { $0.rawValue } as NSArray
+            basket.append(item)
         }
-        self.ref.child("Users").child(self.user).child("basket").setValue(arr)
+        self.ref.child("Users").child(self.user).child("basket").setValue(basket)
         completion(nil)
     }
     
@@ -141,20 +141,98 @@ class FirebaseHandler {
             return
         }
 
-        let formattedEmail = getFormattedEmail(email: Auth.auth().currentUser?.email)
-        let query = ref.child("Users").child(formattedEmail)
-        query.observeSingleEvent(of: .value) { snapshot in
-            let currentOrderInfo = OrderInfo(
-                restaurantName: "Name",
-                completionTime: "17:00",
-                number: "123",
-                restaurantImageUrl: "https://www.hse.ru/pubs/share/direct/305134103.jpg"
-            )
-            completion(.success(currentOrderInfo))
+        let currentOrderInfo = OrderInfo(
+            restaurantName: "Name",
+            completionTime: "17:00",
+            number: "123",
+            restaurantImageUrl: "https://www.hse.ru/pubs/share/direct/305134103.jpg"
+        )
+        completion(.success(currentOrderInfo))
+    }
+
+    func getOrders(completion: @escaping (Result<[OrderPreview], NetworkingError>) -> ()) {
+        guard reachabilityManager.isConnected else {
+            completion(.failure(.noInternetConnection))
+            return
+        }
+
+        let query = ref.child("Users").child(self.user).child("orders")
+        var orderPreviews: [OrderPreview] = []
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            if let data = snapshot.value as? [String: AnyObject] {
+                for order in data {
+                    orderPreviews.append(
+                        OrderPreview(
+                            imageURL: nil,
+                            restaurantName: "name",
+                            date: order.key
+                        )
+                    )
+                }
+            }
+            self.sortOrderPreviews(&orderPreviews)
+            let formattedOrderPreviews = orderPreviews.map {
+                OrderPreview(
+                    imageURL: $0.imageURL,
+                    restaurantName: $0.restaurantName,
+                    date: self.getFormattedDate($0.date)
+                )
+            }
+            completion(.success(formattedOrderPreviews))
+        }
+    }
+
+    func makeOrder(basket: [Product : Int], completion: @escaping (NetworkingError?) -> ()) {
+        guard reachabilityManager.isConnected else {
+            completion(.noInternetConnection)
+            return
+        }
+
+        getBasket { result in
+            switch result {
+            case .success(let basket):
+                var order: [[NSString : NSObject]] = [[NSString : NSObject]]()
+                for (product, amount) in basket {
+                    var item: [NSString : NSObject] = [NSString : NSObject]()
+                    item["name"] = product.name as NSString
+                    item["image"] = product.imageLink as NSString
+                    item["price"] = String(product.price) as NSString
+                    item["restaurantID"] = product.restaurantID as NSString
+                    item["amount"] = String(amount) as NSString
+                    item["category"] = product.category.map { $0.rawValue } as NSArray
+                    order.append(item)
+                }
+                self.ref.child("Users").child(self.user).child("orders").child(self.getTimestamp()).setValue(order)
+                self.ref.child("Users").child(self.user).child("basket").removeValue()
+                completion(nil)
+            case .failure(let error):
+                completion(error)
+                return
+            }
         }
     }
 
     private func getFormattedEmail(email: String?) -> String {
         return "\"\(email?.replacingOccurrences(of: ".", with: "") ?? "")\""
+    }
+
+    private func getTimestamp() -> String {
+        return String(Date.timeIntervalSinceReferenceDate).replacingOccurrences(of: ".", with: "_")
+    }
+
+    private func sortOrderPreviews(_ orderPreviews: inout [OrderPreview]) {
+        orderPreviews.sort { (a, b) -> Bool in
+            let firstDate = Double(a.date.replacingOccurrences(of: "_", with: "."))!
+            let secondDate = Double(b.date.replacingOccurrences(of: "_", with: "."))!
+            return firstDate > secondDate
+        }
+    }
+
+    private func getFormattedDate(_ timeIntervalSinceReference: String) -> String {
+        let timeInterval = TimeInterval(timeIntervalSinceReference.replacingOccurrences(of: "_", with: "."))
+        let date = Date(timeIntervalSinceReferenceDate: timeInterval!)
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "dd.MM.yyyy"
+        return dateformat.string(from: date)
     }
 }

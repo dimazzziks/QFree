@@ -14,17 +14,19 @@ protocol BasketViewProtocol: class {
 class BasketViewController: BaseViewController {
     var presenter: BasketPresenterProtocol?
     
-    var basket: [Product : Int] = [Product : Int]()
-    var products: [Product] = [Product]()
-    var orderButton = BaseButton()
-    var tableView1: UITableView = UITableView()
+    private var basket: [Product : Int] = [Product : Int]()
+    private var products: [Product] = [Product]()
+    private var orderButton = BaseButton()
+    private var tableView: UITableView = UITableView()
+    private var emptyBasketLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTitle()
         setOrderButton()
-        setTabelView()
+        setTableView()
+        setEmptyBasketLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,13 +38,22 @@ class BasketViewController: BaseViewController {
             switch result {
             case .success(let basket):
                 self.basket = basket
-                self.products = basket.map{$0.key}
-                self.tableView1.reloadData()
+                self.updateUI()
             case .failure(let error):
                 if error == .noInternetConnection {
                     self.showNoInternetAlert(self.getBasket)
                 }
             }
+        }
+    }
+
+    private func updateUI() {
+        self.tableView.isHidden = self.basket.isEmpty
+        self.orderButton.isHidden = self.basket.isEmpty
+        self.emptyBasketLabel.isHidden = !self.basket.isEmpty
+        if !self.basket.isEmpty {
+            self.products = basket.map { $0.key }
+            self.tableView.reloadData()
         }
     }
     
@@ -55,22 +66,65 @@ class BasketViewController: BaseViewController {
         self.orderButton.setTitle("Заказать", for: .normal)
         self.orderButton.translatesAutoresizingMaskIntoConstraints = false
         self.orderButton.titleLabel?.text = "Заказать"
+        self.orderButton.isHidden = true
         self.orderButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12).isActive = true
         self.orderButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12).isActive = true
         self.orderButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant:  -12).isActive = true
         self.orderButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
+        self.orderButton.addTarget(self, action: #selector(orderButtonPressed), for: .touchUpInside)
+    }
+
+    private func setEmptyBasketLabel() {
+        emptyBasketLabel.text = "Корзина пуста"
+        emptyBasketLabel.textAlignment = .center
+        emptyBasketLabel.font = Brandbook.font(size: 30, weight: .bold)
+        emptyBasketLabel.textColor = .lightGray
+        emptyBasketLabel.adjustsFontSizeToFitWidth = true
+        emptyBasketLabel.minimumScaleFactor = 0.5
+        emptyBasketLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(emptyBasketLabel)
+        NSLayoutConstraint.activate([
+            emptyBasketLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyBasketLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyBasketLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            emptyBasketLabel.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+
+    @objc private func orderButtonPressed() {
+        presenter?.makeOrder(basket: basket, completion: { (error) in
+            if let error = error {
+                if error == .noInternetConnection {
+                    self.showNoInternetAlert(self.orderButtonPressed)
+                }
+            } else {
+                self.showOrderIsProcessed()
+            }
+        })
+    }
+
+    private func showOrderIsProcessed() {
+        let orderIsProcessedViewController = OrderIsProcessedViewController()
+        orderIsProcessedViewController.modalPresentationStyle = .fullScreen
+        orderIsProcessedViewController.okButtonAction = {
+            orderIsProcessedViewController.dismiss(animated: true)
+            self.basket.removeAll()
+            self.updateUI()
+            self.tabBarController?.selectedIndex = 1
+        }
+        present(orderIsProcessedViewController, animated: true)
     }
     
-    private func setTabelView() {
-        self.view.addSubview(tableView1)
-        self.tableView1.separatorColor = .clear
-        self.tableView1.delegate = self
-        self.tableView1.dataSource = self
-        self.tableView1.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView1.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        self.tableView1.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.tableView1.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.tableView1.bottomAnchor.constraint(equalTo: self.orderButton.topAnchor, constant: -12).isActive = true
+    private func setTableView() {
+        self.view.addSubview(tableView)
+        self.tableView.separatorColor = .clear
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: self.orderButton.topAnchor, constant: -12).isActive = true
     }
 }
 
