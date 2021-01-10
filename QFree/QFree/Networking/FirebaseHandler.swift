@@ -52,7 +52,7 @@ class FirebaseHandler {
             return
         }
 
-        let query = self.ref.child("Products").queryOrdered(byChild: "restaurantID").queryEqual(toValue: id)
+        let query = self.ref.child("Products")
         var products: [Product] = []
         query.observeSingleEvent(of: .value, with: { (snapshot) in
             let data = snapshot.value as? [[String : AnyObject]]
@@ -62,7 +62,10 @@ class FirebaseHandler {
                     let rawValues = i["category"] as! [String]
                     let categories = rawValues.map { Category(rawValue: $0)! }
                     let product: Product = Product(name: i["name"] as! String, imageLink: i["image"] as! String, price: Int(i["price"] as! String)!, category: categories, restaurantID: i["restaurantID"] as! String)
-                    products.append(product)
+                    if product.restaurantID == id {
+                        products.append(product)
+                    }
+                    
                 }
             }
             completion(.success(products))

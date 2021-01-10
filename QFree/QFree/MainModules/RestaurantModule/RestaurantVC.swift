@@ -206,6 +206,7 @@ extension RestaurantVC: RestaurantViewProtocol {
     func pushMenuVC(name: String, restaurantID: String) {
         let menuVC = RestaurantMenuTableViewController()
         menuVC.title = name
+
         menuVC.restaurantID = restaurantID
         self.navigationController?.pushViewController(menuVC, animated: true)
     }

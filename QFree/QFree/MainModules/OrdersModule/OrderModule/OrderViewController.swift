@@ -77,9 +77,16 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
-        cell.addButton.isHidden = true
+        
         cell.nameLabel.text = products[indexPath.row - 1].name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 450
+        }
+        return 150
     }
 }
 
