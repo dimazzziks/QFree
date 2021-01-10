@@ -21,6 +21,7 @@ class OrdersViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Заказы"
         setupTableView()
     }
 

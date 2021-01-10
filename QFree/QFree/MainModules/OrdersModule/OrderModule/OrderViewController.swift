@@ -39,7 +39,7 @@ class OrderViewController: BaseViewController {
     }
     
     func setupTitle() {
-        self.title = "Заказы"
+        self.title = "Заказ"
     }
     
     private func setupTableView() {
