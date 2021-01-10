@@ -12,6 +12,13 @@ class ProductTableViewCell: UITableViewCell {
     var message: String?
     var mainImage: UIImage?
     var link: String?
+    var buttonAddCallback: () -> ()  = { }
+    var buttonMinusCallback: () -> ()  = { }
+
+    
+    override var reuseIdentifier: String? {
+        return "ProductTableViewCell"
+    }
     
     var backgroundViewClear: UIView = {
         var v = UIView()
@@ -22,6 +29,7 @@ class ProductTableViewCell: UITableViewCell {
     var mainView: UIView = {
         var mv = UIView()
         mv.translatesAutoresizingMaskIntoConstraints = false
+        mv.backgroundColor = .white
         return mv
     }()
     
@@ -38,6 +46,28 @@ class ProductTableViewCell: UITableViewCell {
         b.layer.cornerRadius = Brandbook.defaultCornerRadius
         b.layer.masksToBounds = true
         return b
+    }()
+    
+    var minusButton: UIButton = {
+        var b = UIButton()
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setImage(UIImage(named: "minusButton"), for: .normal)
+        b.layer.cornerRadius = Brandbook.defaultCornerRadius
+        b.layer.masksToBounds = true
+        return b
+    }()
+    
+    var amountLabel: UILabel = {
+        var l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.text = "1"
+        l.textAlignment = .center
+        l.backgroundColor = Brandbook.defaultColor
+        l.textColor = .white
+        l.font = Brandbook.font(size: 20, weight: .bold)
+        l.layer.cornerRadius = Brandbook.defaultCornerRadius
+        l.layer.masksToBounds = true
+        return l
     }()
     
     var productImageView: UIImageView = {
@@ -84,14 +114,31 @@ class ProductTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = .clear
-        self.selectedBackgroundView = backgroundViewClear
+//        self.backgroundColor = .clear
+//        self.selectedBackgroundView = backgroundViewClear
         
         mainView.addSubview(addButton)
         addButton.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 12).isActive = true
         addButton.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        addButton.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
+        
+        mainView.addSubview(minusButton)
+        minusButton.leftAnchor.constraint(equalTo: addButton.rightAnchor, constant: 12).isActive = true
+        minusButton.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12).isActive = true
+        minusButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        minusButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        minusButton.addTarget(self, action: #selector(handleMinusButton), for: .touchUpInside)
+        
+        let gestureMinusButton = UITapGestureRecognizer(target: self, action:  #selector(self.handleMinusButton))
+        minusButton.addGestureRecognizer(gestureMinusButton)
+        
+        mainView.addSubview(amountLabel)
+        amountLabel.leftAnchor.constraint(equalTo: minusButton.rightAnchor, constant: 12).isActive = true
+        amountLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12).isActive = true
+        amountLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        amountLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
         
         mainView.addSubview(productImageView)
         productImageView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -12).isActive = true
@@ -109,7 +156,7 @@ class ProductTableViewCell: UITableViewCell {
         labels.addArrangedSubview(nameLabel)
         labels.addArrangedSubview(priceLabel)
         
-        self.addSubview(underMainView)
+        contentView.addSubview(underMainView)
         underMainView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         underMainView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         underMainView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -128,7 +175,7 @@ class ProductTableViewCell: UITableViewCell {
     func configure(with product: Product) {
         nameLabel.text = String(product.name)
         priceLabel.text = String(product.price) + "₽"
-        
+      
         let imageURL: URL = URL(string: product.imageLink)!
         DispatchQueue.global(qos: .utility).async {
             if let data = try? Data(contentsOf: imageURL) {
@@ -143,5 +190,14 @@ class ProductTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc func handleAddButton() {
+        buttonAddCallback()
+    }
+    
+    @objc func handleMinusButton() {
+        buttonMinusCallback()
+    }
+    
 }
 

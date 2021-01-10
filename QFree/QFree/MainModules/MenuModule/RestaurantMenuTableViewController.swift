@@ -16,6 +16,7 @@ class RestaurantMenuTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorColor = .clear
+        tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: "ProductTableViewCell")
         getProductsByIdRestaurants()
     }
     
@@ -55,6 +56,7 @@ class RestaurantMenuTableViewController: BaseTableViewController {
             switch result {
             case .success(let basket):
                 self.basket = basket
+                self.tableView.reloadData()
             case .failure(let error):
                 if error == .noInternetConnection {
                     self.showNoInternetAlert(self.getBasket)
@@ -74,23 +76,49 @@ class RestaurantMenuTableViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ProductTableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
         let product = products[indexPath.row]
-        cell.configure(with: product)
         
+        if self.basket[self.products[indexPath.row]] != nil {
+            cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
+        } else {
+            cell.amountLabel.text = "0"
+        }
+        
+      
+        cell.buttonAddCallback = {
+            if self.basket[self.products[indexPath.row]] == nil {
+                self.basket[self.products[indexPath.row]] = 0
+            }
+            self.basket[self.products[indexPath.row]]! += 1
+            cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
+            
+        }
+        
+        cell.buttonMinusCallback = {
+            if self.basket[self.products[indexPath.row]] != nil && self.basket[self.products[indexPath.row]] != 0 {
+                self.basket[self.products[indexPath.row]]! -= 1
+                cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
+            }
+            cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
+            
+        }
+        
+        cell.configure(with: product)
+    
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = backgroundView
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
-        if basket[products[indexPath.row]] == nil {
-            basket[products[indexPath.row]] = 0
-        }
-        basket[products[indexPath.row]]! += 1
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("You tapped cell number \(indexPath.row).")
+//        if basket[products[indexPath.row]] == nil {
+//            basket[products[indexPath.row]] = 0
+//        }
+//        basket[products[indexPath.row]]! += 1
+//    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
