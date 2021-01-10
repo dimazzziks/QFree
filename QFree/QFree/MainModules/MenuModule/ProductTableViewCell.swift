@@ -114,11 +114,18 @@ class ProductTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        self.backgroundColor = .clear
-//        self.selectedBackgroundView = backgroundViewClear
+
+        mainView.addSubview(amountLabel)
+        amountLabel.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 12).isActive = true
+        amountLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12).isActive = true
+        amountLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        amountLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        mainView.addSubview(productImageView)
+        productImageView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -12).isActive = true
         
         mainView.addSubview(addButton)
-        addButton.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 12).isActive = true
+        addButton.leftAnchor.constraint(equalTo: amountLabel.rightAnchor, constant: 12).isActive = true
         addButton.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
@@ -134,15 +141,7 @@ class ProductTableViewCell: UITableViewCell {
         let gestureMinusButton = UITapGestureRecognizer(target: self, action:  #selector(self.handleMinusButton))
         minusButton.addGestureRecognizer(gestureMinusButton)
         
-        mainView.addSubview(amountLabel)
-        amountLabel.leftAnchor.constraint(equalTo: minusButton.rightAnchor, constant: 12).isActive = true
-        amountLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12).isActive = true
-        amountLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        amountLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        mainView.addSubview(productImageView)
-        productImageView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -12).isActive = true
-        //productImageView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -12).isActive = true
+       
         productImageView.heightAnchor.constraint(equalToConstant: 114).isActive = true
         productImageView.widthAnchor.constraint(equalToConstant: 114).isActive = true
         productImageView.centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true

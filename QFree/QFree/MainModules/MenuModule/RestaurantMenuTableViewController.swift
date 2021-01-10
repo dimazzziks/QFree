@@ -17,11 +17,11 @@ class RestaurantMenuTableViewController: BaseTableViewController {
         super.viewDidLoad()
         self.tableView.separatorColor = .clear
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: "ProductTableViewCell")
-        getProductsByIdRestaurants()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getBasket()
+        getProductsByIdRestaurants()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,7 +38,8 @@ class RestaurantMenuTableViewController: BaseTableViewController {
     }
 
     private func getProductsByIdRestaurants() {
-        FirebaseHandler.shared.getProductsByIDRestaurant(id: restaurantID) { result in
+        FirebaseHandler.shared.getProductsByIDRestaurant(id: self.restaurantID) { result in
+            print("restaurantID", self.restaurantID)
             switch result {
             case .success(let products):
                 self.products = products
@@ -85,13 +86,17 @@ class RestaurantMenuTableViewController: BaseTableViewController {
             cell.amountLabel.text = "0"
         }
         
-      
         cell.buttonAddCallback = {
-            if self.basket[self.products[indexPath.row]] == nil {
-                self.basket[self.products[indexPath.row]] = 0
+            if self.checkRestaurantId() {
+                if self.basket[self.products[indexPath.row]] == nil {
+                    self.basket[self.products[indexPath.row]] = 0
+                }
+                self.basket[self.products[indexPath.row]]! += 1
+                cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
+            } else {
+                self.showAlertDifferentId()
+                
             }
-            self.basket[self.products[indexPath.row]]! += 1
-            cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
             
         }
         
@@ -122,5 +127,22 @@ class RestaurantMenuTableViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    func checkRestaurantId() -> Bool {
+        for p in basket.keys {
+            if p.restaurantID != self.restaurantID {
+                return false
+            }
+        }
+        return true
+    }
+    func showAlertDifferentId() {
+        let alert = UIAlertController(title: "Очистить корзину?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            self.basket = [Product : Int]()
+        }))
+        self.present(alert, animated: true)
     }
 }
