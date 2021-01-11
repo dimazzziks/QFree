@@ -92,6 +92,7 @@ class BasketViewController: BaseViewController {
     }
 
     @objc private func orderButtonPressed() {
+        
         presenter?.makeOrder(basket: basket, completion: { (error) in
             if let error = error {
                 if error == .noInternetConnection {
@@ -144,7 +145,10 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = backgroundView
+        cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
         cell.addButton.isHidden = true
+        cell.minusButton.isHidden = true
+        cell.configure(with: self.products[indexPath.row])
         return cell
     }
     

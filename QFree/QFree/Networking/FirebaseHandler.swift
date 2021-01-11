@@ -235,7 +235,7 @@ class FirebaseHandler {
         let timeInterval = TimeInterval(timeIntervalSinceReference.replacingOccurrences(of: "_", with: "."))
         let date = Date(timeIntervalSinceReferenceDate: timeInterval!)
         let dateformat = DateFormatter()
-        dateformat.dateFormat = "dd.MM.yyyy"
+        dateformat.dateFormat = "hh:mm dd.MM.yyyy"
         return dateformat.string(from: date)
     }
 }
