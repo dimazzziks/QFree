@@ -6,7 +6,8 @@
 //
 
 class OrderModuleBuilder {
-    static func build() -> BaseViewController {
+    static func build(orderNumber: Int) -> BaseViewController {
+        // FIXME: тут надо пробрасывать orderNumber и загружать нужный заказ
         let view = OrderViewController()
         let interactor = OrderInteractor()
         let router = OrderRouter(view: view)

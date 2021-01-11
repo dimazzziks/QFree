@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         let restaurantVC = UINavigationController(rootViewController: RestaurantModuleBuilder.build())
-        let ordersVC = UINavigationController(rootViewController: OrderModuleBuilder.build())
+        let ordersVC = UINavigationController(rootViewController: OrdersModuleBuilder.build())
         let basketVC = UINavigationController(rootViewController: BasketModuleBuilder.build())
         let searchVC = UINavigationController(rootViewController: SearchModuleBuilder.build())
         let profileVC = UINavigationController(rootViewController: ProfileModuleBuilder.build())

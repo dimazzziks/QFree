@@ -52,7 +52,7 @@ class FirebaseHandler {
             return
         }
 
-        let query = self.ref.child("Products").queryOrdered(byChild: "restaurantID").queryEqual(toValue: id)
+        let query = self.ref.child("Products")
         var products: [Product] = []
         query.observeSingleEvent(of: .value, with: { (snapshot) in
             let data = snapshot.value as? [[String : AnyObject]]
@@ -62,7 +62,10 @@ class FirebaseHandler {
                     let rawValues = i["category"] as! [String]
                     let categories = rawValues.map { Category(rawValue: $0)! }
                     let product: Product = Product(name: i["name"] as! String, imageLink: i["image"] as! String, price: Int(i["price"] as! String)!, category: categories, restaurantID: i["restaurantID"] as! String)
-                    products.append(product)
+                    if product.restaurantID == id {
+                        products.append(product)
+                    }
+                    
                 }
             }
             completion(.success(products))
@@ -120,56 +123,123 @@ class FirebaseHandler {
             return
         }
 
-        var arr: [[NSString : NSObject]] = [[NSString : NSObject]]()
+        var basket: [[NSString : NSObject]] = [[NSString : NSObject]]()
         for (product, amount) in products {
-            var d: [NSString : NSObject] = [NSString : NSObject]()
-            d["name"] = product.name as NSString
-            d["image"] = product.imageLink as NSString
-            d["price"] = String(product.price) as NSString
-            d["restaurantID"] = product.restaurantID as NSString
-            d["amount"] = String(amount) as NSString
-            d["category"] = product.category.map { $0.rawValue } as NSArray
-            arr.append(d)
+            var item: [NSString : NSObject] = [NSString : NSObject]()
+            item["name"] = product.name as NSString
+            item["image"] = product.imageLink as NSString
+            item["price"] = String(product.price) as NSString
+            item["restaurantID"] = product.restaurantID as NSString
+            item["amount"] = String(amount) as NSString
+            item["category"] = product.category.map { $0.rawValue } as NSArray
+            basket.append(item)
         }
-        self.ref.child("Users").child(self.user).child("basket").setValue(arr)
+        self.ref.child("Users").child(self.user).child("basket").setValue(basket)
         completion(nil)
     }
     
-    func getCurrentOrderInfo(email: String, completion: @escaping (OrderInfo?) ->()) {
-        let query = ref.child("Users").child("\"zhbannikov_dima@mailru\"")
-        var currentOrderInfo: OrderInfo?
-        query.observeSingleEvent(of: .value) { snapshot in
-            // FIXME: fetch snapshot
-            currentOrderInfo = OrderInfo(
-                restaurantName: "Name",
-                completionTime: "17:00",
-                number: "123",
-                restaurantImageUrl: "https://www.hse.ru/pubs/share/direct/305134103.jpg"
-            )
-            completion(currentOrderInfo)
+    func getCurrentOrderInfo(completion: @escaping (Result<OrderInfo, NetworkingError>) ->()) {
+        guard reachabilityManager.isConnected else {
+            completion(.failure(.noInternetConnection))
+            return
+        }
+
+        let currentOrderInfo = OrderInfo(
+            restaurantName: "Name",
+            completionTime: "17:00",
+            number: "123",
+            restaurantImageUrl: "https://www.hse.ru/pubs/share/direct/305134103.jpg"
+        )
+        completion(.success(currentOrderInfo))
+    }
+
+    func getOrders(restaurants : [Restaurant], completion: @escaping (Result<[OrderPreview], NetworkingError>) -> ()) {
+        guard reachabilityManager.isConnected else {
+            completion(.failure(.noInternetConnection))
+            return
+        }
+
+        let query = ref.child("Users").child(self.user).child("orders")
+        var orderPreviews: [OrderPreview] = []
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            if let data = snapshot.value as? [String: AnyObject] {
+                for order in data {
+                    let p = order.value as! [[String : AnyObject]]
+                    let ind = Int(p[0]["restaurantID"]! as! String)
+                    let image = restaurants[ind as! Int].image
+                    let name = restaurants[ind as! Int].name
+                    orderPreviews.append(
+                        OrderPreview(
+                            imageURL: image,
+                            restaurantName: name,
+                            date: order.key
+                        )
+                    )
+                }
+            }
+            self.sortOrderPreviews(&orderPreviews)
+            let formattedOrderPreviews = orderPreviews.map {
+                OrderPreview(
+                    imageURL: $0.imageURL,
+                    restaurantName: $0.restaurantName,
+                    date: self.getFormattedDate($0.date)
+                )
+            }
+            completion(.success(formattedOrderPreviews))
         }
     }
 
-    private func checkInternetConnection() {
+    func makeOrder(basket: [Product : Int], completion: @escaping (NetworkingError?) -> ()) {
+        guard reachabilityManager.isConnected else {
+            completion(.noInternetConnection)
+            return
+        }
 
+        getBasket { result in
+            switch result {
+            case .success(let basket):
+                var order: [[NSString : NSObject]] = [[NSString : NSObject]]()
+                for (product, amount) in basket {
+                    var item: [NSString : NSObject] = [NSString : NSObject]()
+                    item["name"] = product.name as NSString
+                    item["image"] = product.imageLink as NSString
+                    item["price"] = String(product.price) as NSString
+                    item["restaurantID"] = product.restaurantID as NSString
+                    item["amount"] = String(amount) as NSString
+                    item["category"] = product.category.map { $0.rawValue } as NSArray
+                    order.append(item)
+                }
+                self.ref.child("Users").child(self.user).child("orders").child(self.getTimestamp()).setValue(order)
+                self.ref.child("Users").child(self.user).child("basket").removeValue()
+                completion(nil)
+            case .failure(let error):
+                completion(error)
+                return
+            }
+        }
+    }
+
+    private func getFormattedEmail(email: String?) -> String {
+        return "\"\(email?.replacingOccurrences(of: ".", with: "") ?? "")\""
+    }
+
+    private func getTimestamp() -> String {
+        return String(Date.timeIntervalSinceReferenceDate).replacingOccurrences(of: ".", with: "_")
+    }
+
+    private func sortOrderPreviews(_ orderPreviews: inout [OrderPreview]) {
+        orderPreviews.sort { (a, b) -> Bool in
+            let firstDate = Double(a.date.replacingOccurrences(of: "_", with: "."))!
+            let secondDate = Double(b.date.replacingOccurrences(of: "_", with: "."))!
+            return firstDate > secondDate
+        }
+    }
+
+    private func getFormattedDate(_ timeIntervalSinceReference: String) -> String {
+        let timeInterval = TimeInterval(timeIntervalSinceReference.replacingOccurrences(of: "_", with: "."))
+        let date = Date(timeIntervalSinceReferenceDate: timeInterval!)
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "dd.MM.yyyy hh:mm"
+        return dateformat.string(from: date)
     }
 }
-
-//SERCH
-//let usersRef = self.ref.child("users")
-//
-//let input = "some display name"
-//let query = usersRef.queryOrdered(byChild: "displayName").queryEqual(toValue: input)
-//query.observeSingleEvent(of: .value, with: { snapshot in
-//    for child in snapshot.children {
-//        let snap = child as! DataSnapshot
-//        let dict = snap.value as! [String: Any]
-//        let email = dict["email"] as! String
-//        let displayName = dict["displayName"] as! String
-//        print(email)
-//        print(displayName)
-//
-//        let key = snapshot.key
-//        print(key)
-//    }
-//})

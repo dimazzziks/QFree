@@ -6,16 +6,16 @@
 //
 
 protocol OrderInteractorProtocol {
-    func fetchCurrentOrderInfo(completion: @escaping (OrderInfo?) -> ())
+    func fetchCurrentOrderInfo(completion: @escaping (Result<OrderInfo, NetworkingError>) -> ())
     func fetchBasket(completion: @escaping (Result<[Product], NetworkingError>) -> ())
 }
 
 class OrderInteractor { }
 
 extension OrderInteractor: OrderInteractorProtocol {
-    func fetchCurrentOrderInfo(completion: @escaping (OrderInfo?) -> ()) {
-        FirebaseHandler.shared.getCurrentOrderInfo(email: "") { orderInfo in
-            completion(orderInfo)
+    func fetchCurrentOrderInfo(completion: @escaping (Result<OrderInfo, NetworkingError>) -> ()) {
+        FirebaseHandler.shared.getCurrentOrderInfo { (result) in
+            completion(result)
         }
     }
     
