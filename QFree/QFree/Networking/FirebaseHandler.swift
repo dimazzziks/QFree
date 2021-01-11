@@ -153,7 +153,7 @@ class FirebaseHandler {
         completion(.success(currentOrderInfo))
     }
 
-    func getOrders(completion: @escaping (Result<[OrderPreview], NetworkingError>) -> ()) {
+    func getOrders(restaurants : [Restaurant], completion: @escaping (Result<[OrderPreview], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
             return
@@ -164,10 +164,14 @@ class FirebaseHandler {
         query.observeSingleEvent(of: .value) { (snapshot) in
             if let data = snapshot.value as? [String: AnyObject] {
                 for order in data {
+                    let p = order.value as! [[String : AnyObject]]
+                    let ind = Int(p[0]["restaurantID"]! as! String)
+                    let image = restaurants[ind as! Int].image
+                    let name = restaurants[ind as! Int].name
                     orderPreviews.append(
                         OrderPreview(
-                            imageURL: nil,
-                            restaurantName: "name",
+                            imageURL: image,
+                            restaurantName: name,
                             date: order.key
                         )
                     )
@@ -235,7 +239,7 @@ class FirebaseHandler {
         let timeInterval = TimeInterval(timeIntervalSinceReference.replacingOccurrences(of: "_", with: "."))
         let date = Date(timeIntervalSinceReferenceDate: timeInterval!)
         let dateformat = DateFormatter()
-        dateformat.dateFormat = "hh:mm dd.MM.yyyy"
+        dateformat.dateFormat = "dd.MM.yyyy hh:mm"
         return dateformat.string(from: date)
     }
 }

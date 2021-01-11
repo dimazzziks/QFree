@@ -10,11 +10,11 @@ protocol OrdersInteractorProtocol {
 }
 
 class OrdersInteractor { }
-
+//FIXME:
 extension OrdersInteractor: OrdersInteractorProtocol {
     func getOrders(completion: @escaping (Result<[OrderPreview], NetworkingError>) -> ()) {
-        FirebaseHandler.shared.getOrders { (result) in
-            completion(result)
-        }
+//        FirebaseHandler.shared.getOrders {(result) in
+//            completion(result)
+//        }
     }
 }

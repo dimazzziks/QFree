@@ -26,17 +26,31 @@ class OrdersViewController: BaseViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        getOrders()
+        
+        FirebaseHandler.shared.getRestaurantsInfo( completion: { result in
+            switch result {
+            case .success(let restaurants):
+                print("ok")
+                self.getOrderss(restaurants: restaurants)
+            case .failure(let error):
+                if error == .noInternetConnection {
+                    //FIXME:
+                   print("no internet")
+                }
+            }
+        })
     }
-
-    private func getOrders() {
-        presenter?.getOrders(completion: { result in
+    //FIXME:
+    private func getOrderss(restaurants : [Restaurant]) {
+        FirebaseHandler.shared.getOrders(restaurants :  restaurants, completion: { result in
             switch result {
             case .success(let orderPreviews):
                 self.orders = orderPreviews
             case .failure(let error):
                 if error == .noInternetConnection {
-                    self.showNoInternetAlert(self.getOrders)
+                    //self.showNoInternetAlert(self.getOrders)
+                    //FIXME:
+                   print("no internet")
                 }
             }
         })

@@ -39,6 +39,7 @@ class OrderTableViewCell: UITableViewCell {
         shadowView.addSubview(restaurantLabel)
         shadowView.addSubview(orderDateLabel)
 
+        restaurantImageView.clipsToBounds = true
         restaurantImageView.contentMode = .scaleAspectFill
         restaurantImageView.backgroundColor = .red
         restaurantImageView.translatesAutoresizingMaskIntoConstraints = false
