@@ -117,14 +117,6 @@ class RestaurantMenuTableViewController: BaseTableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("You tapped cell number \(indexPath.row).")
-//        if basket[products[indexPath.row]] == nil {
-//            basket[products[indexPath.row]] = 0
-//        }
-//        basket[products[indexPath.row]]! += 1
-//    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }

@@ -103,12 +103,6 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-//extension SearchVC: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: view.frame.width-24, height: 200)
-//    }
-//}
-
 extension SearchVC {
     @objc func handleShowSearchBar() {
         search(shouldShow: true)
