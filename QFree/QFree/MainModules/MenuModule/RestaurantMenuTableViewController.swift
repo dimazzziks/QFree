@@ -8,7 +8,6 @@
 import UIKit
 
 class RestaurantMenuTableViewController: BaseTableViewController {
-    var restaurntName = "ГРУША"
     var restaurantID: String = "1"
     var products: [Product] = []
     var basket: [Product : Int] = [Product : Int]()
@@ -69,11 +68,11 @@ class RestaurantMenuTableViewController: BaseTableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products.count
+        products.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,32 +116,22 @@ class RestaurantMenuTableViewController: BaseTableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("You tapped cell number \(indexPath.row).")
-//        if basket[products[indexPath.row]] == nil {
-//            basket[products[indexPath.row]] = 0
-//        }
-//        basket[products[indexPath.row]]! += 1
-//    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        150
     }
     
     func checkRestaurantId() -> Bool {
         for p in basket.keys {
-            if p.restaurantID != self.restaurantID {
-                return false
-            }
+            return p.restaurantID == restaurantID
         }
         return true
     }
     func showAlertDifferentId() {
         let alert = UIAlertController(title: "Очистить корзину?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
             self.basket = [Product : Int]()
-        }))
-        self.present(alert, animated: true)
+        })
+        present(alert, animated: true)
     }
 }

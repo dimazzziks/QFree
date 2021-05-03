@@ -121,7 +121,11 @@ extension EmailConfirmationViewController: EmailConfirmationViewProtocol {
     }
     
     func failActivation() {
-        let alert = UIAlertController(title: "Почта не была активирована", message: "Попробуйте еще раз позже", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: "Почта не была активирована",
+            message: "Попробуйте еще раз позже",
+            preferredStyle: .alert
+        )
         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         self.present(alert, animated: true)
     }

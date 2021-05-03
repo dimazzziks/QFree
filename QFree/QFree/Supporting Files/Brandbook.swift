@@ -24,7 +24,10 @@ extension Brandbook {
     }
     
     static func font(size: CGFloat = 20, weight: Weight = .bold) -> UIFont {
-        return UIFont(name: "\(defaultFontName)-\(weight.rawValue)", size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)
+        if let font = UIFont(name: "\(defaultFontName)-\(weight.rawValue)", size: size) {
+            return font
+        }
+        return UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)
     }
 }
 
@@ -32,22 +35,17 @@ extension Brandbook {
 
 extension Brandbook {
     static var defaultColor: UIColor {
-        return UIColor(hex: "#6D80FF")
+        UIColor(hex: "#6D80FF")
     }
     
     static var textColor: UIColor {
-        return UIColor(hex: "#4B4E57")
+        UIColor(hex: "#4B4E57")
     }
 }
 
 // MARK: - Appearance
 
 extension Brandbook {
-    static var defaultCornerRadius: CGFloat {
-        return 8
-    }
-    
-    static var defaultButtonHeight: CGFloat {
-        return 48.0
-    }
+    static var defaultCornerRadius: CGFloat { 8 }
+    static var defaultButtonHeight: CGFloat { 48.0 }
 }

@@ -36,19 +36,19 @@ class SearchCell: UICollectionViewCell {
     }
     
     func setMainView() {
-        mainView.frame = self.bounds
+        mainView.frame = bounds
         mainView.addShadow()
         mainView.backgroundColor = Brandbook.defaultColor
     }
     
     func setNameLabel() {
-        name.frame = CGRect(x: 16, y: 0, width: self.frame.width, height: self.frame.height/5)
+        name.frame = CGRect(x: 16, y: 0, width: frame.width, height: frame.height / 5)
         name.textColor = .white
         name.font = Brandbook.font()
     }
     
     func setTableView() {
-        tableView.frame = CGRect(x: 0, y: 34, width: self.frame.width, height: self.frame.height)
+        tableView.frame = CGRect(x: 0, y: 34, width: frame.width, height: frame.height)
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self

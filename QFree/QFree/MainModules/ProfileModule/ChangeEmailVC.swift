@@ -31,7 +31,7 @@ class ChangeEmailVC: BaseViewController {
     }
     
     private func setupTitle() {
-        self.title = "Смена почты"
+        title = "Смена почты"
     }
     
     private func setupChangeEmailForm() {

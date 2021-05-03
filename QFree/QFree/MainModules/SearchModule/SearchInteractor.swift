@@ -5,14 +5,8 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-protocol SearchInteractorProtocol {
-    
-}
+protocol SearchInteractorProtocol { }
 
-class SearchInteractor {
-    
-}
+class SearchInteractor {}
 
-extension SearchInteractor: SearchInteractorProtocol {
-    
-}
+extension SearchInteractor: SearchInteractorProtocol { }

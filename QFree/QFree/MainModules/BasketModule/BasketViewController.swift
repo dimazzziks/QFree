@@ -48,30 +48,30 @@ class BasketViewController: BaseViewController {
     }
 
     private func updateUI() {
-        self.tableView.isHidden = self.basket.isEmpty
-        self.orderButton.isHidden = self.basket.isEmpty
-        self.emptyBasketLabel.isHidden = !self.basket.isEmpty
-        if !self.basket.isEmpty {
-            self.products = basket.map { $0.key }
-            self.tableView.reloadData()
+        tableView.isHidden = basket.isEmpty
+        orderButton.isHidden = basket.isEmpty
+        emptyBasketLabel.isHidden = !basket.isEmpty
+        if !basket.isEmpty {
+            products = basket.map { $0.key }
+            tableView.reloadData()
         }
     }
     
     private func setupTitle() {
-        self.title = "Корзина"
+        title = Strings.trash
     }
     
     private func setOrderButton() {
-        self.view.addSubview(orderButton)
-        self.orderButton.setTitle("Заказать", for: .normal)
-        self.orderButton.translatesAutoresizingMaskIntoConstraints = false
-        self.orderButton.titleLabel?.text = "Заказать"
-        self.orderButton.isHidden = true
-        self.orderButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12).isActive = true
-        self.orderButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12).isActive = true
-        self.orderButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant:  -12).isActive = true
-        self.orderButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
-        self.orderButton.addTarget(self, action: #selector(orderButtonPressed), for: .touchUpInside)
+        view.addSubview(orderButton)
+        orderButton.setTitle("Заказать", for: .normal)
+        orderButton.translatesAutoresizingMaskIntoConstraints = false
+        orderButton.titleLabel?.text = "Заказать"
+        orderButton.isHidden = true
+        orderButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive = true
+        orderButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
+        orderButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant:  -12).isActive = true
+        orderButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
+        orderButton.addTarget(self, action: #selector(orderButtonPressed), for: .touchUpInside)
     }
 
     private func setEmptyBasketLabel() {
@@ -117,15 +117,15 @@ class BasketViewController: BaseViewController {
     }
     
     private func setTableView() {
-        self.view.addSubview(tableView)
-        self.tableView.separatorColor = .clear
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.orderButton.topAnchor, constant: -12).isActive = true
+        view.addSubview(tableView)
+        tableView.separatorColor = .clear
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: -12).isActive = true
     }
 }
 
@@ -145,15 +145,15 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = backgroundView
-        cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
+        cell.amountLabel.text = String(basket[products[indexPath.row]]!)
         cell.addButton.isHidden = true
         cell.minusButton.isHidden = true
-        cell.configure(with: self.products[indexPath.row])
+        cell.configure(with: products[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        150
     }
 }
 

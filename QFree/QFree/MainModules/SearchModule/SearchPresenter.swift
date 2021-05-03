@@ -5,9 +5,7 @@
 //  Created by Саид Дагалаев on 28.10.2020.
 //
 
-protocol SearchPresenterProtocol {
-    
-}
+protocol SearchPresenterProtocol { }
 
 class SearchPresenter {
     weak var view: SearchViewProtocol?
@@ -21,6 +19,4 @@ class SearchPresenter {
     }
 }
 
-extension SearchPresenter: SearchPresenterProtocol {
-    
-}
+extension SearchPresenter: SearchPresenterProtocol { }

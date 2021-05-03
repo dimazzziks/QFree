@@ -46,6 +46,6 @@ class ProfileInteractor: ProfileInteractorProtocol {
     }
     
     func getEmail() -> String {
-        return Auth.auth().currentUser?.email ?? "nil"
+        Auth.auth().currentUser?.email ?? "nil"
     }
 }

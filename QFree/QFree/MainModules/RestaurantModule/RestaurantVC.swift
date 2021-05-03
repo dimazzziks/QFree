@@ -36,12 +36,17 @@ class RestaurantVC: BaseViewController {
     }
     
     func setupTitle() {
-        self.title = "Рестораны"
+        title = Strings.restaurants
     }
     
     func setupActivityIndicator() {
-        self.activityIndicator.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/1.5)
-        self.activityIndicator.startAnimating()
+        activityIndicator.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: view.frame.width,
+            height: view.frame.height / 1.5
+        )
+        activityIndicator.startAnimating()
     }
     
     func getRestaurants() {
@@ -53,9 +58,9 @@ class RestaurantVC: BaseViewController {
         view.addSubview(categoryCollectionView)
         categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoryCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            categoryCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            categoryCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            categoryCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            categoryCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            categoryCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
             categoryCollectionView.heightAnchor.constraint(equalToConstant: 64)
         ])
         
@@ -75,9 +80,9 @@ class RestaurantVC: BaseViewController {
         restaurantsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             restaurantsCollectionView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor),
-            restaurantsCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            restaurantsCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            restaurantsCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            restaurantsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            restaurantsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            restaurantsCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
         restaurantsCollectionView.autoresizingMask = [.flexibleWidth]
@@ -90,8 +95,7 @@ class RestaurantVC: BaseViewController {
     
     func createRestaurantLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            
-            return self.createRestaurants()
+            self.createRestaurants()
         }
         
         return layout
@@ -99,10 +103,8 @@ class RestaurantVC: BaseViewController {
     
     func createCategoryLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            
-            return self.createCategories()
+            self.createCategories()
         }
-        
         return layout
     }
     
@@ -129,10 +131,10 @@ class RestaurantVC: BaseViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .estimated(1))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        
+
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 12, bottom: 0, trailing: 12)
-        
+
         return section
     }
     
@@ -198,9 +200,9 @@ extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource {
 extension RestaurantVC: RestaurantViewProtocol {
     func update(_ restaurants: [Restaurant]) {
         self.restaurants = restaurants
-        self.selectedRestaurants = self.restaurants
-        self.restaurantsCollectionView.reloadData()
-        self.activityIndicator.stopAnimating()
+        self.selectedRestaurants = restaurants
+        restaurantsCollectionView.reloadData()
+        activityIndicator.stopAnimating()
     }
     
     func pushMenuVC(name: String, restaurantID: String) {
@@ -208,6 +210,6 @@ extension RestaurantVC: RestaurantViewProtocol {
         menuVC.title = name
 
         menuVC.restaurantID = restaurantID
-        self.navigationController?.pushViewController(menuVC, animated: true)
+        navigationController?.pushViewController(menuVC, animated: true)
     }
 }

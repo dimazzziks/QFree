@@ -5,14 +5,8 @@
 //  Created by Саид Дагалаев on 14.12.2020.
 //
 
-protocol TabBarInteractorProtocol {
-    
-}
+protocol TabBarInteractorProtocol { }
 
-class TabBarInteractor {
-    
-}
+class TabBarInteractor { }
 
-extension TabBarInteractor: TabBarInteractorProtocol {
-    
-}
+extension TabBarInteractor: TabBarInteractorProtocol { }

@@ -17,7 +17,7 @@ class ProductTableViewCell: UITableViewCell {
 
     
     override var reuseIdentifier: String? {
-        return "ProductTableViewCell"
+        return String(describing: self)
     }
     
     var backgroundViewClear: UIView = {

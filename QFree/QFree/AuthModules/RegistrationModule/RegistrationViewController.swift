@@ -31,30 +31,30 @@ class RegistrationViewController: BaseViewController {
     }
     
     private func setupTitle() {
-        title = "Новый аккаунт"
+        title = Strings.newAccount
     }
     
     private func setupEnterForm() {
         nameTextField = BaseTextField()
-        nameTextField.placeholder = "Имя"
+        nameTextField.placeholder = Strings.name
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         emailTextField = BaseTextField()
         emailTextField.keyboardType = .emailAddress
-        emailTextField.placeholder = "Почта"
+        emailTextField.placeholder = Strings.email
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         passwordTextField = BaseTextField()
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.placeholder = "Пароль"
+        passwordTextField.placeholder = Strings.password
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         createAccountButton = BaseButton()
         createAccountButton.addTarget(self, action: #selector(createAccountButtonAction(_:)), for: .touchUpInside)
-        createAccountButton.setTitle("Создать аккаунт", for: .normal)
+        createAccountButton.setTitle(Strings.createAccount, for: .normal)
         createAccountButton.filled = true
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
         createAccountButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true

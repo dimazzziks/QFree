@@ -23,7 +23,7 @@ class BasketPresenter {
 
 extension BasketPresenter: BasketPresenterProtocol {
     func makeOrder(basket: [Product : Int], completion: @escaping (NetworkingError?) -> ()) {
-        interactor.makeOrder(basket: basket) { (error) in
+        interactor.makeOrder(basket: basket) { error in
             completion(error)
         }
     }

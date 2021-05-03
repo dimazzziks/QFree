@@ -34,7 +34,7 @@ class ProfileVC: BaseViewController {
     }
     
     private func setupTitle() {
-        self.title = "Профиль"
+        title = Strings.profile
     }
     
     private func setupProfileForm() {

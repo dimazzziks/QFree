@@ -11,8 +11,18 @@ class BaseViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillDisappear),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillAppear),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
     }
     
     override func viewDidLoad() {
@@ -27,11 +37,15 @@ class BaseViewController: UIViewController {
     }
 
     func showNoInternetAlert(_ okAction: (() -> ())?) {
-        let alert = UIAlertController(title: "Внимание", message: "Вы не подключены к интернету", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { _ in
+        let alert = UIAlertController(
+            title: "Внимание",
+            message: "Вы не подключены к интернету",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Ок", style: .default) { _ in
             okAction?()
-        }))
-        present(alert, animated: true, completion: nil)
+        })
+        present(alert, animated: true)
     }
     
     private func setupView() {
@@ -41,7 +55,10 @@ class BaseViewController: UIViewController {
 
 extension BaseViewController {
     func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(BaseViewController.dismissKeyboard))
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(BaseViewController.dismissKeyboard)
+        )
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }

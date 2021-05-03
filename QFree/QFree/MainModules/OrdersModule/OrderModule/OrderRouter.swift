@@ -5,9 +5,7 @@
 //  Created by Maxim V. Sidorov on 12/8/20.
 //
 
-protocol OrderRouterProtocol {
-    
-}
+protocol OrderRouterProtocol { }
 
 class OrderRouter: OrderRouterProtocol {
     var viewController: OrderViewProtocol

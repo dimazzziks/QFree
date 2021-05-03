@@ -7,9 +7,7 @@
 
 import UIKit
 
-protocol TabBarProtocol: class {
-    
-}
+protocol TabBarProtocol: class { }
 
 class TabBarController: UITabBarController {
     var presenter: TabBarPresenterProtocol?
@@ -29,14 +27,13 @@ class TabBarController: UITabBarController {
         searchVC.title = "Поиск"
         profileVC.title = "Профиль"
         
-        setViewControllers([restaurantVC, ordersVC, basketVC,
-//                            searchVC,
-                            profileVC], animated: true)
+        setViewControllers(
+            [restaurantVC, ordersVC, basketVC, profileVC],
+            animated: true
+        )
         tabBar.tintColor = .black
         
-        let barImages = ["restaurant", "order", "basket",
-//                         "search",
-                         "profile"]
+        let barImages = ["restaurant", "order", "basket", "profile"]
         guard let items = tabBar.items else { return }
         
         for i in 0..<items.count {
@@ -45,6 +42,4 @@ class TabBarController: UITabBarController {
     }
 }
 
-extension TabBarController: TabBarProtocol {
-    
-}
+extension TabBarController: TabBarProtocol { }

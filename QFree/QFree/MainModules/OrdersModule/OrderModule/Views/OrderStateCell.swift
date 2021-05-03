@@ -11,15 +11,16 @@ import UIKit
 class OrderStateCell: UITableViewCell {
     
     override var reuseIdentifier: String? {
-        return "OrderStateCell"
+        "OrderStateCell"
     }
-    
-    private let shadowView = UIView()
+
     let titleLabel = UILabel()
     let restaurantImageView = UIImageView()
-    private let statusLabel = UILabel()
     let timeLabel = UILabel()
     let orderNumberLabel = UILabel()
+
+    private let shadowView = UIView()
+    private let statusLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -34,9 +34,7 @@ class CachedImageView: UIImageView {
     }
     
     func loadImage(from urlStr: String?) {
-        guard urlStr != nil else {
-            return
-        }
+        guard urlStr != nil else { return }
         
         image = placeholderImage
         imageUrl = urlStr
@@ -46,9 +44,7 @@ class CachedImageView: UIImageView {
             return
         }
         
-        guard let url = URL(string: urlStr!) else {
-            return
-        }
+        guard let url = URL(string: urlStr!) else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let err = error {

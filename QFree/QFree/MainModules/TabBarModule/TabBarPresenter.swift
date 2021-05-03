@@ -5,9 +5,7 @@
 //  Created by Саид Дагалаев on 14.12.2020.
 //
 
-protocol TabBarPresenterProtocol {
-    
-}
+protocol TabBarPresenterProtocol { }
 
 class TabBarPresenter {
     weak var view: TabBarProtocol?
@@ -21,6 +19,4 @@ class TabBarPresenter {
     }
 }
 
-extension TabBarPresenter: TabBarPresenterProtocol {
-    
-}
+extension TabBarPresenter: TabBarPresenterProtocol { }

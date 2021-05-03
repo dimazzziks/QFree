@@ -9,9 +9,7 @@ protocol BasketInteractorProtocol {
     func makeOrder(basket: [Product : Int], completion: @escaping (NetworkingError?) -> ())
 }
 
-class BasketInteractor {
-    
-}
+class BasketInteractor { }
 
 extension BasketInteractor: BasketInteractorProtocol {
     func makeOrder(basket: [Product : Int], completion: @escaping (NetworkingError?) -> ()) {

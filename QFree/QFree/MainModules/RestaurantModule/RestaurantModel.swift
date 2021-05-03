@@ -22,7 +22,7 @@ struct Restaurant: Hashable, Codable {
 }
 
 enum Category: String, Hashable, Codable, CaseIterable {
-    case favourite = "Избранное"
+    case favorite = "Избранное"
     case bakery = "Выпечка"
     case coffee = "Кофе"
     case vegan = "Здоровая"
@@ -34,7 +34,7 @@ enum Category: String, Hashable, Codable, CaseIterable {
     
     init?(id: Int) {
         switch id {
-        case 0: self = .favourite
+        case 0: self = .favorite
         case 1: self = .bakery
         case 2: self = .coffee
         case 3: self = .vegan

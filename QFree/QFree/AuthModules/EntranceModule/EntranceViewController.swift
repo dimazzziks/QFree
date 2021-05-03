@@ -31,31 +31,31 @@ class EntranceViewController: BaseViewController {
     }
     
     private func setupTitle() {
-        title = "Вход"
+        title = Strings.entrance
     }
     
     private func setupEnterForm() {
         emailTextField = BaseTextField()
         emailTextField.keyboardType = .emailAddress
-        emailTextField.placeholder = "Почта"
+        emailTextField.placeholder = Strings.email
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         passwordTextField = BaseTextField()
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.placeholder = "Пароль"
+        passwordTextField.placeholder = Strings.password
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         enterButton = BaseButton()
         enterButton.addTarget(self, action: #selector(enterButtonAction(_:)), for: .touchUpInside)
-        enterButton.setTitle("Войти", for: .normal)
+        enterButton.setTitle(Strings.login, for: .normal)
         enterButton.translatesAutoresizingMaskIntoConstraints = false
         enterButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true
         
         createAccountButton = BaseButton()
         createAccountButton.addTarget(self, action: #selector(createAccountButtonAction(_:)), for: .touchUpInside)
-        createAccountButton.setTitle("Создать аккаунт", for: .normal)
+        createAccountButton.setTitle(Strings.createAccount, for: .normal)
         createAccountButton.filled = false
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
         createAccountButton.heightAnchor.constraint(equalToConstant: Brandbook.defaultButtonHeight).isActive = true

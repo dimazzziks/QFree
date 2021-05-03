@@ -83,10 +83,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 450
-        }
-        return 150
+        indexPath.row == 0 ? 450 : 150
     }
 }
 

@@ -28,7 +28,7 @@ class SearchVC: BaseViewController {
     }
     
     func setTitle() {
-        self.title = "Поиск"
+        self.title = Strings.search
     }
     
     func configureSearchBar() {
@@ -103,12 +103,6 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-//extension SearchVC: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: view.frame.width-24, height: 200)
-//    }
-//}
-
 extension SearchVC {
     @objc func handleShowSearchBar() {
         search(shouldShow: true)
@@ -116,6 +110,4 @@ extension SearchVC {
     }
 }
 
-extension SearchVC: SearchViewProtocol {
-    
-}
+extension SearchVC: SearchViewProtocol { }
