@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OrderInfo {
+struct OrderStatus {
     let restaurantName: String
     let completionTime: String
     let number: String

@@ -8,8 +8,8 @@
 import UIKit
 
 protocol OrderViewProtocol: class {
-    func update(_ currentOrderInfo: OrderInfo)
-    func update(_ products: [Product])
+    func update(_ currentOrderStatus: OrderStatus)
+    func update(_ products: Products)
     func showNoInternetAlert(_ okAction: (() -> ())?)
 }
 
@@ -18,13 +18,13 @@ class OrderViewController: BaseViewController {
     
     let tableView = UITableView()
     
-    var currentOrderInfo: OrderInfo? {
+    var currentOrderStatus: OrderStatus? {
         didSet {
             tableView.reloadData()
         }
     }
     
-    var products: [Product] = [] {
+    var products: Products = [] {
         didSet {
             tableView.reloadData()
         }
@@ -69,7 +69,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OrderStateCell") as! OrderStateCell
-            guard let currentOrderInfo = currentOrderInfo else {
+            guard let currentOrderInfo = currentOrderStatus else {
                 return cell
             }
             cell.setOrderInfo(currentOrderInfo)
@@ -78,7 +78,8 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
         
-        cell.nameLabel.text = products[indexPath.row - 1].name
+        let currentProduct = products[indexPath.row - 1]
+        cell.configure(product: currentProduct.productInfo, amount: currentProduct.amount)
         return cell
     }
     
@@ -88,11 +89,11 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension OrderViewController: OrderViewProtocol {
-    func update(_ currentOrderInfo: OrderInfo) {
-        self.currentOrderInfo = currentOrderInfo
+    func update(_ currentOrderStatus: OrderStatus) {
+        self.currentOrderStatus = currentOrderStatus
     }
     
-    func update(_ products: [Product]) {
+    func update(_ products: Products) {
         self.products = products
     }
 }

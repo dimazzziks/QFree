@@ -14,8 +14,8 @@ protocol BasketViewProtocol: class {
 class BasketViewController: BaseViewController {
     var presenter: BasketPresenterProtocol?
     
-    private var basket: [Product : Int] = [Product : Int]()
-    private var products: [Product] = [Product]()
+    private var basket: [ProductInfo : Int] = [ProductInfo : Int]()
+    private var products: [ProductInfo] = [ProductInfo]()
     private var orderButton = BaseButton()
     private var tableView: UITableView = UITableView()
     private var emptyBasketLabel = UILabel()
@@ -145,10 +145,11 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = backgroundView
-        cell.amountLabel.text = String(basket[products[indexPath.row]]!)
         cell.addButton.isHidden = true
         cell.minusButton.isHidden = true
-        cell.configure(with: products[indexPath.row])
+        let product = products[indexPath.row]
+        let amount = basket[products[indexPath.row]]!
+        cell.configure(product: product, amount: amount)
         return cell
     }
     

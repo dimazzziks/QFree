@@ -13,7 +13,7 @@ class OrdersViewController: BaseViewController {
     var presenter: OrdersPresenter?
 
     private let tableView = UITableView()
-    private var orders: [OrderPreview] = [] {
+    private var orders: [OrderInfo] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -26,12 +26,11 @@ class OrdersViewController: BaseViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
         FirebaseHandler.shared.getRestaurantsInfo( completion: { result in
             switch result {
             case .success(let restaurants):
                 print("ok")
-                self.getOrderss(restaurants: restaurants)
+                self.getOrders(restaurants: restaurants)
             case .failure(let error):
                 if error == .noInternetConnection {
                     //FIXME:
@@ -40,17 +39,17 @@ class OrdersViewController: BaseViewController {
             }
         })
     }
-    //FIXME:
-    private func getOrderss(restaurants : [Restaurant]) {
+
+    private func getOrders(restaurants : [Restaurant]) {
         FirebaseHandler.shared.getOrders(restaurants :  restaurants, completion: { result in
             switch result {
-            case .success(let orderPreviews):
-                self.orders = orderPreviews
+            case .success(let ordersInfo):
+                self.orders = ordersInfo
             case .failure(let error):
                 if error == .noInternetConnection {
                     //self.showNoInternetAlert(self.getOrders)
                     //FIXME:
-                   print("no internet")
+                    print("no internet")
                 }
             }
         })
@@ -79,17 +78,17 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderTableViewCell") as! OrderTableViewCell
-        cell.configure(orderPreview: orders[indexPath.row])
-        print(orders[indexPath.row])
+        cell.configure(ordersInfo: orders[indexPath.row])
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.bounds.width * 0.6 + 75
+        view.bounds.width * 0.6 + 75
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let orderViewController = OrderModuleBuilder.build(orderNumber: indexPath.row)
+        let currentOrder = orders[indexPath.row]
+        let orderViewController = OrderModuleBuilder.build(order: currentOrder)
         navigationController?.pushViewController(orderViewController, animated: true)
     }
 }

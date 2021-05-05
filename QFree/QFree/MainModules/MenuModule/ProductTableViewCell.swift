@@ -171,9 +171,10 @@ class ProductTableViewCell: UITableViewCell {
         mainView.addShadow()
     }
     
-    func configure(with product: Product) {
+    func configure(product: ProductInfo, amount: Int) {
         nameLabel.text = String(product.name)
         priceLabel.text = String(product.price) + "₽"
+        amountLabel.text = "\(amount)"
       
         let imageURL: URL = URL(string: product.imageLink)!
         DispatchQueue.global(qos: .utility).async {

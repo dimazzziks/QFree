@@ -6,7 +6,7 @@
 //
 
 protocol OrdersPresenterProtocol {
-    func getOrders(completion: @escaping (Result<[OrderPreview], NetworkingError>) -> ())
+    func getOrders(completion: @escaping (Result<[OrderInfo], NetworkingError>) -> ())
 }
 
 class OrdersPresenter {
@@ -22,7 +22,7 @@ class OrdersPresenter {
 }
 
 extension OrdersPresenter: OrdersPresenterProtocol {
-    func getOrders(completion: @escaping (Result<[OrderPreview], NetworkingError>) -> ()) {
+    func getOrders(completion: @escaping (Result<[OrderInfo], NetworkingError>) -> ()) {
         interactor.getOrders { (result) in
             completion(result)
         }

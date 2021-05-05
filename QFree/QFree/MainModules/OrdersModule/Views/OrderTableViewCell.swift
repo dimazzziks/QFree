@@ -63,6 +63,8 @@ class OrderTableViewCell: UITableViewCell {
 
         orderDateLabel.textAlignment = .right
         orderDateLabel.font = Brandbook.font(size: 20, weight: .bold)
+        orderDateLabel.adjustsFontSizeToFitWidth = true
+        orderDateLabel.minimumScaleFactor = 0.5
         orderDateLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             orderDateLabel.topAnchor.constraint(equalTo: restaurantImageView.bottomAnchor, constant: 16),
@@ -76,9 +78,9 @@ class OrderTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(orderPreview: OrderPreview) {
-        restaurantImageView.loadImage(from: orderPreview.imageURL)
-        restaurantLabel.text = orderPreview.restaurantName
-        orderDateLabel.text = orderPreview.date
+    func configure(ordersInfo: OrderInfo) {
+        restaurantImageView.loadImage(from: ordersInfo.imageURL)
+        restaurantLabel.text = ordersInfo.restaurantName
+        orderDateLabel.text = ordersInfo.date
     }
 }

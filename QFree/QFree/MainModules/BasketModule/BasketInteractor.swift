@@ -6,13 +6,13 @@
 //
 
 protocol BasketInteractorProtocol {
-    func makeOrder(basket: [Product : Int], completion: @escaping (NetworkingError?) -> ())
+    func makeOrder(basket: [ProductInfo : Int], completion: @escaping (NetworkingError?) -> ())
 }
 
 class BasketInteractor { }
 
 extension BasketInteractor: BasketInteractorProtocol {
-    func makeOrder(basket: [Product : Int], completion: @escaping (NetworkingError?) -> ()) {
+    func makeOrder(basket: [ProductInfo : Int], completion: @escaping (NetworkingError?) -> ()) {
         FirebaseHandler.shared.makeOrder(basket: basket) { (error) in
             completion(error)
         }

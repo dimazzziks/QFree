@@ -9,8 +9,8 @@ import UIKit
 
 class RestaurantMenuTableViewController: BaseTableViewController {
     var restaurantID: String = "1"
-    var products: [Product] = []
-    var basket: [Product : Int] = [Product : Int]()
+    var products: [ProductInfo] = []
+    var basket: [ProductInfo : Int] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,10 +105,10 @@ class RestaurantMenuTableViewController: BaseTableViewController {
                 cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
             }
             cell.amountLabel.text = String(self.basket[self.products[indexPath.row]]!)
-            
         }
-        
-        cell.configure(with: product)
+
+        let amount = basket[products[indexPath.row]] ?? 0
+        cell.configure(product: product, amount: amount)
     
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
@@ -130,7 +130,7 @@ class RestaurantMenuTableViewController: BaseTableViewController {
         let alert = UIAlertController(title: "Очистить корзину?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
-            self.basket = [Product : Int]()
+            self.basket = [ProductInfo : Int]()
         })
         present(alert, animated: true)
     }
