@@ -74,25 +74,6 @@ class FirebaseHandler {
         }
     }
     
-    func getProductsInBasket(email: String, completion: @escaping (Result<[ProductInfo], NetworkingError>) -> ()) {
-        guard reachabilityManager.isConnected else {
-            completion(.failure(.noInternetConnection))
-            return
-        }
-
-        let query = ref.child("Users").child("\"zhbannikov_dima@mailru\"")
-        var products: [ProductInfo] = []
-        query.observeSingleEvent(of: .value) { snapshot in
-            // FIXME: fetch snapshot
-            products = [
-                ProductInfo(name: "1", imageLink: "1", price: 1, category: [.coffee], restaurantID: "1"),
-                ProductInfo(name: "2", imageLink: "2", price: 2, category: [.coffee], restaurantID: "2"),
-                ProductInfo(name: "3", imageLink: "3", price: 3, category: [.coffee], restaurantID: "3")
-            ]
-            completion(.success(products))
-        }
-    }
-    
     func getBasket(completion: @escaping (Result<[ProductInfo : Int], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
