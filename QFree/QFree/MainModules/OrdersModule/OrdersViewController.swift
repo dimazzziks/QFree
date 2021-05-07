@@ -88,6 +88,8 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentOrder = orders[indexPath.row]
+        print(currentOrder)
+        
         let orderViewController = OrderModuleBuilder.build(order: currentOrder)
         navigationController?.pushViewController(orderViewController, animated: true)
     }

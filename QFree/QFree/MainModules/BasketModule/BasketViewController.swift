@@ -15,6 +15,7 @@ class BasketViewController: BaseViewController {
     var presenter: BasketPresenterProtocol?
     
     private var basket: [ProductInfo : Int] = [ProductInfo : Int]()
+    //private var restaurrants 
     private var products: [ProductInfo] = [ProductInfo]()
     private var orderButton = BaseButton()
     private var tableView: UITableView = UITableView()
@@ -92,14 +93,26 @@ class BasketViewController: BaseViewController {
     }
 
     @objc private func orderButtonPressed() {
-        
-        presenter?.makeOrder(basket: basket, completion: { (error) in
-            if let error = error {
+        FirebaseHandler.shared.getRestaurantsInfo( completion: { result in
+            switch result {
+            case .success(let restaurants):
+                print("ok")
+                
+                self.presenter?.makeOrder(basket: self.basket, restaurants: restaurants, completion: { (error) in
+                    if let error = error {
+                        if error == .noInternetConnection {
+                            self.showNoInternetAlert(self.orderButtonPressed)
+                        }
+                    } else {
+                        self.showOrderIsProcessed()
+                    }
+                })
+                
+            case .failure(let error):
                 if error == .noInternetConnection {
-                    self.showNoInternetAlert(self.orderButtonPressed)
+                    //FIXME:
+                   print("no internet")
                 }
-            } else {
-                self.showOrderIsProcessed()
             }
         })
     }

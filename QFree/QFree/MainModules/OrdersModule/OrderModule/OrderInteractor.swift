@@ -20,10 +20,10 @@ class OrderInteractor {
 extension OrderInteractor: OrderInteractorProtocol {
     func getOrderStatus() -> OrderStatus {
         OrderStatus(
-            restaurantName: "restaurantName",
-            completionTime: "completionTime",
-            number: "ABC123",
-            restaurantImageUrl: "https://www.hse.ru/pubs/share/direct/305134103.jpg"
+            restaurantName: order.restaurantName,
+            completionTime: order.date,
+            number: order.number,
+            restaurantImageUrl: order.imageURL
         )
     }
     

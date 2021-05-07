@@ -14,4 +14,7 @@ struct OrderInfo {
     var restaurantName: String
     var date: String
     var products: Products
+    var number: String
+    var status: String
+    
 }
