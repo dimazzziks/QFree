@@ -23,33 +23,15 @@ class OrderPresenter {
 
 extension OrderPresenter: OrderPresenterProtocol {
     func viewDidLoad() {
-        fetchCurrentOrderInfo()
+        fetchCurrentOrderStatus()
         fetchBasket()
     }
 
-    private func fetchCurrentOrderInfo() {
-        interactor.fetchCurrentOrderInfo { result in
-            switch result {
-            case .success(let orderInfo):
-                self.view?.update(orderInfo)
-            case .failure(let error):
-                if error == .noInternetConnection {
-                    self.view?.showNoInternetAlert(self.fetchCurrentOrderInfo)
-                }
-            }
-        }
+    private func fetchCurrentOrderStatus() {
+        view?.update(interactor.getOrderStatus())
     }
 
     private func fetchBasket() {
-        interactor.fetchBasket { result in
-            switch result {
-            case .success(let products):
-                self.view?.update(products)
-            case .failure(let error):
-                if error == .noInternetConnection {
-                    self.view?.showNoInternetAlert(self.fetchBasket)
-                }
-            }
-        }
+        view?.update(interactor.getOrderProducts())
     }
 }

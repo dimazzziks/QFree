@@ -41,7 +41,7 @@ class OrderTableViewCell: UITableViewCell {
 
         restaurantImageView.clipsToBounds = true
         restaurantImageView.contentMode = .scaleAspectFill
-        restaurantImageView.backgroundColor = .red
+        restaurantImageView.backgroundColor = .white
         restaurantImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             restaurantImageView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
@@ -52,6 +52,7 @@ class OrderTableViewCell: UITableViewCell {
 
         restaurantLabel.textAlignment = .left
         restaurantLabel.font = Brandbook.font(size: 20, weight: .bold)
+        restaurantLabel.textColor = Brandbook.textColor
         restaurantLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             restaurantLabel.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor, constant: inset),
@@ -63,6 +64,9 @@ class OrderTableViewCell: UITableViewCell {
 
         orderDateLabel.textAlignment = .right
         orderDateLabel.font = Brandbook.font(size: 20, weight: .bold)
+        orderDateLabel.textColor = Brandbook.textColor
+        orderDateLabel.adjustsFontSizeToFitWidth = true
+        orderDateLabel.minimumScaleFactor = 0.5
         orderDateLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             orderDateLabel.topAnchor.constraint(equalTo: restaurantImageView.bottomAnchor, constant: 16),
@@ -76,9 +80,9 @@ class OrderTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(orderPreview: OrderPreview) {
-        restaurantImageView.loadImage(from: orderPreview.imageURL)
-        restaurantLabel.text = orderPreview.restaurantName
-        orderDateLabel.text = orderPreview.date
+    func configure(ordersInfo: OrderInfo) {
+        restaurantImageView.loadImage(from: ordersInfo.imageURL)
+        restaurantLabel.text = ordersInfo.restaurantName
+        orderDateLabel.text = ordersInfo.date
     }
 }

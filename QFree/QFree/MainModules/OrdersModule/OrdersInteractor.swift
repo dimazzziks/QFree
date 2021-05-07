@@ -6,13 +6,13 @@
 //
 
 protocol OrdersInteractorProtocol {
-    func getOrders(completion: @escaping (Result<[OrderPreview], NetworkingError>) -> ())
+    func getOrders(completion: @escaping (Result<[OrderInfo], NetworkingError>) -> ())
 }
 
 class OrdersInteractor { }
 //FIXME:
 extension OrdersInteractor: OrdersInteractorProtocol {
-    func getOrders(completion: @escaping (Result<[OrderPreview], NetworkingError>) -> ()) {
+    func getOrders(completion: @escaping (Result<[OrderInfo], NetworkingError>) -> ()) {
 //        FirebaseHandler.shared.getOrders {(result) in
 //            completion(result)
 //        }

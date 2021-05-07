@@ -14,8 +14,9 @@ protocol BasketViewProtocol: class {
 class BasketViewController: BaseViewController {
     var presenter: BasketPresenterProtocol?
     
-    private var basket: [Product : Int] = [Product : Int]()
-    private var products: [Product] = [Product]()
+    private var basket: [ProductInfo : Int] = [ProductInfo : Int]()
+    //private var restaurrants 
+    private var products: [ProductInfo] = [ProductInfo]()
     private var orderButton = BaseButton()
     private var tableView: UITableView = UITableView()
     private var emptyBasketLabel = UILabel()
@@ -92,20 +93,31 @@ class BasketViewController: BaseViewController {
     }
 
     @objc private func orderButtonPressed() {
-        
-        presenter?.makeOrder(basket: basket, completion: { (error) in
-            if let error = error {
+        FirebaseHandler.shared.getRestaurantsInfo( completion: { result in
+            switch result {
+            case .success(let restaurants):
+                let number = Int.random(in: 1..<100)
+                self.presenter?.makeOrder(number: number, basket: self.basket, restaurants: restaurants, completion: { (error) in
+                    if let error = error {
+                        if error == .noInternetConnection {
+                            self.showNoInternetAlert(self.orderButtonPressed)
+                        }
+                    } else {
+                        self.showOrderIsProcessed(orderNumber: number)
+                    }
+                })
+                
+            case .failure(let error):
                 if error == .noInternetConnection {
-                    self.showNoInternetAlert(self.orderButtonPressed)
+                    //FIXME:
+                    print("no internet")
                 }
-            } else {
-                self.showOrderIsProcessed()
             }
         })
     }
 
-    private func showOrderIsProcessed() {
-        let orderIsProcessedViewController = OrderIsProcessedViewController()
+    private func showOrderIsProcessed(orderNumber: Int) {
+        let orderIsProcessedViewController = OrderIsProcessedViewController(orderNumber: orderNumber)
         orderIsProcessedViewController.modalPresentationStyle = .fullScreen
         orderIsProcessedViewController.okButtonAction = {
             orderIsProcessedViewController.dismiss(animated: true)
@@ -145,10 +157,11 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = backgroundView
-        cell.amountLabel.text = String(basket[products[indexPath.row]]!)
         cell.addButton.isHidden = true
         cell.minusButton.isHidden = true
-        cell.configure(with: products[indexPath.row])
+        let product = products[indexPath.row]
+        let amount = basket[products[indexPath.row]]!
+        cell.configure(product: product, amount: amount)
         return cell
     }
     

@@ -10,7 +10,17 @@ import UIKit
 class OrderIsProcessedViewController: UIViewController {
 
     var okButtonAction: (() -> ())?
+    private let orderNumber: Int
     private let okButton = BaseButton()
+
+    init(orderNumber: Int) {
+        self.orderNumber = orderNumber
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +44,7 @@ class OrderIsProcessedViewController: UIViewController {
         ])
 
         let subtitleLabel = UILabel()
-        subtitleLabel.text = "Номер вашего заказа: A24"
+        subtitleLabel.text = "Номер вашего заказа: \(orderNumber)"
         subtitleLabel.textColor = Brandbook.defaultColor
         subtitleLabel.textAlignment = .center
         subtitleLabel.font = Brandbook.font(size: 20, weight: .bold)

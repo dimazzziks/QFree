@@ -57,7 +57,7 @@ class OrderStateCell: UITableViewCell {
         ])
         
         restaurantImageView.translatesAutoresizingMaskIntoConstraints = false
-        restaurantImageView.contentMode = .scaleAspectFill
+        restaurantImageView.contentMode = .scaleToFill
         NSLayoutConstraint.activate([
             restaurantImageView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
             restaurantImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.0),
@@ -104,7 +104,7 @@ class OrderStateCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setOrderInfo(_ orderInfo: OrderInfo) {
+    func setOrderInfo(_ orderInfo: OrderStatus) {
         [titleLabel, statusLabel].forEach { $0.isHidden = false }
         titleLabel.text = orderInfo.restaurantName
         timeLabel.text = "Будет готов к \(orderInfo.completionTime)"
