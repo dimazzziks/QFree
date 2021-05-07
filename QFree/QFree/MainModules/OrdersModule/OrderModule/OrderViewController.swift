@@ -80,6 +80,8 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
         
         let currentProduct = products[indexPath.row - 1]
         cell.configure(product: currentProduct.productInfo, amount: currentProduct.amount)
+        cell.minusButton.isHidden = true
+        cell.addButton.isHidden = true
         return cell
     }
     

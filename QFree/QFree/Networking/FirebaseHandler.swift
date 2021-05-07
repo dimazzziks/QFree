@@ -235,17 +235,18 @@ class FirebaseHandler {
                 
                 let imageURL = restaurants[index!].image
                 let restaurantName = restaurants[index!].name
-                let date = self.getTimestamp()
+                let calendar = Calendar.current
+                let date = calendar.date(byAdding: .minute, value: 30, to: Date())
                 let isReady = "0"
+                let hash = self.getTimestamp(date: date!)
                 
                 var info: [NSString : NSObject] = [NSString : NSObject]()
                 info["image"] = imageURL as NSString
                 info["name"] = restaurantName as NSString
-                info["date"] = date as NSString
+                info["date"] = hash as NSString
                 info["number"] = String(number) as NSString
                 info["ready"] = isReady as NSString
                 
-                let hash = self.getTimestamp()
                 self.ref.child("Users").child(self.user).child("orders").child(hash).child("products").setValue(order)
                 self.ref.child("Users").child(self.user).child("orders").child(hash).child("info").setValue(info)
                 self.ref.child("Users").child(self.user).child("basket").removeValue()
@@ -261,8 +262,8 @@ class FirebaseHandler {
         "\"\(email?.replacingOccurrences(of: ".", with: "") ?? "")\""
     }
 
-    private func getTimestamp() -> String {
-        String(Date.timeIntervalSinceReferenceDate).replacingOccurrences(of: ".", with: "_")
+    private func getTimestamp(date: Date) -> String {
+        String(date.timeIntervalSinceReferenceDate).replacingOccurrences(of: ".", with: "_")
     }
 
     private func sortOrdersInfo(_ ordersInfo: inout [OrderInfo]) {
