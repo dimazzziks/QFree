@@ -6,7 +6,7 @@
 //
 
 protocol BasketPresenterProtocol {
-    func makeOrder(basket: [ProductInfo : Int], restaurants: [Restaurant],  completion: @escaping (NetworkingError?) -> ())
+    func makeOrder(number: Int, basket: [ProductInfo : Int], restaurants: [Restaurant],  completion: @escaping (NetworkingError?) -> ())
 }
 
 class BasketPresenter {
@@ -22,8 +22,8 @@ class BasketPresenter {
 }
 
 extension BasketPresenter: BasketPresenterProtocol {
-    func makeOrder(basket: [ProductInfo : Int], restaurants: [Restaurant], completion: @escaping (NetworkingError?) -> ()) {
-        interactor.makeOrder(basket: basket, restaurants: restaurants ) { error in
+    func makeOrder(number: Int, basket: [ProductInfo : Int], restaurants: [Restaurant], completion: @escaping (NetworkingError?) -> ()) {
+        interactor.makeOrder(number: number, basket: basket, restaurants: restaurants ) { error in
             completion(error)
         }
     }

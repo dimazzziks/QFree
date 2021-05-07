@@ -57,7 +57,7 @@ class OrderStateCell: UITableViewCell {
         ])
         
         restaurantImageView.translatesAutoresizingMaskIntoConstraints = false
-        restaurantImageView.contentMode = .scaleAspectFill
+        restaurantImageView.contentMode = .scaleToFill
         NSLayoutConstraint.activate([
             restaurantImageView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
             restaurantImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.0),

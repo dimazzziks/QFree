@@ -204,7 +204,12 @@ class FirebaseHandler {
         }
     }
 
-    func makeOrder(basket: [ProductInfo : Int], restaurants : [Restaurant], completion: @escaping (NetworkingError?) -> ()) {
+    func makeOrder(
+        number: Int,
+        basket: [ProductInfo : Int],
+        restaurants : [Restaurant],
+        completion: @escaping (NetworkingError?) -> ()
+    ) {
         guard reachabilityManager.isConnected else {
             completion(.noInternetConnection)
             return
@@ -231,14 +236,13 @@ class FirebaseHandler {
                 let imageURL = restaurants[index!].image
                 let restaurantName = restaurants[index!].name
                 let date = self.getTimestamp()
-                let number = String(Int.random(in: 1..<100))
                 let isReady = "0"
                 
                 var info: [NSString : NSObject] = [NSString : NSObject]()
                 info["image"] = imageURL as NSString
                 info["name"] = restaurantName as NSString
                 info["date"] = date as NSString
-                info["number"] = number as NSString
+                info["number"] = String(number) as NSString
                 info["ready"] = isReady as NSString
                 
                 let hash = self.getTimestamp()

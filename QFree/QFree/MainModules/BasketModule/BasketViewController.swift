@@ -96,29 +96,28 @@ class BasketViewController: BaseViewController {
         FirebaseHandler.shared.getRestaurantsInfo( completion: { result in
             switch result {
             case .success(let restaurants):
-                print("ok")
-                
-                self.presenter?.makeOrder(basket: self.basket, restaurants: restaurants, completion: { (error) in
+                let number = Int.random(in: 1..<100)
+                self.presenter?.makeOrder(number: number, basket: self.basket, restaurants: restaurants, completion: { (error) in
                     if let error = error {
                         if error == .noInternetConnection {
                             self.showNoInternetAlert(self.orderButtonPressed)
                         }
                     } else {
-                        self.showOrderIsProcessed()
+                        self.showOrderIsProcessed(orderNumber: number)
                     }
                 })
                 
             case .failure(let error):
                 if error == .noInternetConnection {
                     //FIXME:
-                   print("no internet")
+                    print("no internet")
                 }
             }
         })
     }
 
-    private func showOrderIsProcessed() {
-        let orderIsProcessedViewController = OrderIsProcessedViewController()
+    private func showOrderIsProcessed(orderNumber: Int) {
+        let orderIsProcessedViewController = OrderIsProcessedViewController(orderNumber: orderNumber)
         orderIsProcessedViewController.modalPresentationStyle = .fullScreen
         orderIsProcessedViewController.okButtonAction = {
             orderIsProcessedViewController.dismiss(animated: true)
