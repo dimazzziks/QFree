@@ -9,7 +9,7 @@ import Foundation
 
 struct OrderStatus {
     let restaurantName: String
-    let completionTime: String
+    let completionMessage: String
     let number: String
     let restaurantImageUrl: String
 }

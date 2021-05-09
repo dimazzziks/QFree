@@ -19,9 +19,17 @@ class OrderInteractor {
 
 extension OrderInteractor: OrderInteractorProtocol {
     func getOrderStatus() -> OrderStatus {
-        OrderStatus(
+        var completionMessage: String
+        if order.status == 1 {
+            completionMessage = "Готов"
+        } else if order.status == 2 {
+            completionMessage = "Получен"
+        } else {
+            completionMessage = "Будет готов к \(order.readyDate)"
+        }
+        return OrderStatus(
             restaurantName: order.restaurantName,
-            completionTime: order.date,
+            completionMessage: completionMessage,
             number: order.number,
             restaurantImageUrl: order.imageURL
         )

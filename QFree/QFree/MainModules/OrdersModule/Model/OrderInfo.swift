@@ -13,8 +13,9 @@ struct OrderInfo {
     var imageURL: String
     var restaurantName: String
     var date: String
+    var readyDate : String
     var products: Products
     var number: String
-    var status: String
+    var status: Int
     
 }

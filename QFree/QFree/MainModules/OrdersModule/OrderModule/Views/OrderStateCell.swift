@@ -107,7 +107,7 @@ class OrderStateCell: UITableViewCell {
     func setOrderInfo(_ orderInfo: OrderStatus) {
         [titleLabel, statusLabel].forEach { $0.isHidden = false }
         titleLabel.text = orderInfo.restaurantName
-        timeLabel.text = "Будет готов к \(orderInfo.completionTime)"
+        timeLabel.text = orderInfo.completionMessage
         orderNumberLabel.text = "Номер заказа: \(orderInfo.number)"
         URLSession.shared.dataTask(with: URL(string: orderInfo.restaurantImageUrl)!) { [weak self] (data, response, error) in
             guard error == nil, let data = data else {

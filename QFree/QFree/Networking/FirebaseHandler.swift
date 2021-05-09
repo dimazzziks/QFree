@@ -133,7 +133,7 @@ class FirebaseHandler {
 
         let currentOrderInfo = OrderStatus(
             restaurantName: "Name",
-            completionTime: "17:00",
+            completionMessage: "17:00",
             number: "123",
             restaurantImageUrl: "https://www.hse.ru/pubs/share/direct/305134103.jpg"
         )
@@ -179,9 +179,10 @@ class FirebaseHandler {
                             imageURL: orderInfo["image"] as! String,
                             restaurantName: orderInfo["name"] as! String,
                             date: orderInfo["date"] as! String,
+                            readyDate: orderInfo["readyDate"] as! String,
                             products: products,
                             number: orderInfo["number"] as! String,
-                            status: orderInfo["ready"] as! String
+                            status: Int(orderInfo["ready"] as! String)!
                             
                         )
                     )
@@ -193,6 +194,7 @@ class FirebaseHandler {
                     imageURL: $0.imageURL,
                     restaurantName: $0.restaurantName,
                     date: self.getFormattedDate($0.date),
+                    readyDate: self.getFormattedDate($0.readyDate),
                     products: $0.products,
                     number: $0.number,
                     status: $0.status
@@ -236,14 +238,17 @@ class FirebaseHandler {
                 let imageURL = restaurants[index!].image
                 let restaurantName = restaurants[index!].name
                 let calendar = Calendar.current
-                let date = calendar.date(byAdding: .minute, value: 30, to: Date())
+                let readyDate = calendar.date(byAdding: .minute, value: 30, to: Date())
+                let readyDateStr = self.getTimestamp(date: readyDate!)
                 let isReady = "0"
-                let hash = self.getTimestamp(date: date!)
+                
+                let hash = self.getTimestamp(date:  Date())
                 
                 var info: [NSString : NSObject] = [NSString : NSObject]()
                 info["image"] = imageURL as NSString
                 info["name"] = restaurantName as NSString
                 info["date"] = hash as NSString
+                info["readyDate"] = readyDateStr as NSString
                 info["number"] = String(number) as NSString
                 info["ready"] = isReady as NSString
                 
