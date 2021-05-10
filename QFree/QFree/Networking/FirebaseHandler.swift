@@ -11,13 +11,13 @@ import Firebase
 class FirebaseHandler {
     private var reachabilityManager: ReachabilityManagerProtocol!
     private var ref: DatabaseReference!
-    private var user: String!
+    private var user: String?
 
     static var shared: FirebaseHandler = {
         let firebaseHandler = FirebaseHandler()
         firebaseHandler.reachabilityManager = ReachabilityManager()
         firebaseHandler.ref = Database.database().reference()
-        firebaseHandler.user = Auth.auth().currentUser!.email!.replacingOccurrences(of: ".", with: "")
+        firebaseHandler.user = Auth.auth().currentUser?.email?.replacingOccurrences(of: ".", with: "")
         return firebaseHandler
     }()
 
@@ -80,8 +80,13 @@ class FirebaseHandler {
             return
         }
 
+        guard let user = user else {
+          completion(.failure(.invalidResponse))
+          return
+        }
+
         var basket: [ProductInfo : Int] = [ProductInfo : Int]()
-        self.ref.child("Users").child(self.user).child("basket").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("Users").child(user).child("basket").observeSingleEvent(of: .value, with: { (snapshot) in
             let data = snapshot.value as? [[String: AnyObject]]
             
             if data != nil {
@@ -110,6 +115,11 @@ class FirebaseHandler {
             return
         }
 
+        guard let user = user else {
+          completion(.invalidResponse)
+          return
+        }
+
         var basket: [[NSString : NSObject]] = [[NSString : NSObject]]()
         for (product, amount) in products {
             var item: [NSString : NSObject] = [NSString : NSObject]()
@@ -121,7 +131,7 @@ class FirebaseHandler {
             item["category"] = product.category.map { $0.rawValue } as NSArray
             basket.append(item)
         }
-        self.ref.child("Users").child(self.user).child("basket").setValue(basket)
+        self.ref.child("Users").child(user).child("basket").setValue(basket)
         completion(nil)
     }
     
@@ -146,7 +156,12 @@ class FirebaseHandler {
             return
         }
 
-        let query = ref.child("Users").child(self.user).child("orders")
+        guard let user = user else {
+          completion(.failure(.invalidResponse))
+          return
+        }
+
+        let query = ref.child("Users").child(user).child("orders")
         var ordersInfo: [OrderInfo] = []
         query.observeSingleEvent(of: .value) { (snapshot) in
             if let data = snapshot.value as? [String: AnyObject] {
@@ -212,6 +227,11 @@ class FirebaseHandler {
             return
         }
 
+        guard let user = user else {
+          completion(.invalidResponse)
+          return
+        }
+
         getBasket { result in
             switch result {
             case .success(let basket):
@@ -247,9 +267,9 @@ class FirebaseHandler {
                 info["number"] = String(number) as NSString
                 info["ready"] = isReady as NSString
                 
-                self.ref.child("Users").child(self.user).child("orders").child(hash).child("products").setValue(order)
-                self.ref.child("Users").child(self.user).child("orders").child(hash).child("info").setValue(info)
-                self.ref.child("Users").child(self.user).child("basket").removeValue()
+                self.ref.child("Users").child(user).child("orders").child(hash).child("products").setValue(order)
+                self.ref.child("Users").child(user).child("orders").child(hash).child("info").setValue(info)
+                self.ref.child("Users").child(user).child("basket").removeValue()
                 completion(nil)
             case .failure(let error):
                 completion(error)
