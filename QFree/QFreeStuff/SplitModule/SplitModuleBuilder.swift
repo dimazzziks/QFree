@@ -11,7 +11,12 @@ class SplitModuleBuilder {
   static func build(_ restaurantName: String) -> UISplitViewController {
     let splitViewController = UISplitViewController()
     splitViewController.viewControllers = [
-      makeOrdersViewController(restaurantName),
+      makeOrdersViewController(
+        restaurantName,
+        closeAction: { [weak splitViewController] in
+          splitViewController?.dismiss(animated: true)
+        }
+      ),
       makeOrderViewController()
     ]
     splitViewController.modalPresentationStyle = .fullScreen
@@ -20,9 +25,13 @@ class SplitModuleBuilder {
   }
 
   private static func makeOrdersViewController(
-    _ restaurantName: String
+    _ restaurantName: String,
+    closeAction: @escaping () -> Void
   ) -> UINavigationController {
-    let viewController = OrdersModuleBuilder.build(restaurantName)
+    let viewController = OrdersModuleBuilder.build(
+      restaurantName,
+      closeAction: closeAction
+    )
     let ordersViewController = UINavigationController(rootViewController: viewController)
     viewController.title = "Заказы"
     return ordersViewController

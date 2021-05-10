@@ -7,6 +7,31 @@
 
 import UIKit
 
-class OrdersPresenter {
+protocol OrdersOutput {
+  func loadOrders()
+  func closeOrders()
+}
 
+class OrdersPresenter {
+  weak var viewController: OrdersViewInput?
+  private let restaurantName: String
+  private let closeAction: () -> Void
+
+  init(
+    _ restaurantName: String,
+    closeAction: @escaping () -> Void
+  ) {
+    self.restaurantName = restaurantName
+    self.closeAction = closeAction
+  }
+}
+
+extension OrdersPresenter: OrdersOutput {
+  func loadOrders() {
+
+  }
+
+  func closeOrders() {
+    self.closeAction()
+  }
 }

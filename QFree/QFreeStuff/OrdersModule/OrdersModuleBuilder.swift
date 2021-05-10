@@ -8,7 +8,16 @@
 import UIKit
 
 class OrdersModuleBuilder {
-  static func build(_ restaurantName: String) -> UIViewController {
-    UIViewController()
+  static func build(
+    _ restaurantName: String,
+    closeAction: @escaping () -> Void
+  ) -> UIViewController {
+    let presenter = OrdersPresenter(
+      restaurantName,
+      closeAction: closeAction
+    )
+    let viewController = OrdersViewController(presenter: presenter)
+    presenter.viewController = viewController
+    return viewController
   }
 }
