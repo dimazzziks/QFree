@@ -150,7 +150,7 @@ class FirebaseHandler {
         completion(.success(currentOrderInfo))
     }
 
-    func getOrders(restaurants : [Restaurant], completion: @escaping (Result<[OrderInfo], NetworkingError>) -> ()) {
+    func getOrders(completion: @escaping (Result<[OrderInfo], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
             return
