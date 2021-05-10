@@ -278,7 +278,7 @@ class FirebaseHandler {
         }
     }
 
-    func loadOrders(restaurantName: String, completion: @escaping (Result<[OrderInfo], NetworkingError>) ->()) {
+    func loadAllOrders(by restaurantName: String, completion: @escaping (Result<[OrderInfo], NetworkingError>) ->()) {
         completion(.success([
             OrderInfo(
                 imageURL: "https://www.hse.ru/pubs/share/direct/305134103.jpg",
