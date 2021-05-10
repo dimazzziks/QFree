@@ -8,8 +8,8 @@
 import UIKit
 
 class SplitModuleBuilder {
-  static func build(_ restaurantName: String) -> SplitViewController {
-    let splitViewController = SplitViewController()
+  static func build(_ restaurantName: String) -> UISplitViewController {
+    let splitViewController = UISplitViewController()
     splitViewController.viewControllers = [
       makeOrdersViewController(restaurantName),
       makeOrderViewController()
