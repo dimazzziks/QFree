@@ -278,7 +278,7 @@ class FirebaseHandler {
         }
     }
 
-    func loadAllOrders(by restaurantName: String, completion: @escaping (Result<[OrderInfo], NetworkingError>) ->()) {
+    func loadAllOrders1(by restaurantName: String, completion: @escaping (Result<[OrderInfo], NetworkingError>) ->()) {
         completion(.success([
             OrderInfo(
                 imageURL: "https://www.hse.ru/pubs/share/direct/305134103.jpg",
@@ -333,6 +333,61 @@ class FirebaseHandler {
                 status: 0
             )
         ]))
+    }
+
+    func loadAllOrders(by restaurantName: String, completion: @escaping (Result<[OrderInfo], NetworkingError>) ->()) {
+      
+
+
+        let query = ref.child("Users") //.child(user).child("orders")
+        var ordersInfo: [OrderInfo] = []
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            if let data = snapshot.value as? [String: AnyObject] {
+                for (user, elem) in data {
+                    if let newElem = elem as? [String: AnyObject] {
+                        if let orders = newElem["orders"] as? [String: AnyObject] {
+                            for order in orders.values {
+                                if let newOrder = order as? [String: AnyObject] {
+                                    if let info = newOrder["info"] as? [String: AnyObject] {
+                                        if info["name"] as! String == restaurantName {
+                                            
+                                            
+                                            var products = [(productInfo: ProductInfo, amount: Int)]()
+                                            let responseProducts = newOrder["products"] as! [[String: AnyObject]]
+                                            for product in responseProducts {
+                                                let productInfo = ProductInfo(
+                                                    name: product["name"] as! String,
+                                                    imageLink: product["image"] as! String,
+                                                    price: Int(product["price"] as! String)!,
+                                                    category: (product["category"] as! [String]).map {
+                                                        Category(rawValue: $0)!
+                                                    },
+                                                    restaurantID: product["restaurantID"] as! String
+                                                )
+                                                let amount = Int(product["amount"] as! String)!
+                                                products.append((productInfo, amount))
+                                            }
+                                            
+                                            ordersInfo.append(OrderInfo(
+                                                imageURL: info["image"] as! String,
+                                                restaurantName: info["name"] as! String,
+                                                date: info["date"] as! String,
+                                                readyDate: info["readyDate"] as! String,
+                                                products: products,
+                                                number: info["number"] as! String,
+                                                status: Int(info["ready"] as! String)!
+                                            )
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            completion(.success(ordersInfo))
+        }
     }
 
     private func getFormattedEmail(email: String?) -> String {
