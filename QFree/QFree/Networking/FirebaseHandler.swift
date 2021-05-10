@@ -152,14 +152,9 @@ class FirebaseHandler {
             if let data = snapshot.value as? [String: AnyObject] {
                 for order in data {
                     let orders = order.value as! [String : AnyObject]
-                    var imageURL = ""
-                    var restaurantName = ""
                     var products = [(productInfo: ProductInfo, amount: Int)]()
-                    var responseProducts = orders["products"] as! [[String: AnyObject]]
+                    let responseProducts = orders["products"] as! [[String: AnyObject]]
                     for product in responseProducts {
-                        let index = Int(product["restaurantID"]! as! String)
-                        imageURL = restaurants[index!].image
-                        restaurantName = restaurants[index!].name
                         let productInfo = ProductInfo(
                             name: product["name"] as! String,
                             imageLink: product["image"] as! String,
