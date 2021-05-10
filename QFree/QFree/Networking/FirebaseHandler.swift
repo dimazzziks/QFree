@@ -283,7 +283,7 @@ class FirebaseHandler {
             OrderInfo(
                 imageURL: "https://www.hse.ru/pubs/share/direct/305134103.jpg",
                 restaurantName: "Столовая",
-                date: "1.2.3",
+                date: "12:45",
                 readyDate: "4.5.6",
                 products: [
                     (productInfo: ProductInfo(
@@ -303,13 +303,13 @@ class FirebaseHandler {
                     ),
                     amount: 3)
                 ],
-                number: "10",
+                number: "77",
                 status: 0
             ),
             OrderInfo(
                 imageURL: "https://www.hse.ru/pubs/share/direct/305134103.jpg",
                 restaurantName: "",
-                date: "",
+                date: "12:41",
                 readyDate: "",
                 products: [
                     (productInfo: ProductInfo(
@@ -329,7 +329,7 @@ class FirebaseHandler {
                     ),
                     amount: 1)
                 ],
-                number: "20",
+                number: "32",
                 status: 0
             )
         ]))

@@ -10,11 +10,13 @@ import UIKit
 class OrdersModuleBuilder {
   static func build(
     _ restaurantName: String,
-    closeAction: @escaping () -> Void
+    closeAction: @escaping () -> Void,
+    splitViewUpdater: SplitViewUpdater
   ) -> UIViewController {
     let presenter = OrdersPresenter(
       restaurantName,
-      closeAction: closeAction
+      closeAction: closeAction,
+      splitViewUpdater: splitViewUpdater
     )
     let viewController = OrdersViewController(presenter: presenter)
     presenter.viewController = viewController

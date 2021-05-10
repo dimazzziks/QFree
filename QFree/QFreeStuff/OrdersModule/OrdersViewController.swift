@@ -25,6 +25,17 @@ class OrdersViewController: UIViewController, OrdersViewInput {
     tableView.dataSource = self
     tableView.delegate = self
     tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.register(
+      OrderPreviewCell.self,
+      forCellReuseIdentifier: OrderPreviewCell.reuseIdentifier
+    )
+    tableView.register(
+      UINib(
+        nibName: String(describing: OrderPreviewCell.self),
+        bundle: nil
+      ),
+      forCellReuseIdentifier: OrderPreviewCell.reuseIdentifier
+    )
     return tableView
   }()
 
@@ -93,8 +104,23 @@ extension OrdersViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    UITableViewCell()
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: OrderPreviewCell.reuseIdentifier,
+      for: indexPath
+    ) as! OrderPreviewCell
+    let currentOrderInfo = orders[indexPath.row]
+    cell.configure(orderInfo: currentOrderInfo)
+    return cell
+  }
+
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    70
   }
 }
 
-extension OrdersViewController: UITableViewDelegate { }
+extension OrdersViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let currentOrder = orders[indexPath.row]
+    presenter.selectCellWith(currentOrder)
+  }
+}

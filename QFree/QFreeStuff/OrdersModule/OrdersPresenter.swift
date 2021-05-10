@@ -10,19 +10,23 @@ import UIKit
 protocol OrdersOutput {
   func loadOrders()
   func closeOrders()
+  func selectCellWith(_ order: OrderInfo)
 }
 
 class OrdersPresenter {
   weak var viewController: OrdersViewInput?
   private let restaurantName: String
   private let closeAction: () -> Void
+  private let splitViewUpdater: SplitViewUpdater
 
   init(
     _ restaurantName: String,
-    closeAction: @escaping () -> Void
+    closeAction: @escaping () -> Void,
+    splitViewUpdater: SplitViewUpdater
   ) {
     self.restaurantName = restaurantName
     self.closeAction = closeAction
+    self.splitViewUpdater = splitViewUpdater
   }
 }
 
@@ -40,6 +44,10 @@ extension OrdersPresenter: OrdersOutput {
   }
 
   func closeOrders() {
-    self.closeAction()
+    closeAction()
+  }
+
+  func selectCellWith(_ order: OrderInfo) {
+    splitViewUpdater.updateOrderInfoAction?(order)
   }
 }

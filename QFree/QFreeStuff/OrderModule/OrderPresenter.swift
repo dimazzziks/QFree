@@ -7,6 +7,16 @@
 
 import UIKit
 
+protocol OrderOutput: class {
+  func showOrderInfo(_ order: OrderInfo)
+}
+
 class OrderPresenter {
-  
+  weak var viewController: OrderViewInput?
+}
+
+extension OrderPresenter: OrderOutput {
+  func showOrderInfo(_ order: OrderInfo) {
+    viewController?.updateOrderInfo(order)
+  }
 }

@@ -85,6 +85,9 @@
 		346F7EE5264988D500AC9A30 /* OrderModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7EE4264988D500AC9A30 /* OrderModuleBuilder.swift */; };
 		346F7EEB26498A7B00AC9A30 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7EEA26498A7B00AC9A30 /* OrderViewController.swift */; };
 		346F7EEF26498A9000AC9A30 /* OrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7EEE26498A9000AC9A30 /* OrderPresenter.swift */; };
+		346F7EFF2649BA6000AC9A30 /* OrderPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7EFD2649BA6000AC9A30 /* OrderPreviewCell.swift */; };
+		346F7F002649BA6000AC9A30 /* OrderPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 346F7EFE2649BA6000AC9A30 /* OrderPreviewCell.xib */; };
+		346F7F062649C74800AC9A30 /* SplitViewUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7F052649C74800AC9A30 /* SplitViewUpdater.swift */; };
 		76DE921A1522141D71C1E145 /* Pods_QFreeStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A97D92891732DB7F7E5A76 /* Pods_QFreeStuff.framework */; };
 		9D5ED244257D016C006EF47E /* FirebaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5ED243257D016C006EF47E /* FirebaseHandler.swift */; };
 		B7086558255AE6CB00665E2C /* RestaurantMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086555255AE6CA00665E2C /* RestaurantMenuTableViewController.swift */; };
@@ -200,6 +203,9 @@
 		346F7EE4264988D500AC9A30 /* OrderModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModuleBuilder.swift; sourceTree = "<group>"; };
 		346F7EEA26498A7B00AC9A30 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		346F7EEE26498A9000AC9A30 /* OrderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPresenter.swift; sourceTree = "<group>"; };
+		346F7EFD2649BA6000AC9A30 /* OrderPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPreviewCell.swift; sourceTree = "<group>"; };
+		346F7EFE2649BA6000AC9A30 /* OrderPreviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderPreviewCell.xib; sourceTree = "<group>"; };
+		346F7F052649C74800AC9A30 /* SplitViewUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewUpdater.swift; sourceTree = "<group>"; };
 		4276A4CA41B108E8576702E9 /* Pods_QFree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QFree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		428DF78EB99EC92C9351C54B /* Pods-QFreeStuff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QFreeStuff.release.xcconfig"; path = "Target Support Files/Pods-QFreeStuff/Pods-QFreeStuff.release.xcconfig"; sourceTree = "<group>"; };
 		9D5ED243257D016C006EF47E /* FirebaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
@@ -496,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				346F7EC8264983F300AC9A30 /* SplitModuleBuilder.swift */,
+				346F7F052649C74800AC9A30 /* SplitViewUpdater.swift */,
 			);
 			path = SplitModule;
 			sourceTree = "<group>";
@@ -503,6 +510,7 @@
 		346F7ECE2649881600AC9A30 /* OrdersModule */ = {
 			isa = PBXGroup;
 			children = (
+				346F7EFC2649BA3B00AC9A30 /* OrderPreviewCell */,
 				346F7ECF2649882900AC9A30 /* OrdersModuleBuilder.swift */,
 				346F7ED52649886400AC9A30 /* OrdersViewController.swift */,
 				346F7ED92649887E00AC9A30 /* OrdersPresenter.swift */,
@@ -518,6 +526,15 @@
 				346F7EEE26498A9000AC9A30 /* OrderPresenter.swift */,
 			);
 			path = OrderModule;
+			sourceTree = "<group>";
+		};
+		346F7EFC2649BA3B00AC9A30 /* OrderPreviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				346F7EFD2649BA6000AC9A30 /* OrderPreviewCell.swift */,
+				346F7EFE2649BA6000AC9A30 /* OrderPreviewCell.xib */,
+			);
+			path = OrderPreviewCell;
 			sourceTree = "<group>";
 		};
 		682860BBB01170A36DA22FAD /* Pods */ = {
@@ -781,6 +798,7 @@
 				346F7E422649667200AC9A30 /* LaunchScreen.storyboard in Resources */,
 				346F7E3F2649667200AC9A30 /* Assets.xcassets in Resources */,
 				346F7E62264968AD00AC9A30 /* GoogleService-Info.plist in Resources */,
+				346F7F002649BA6000AC9A30 /* OrderPreviewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -973,6 +991,7 @@
 				346F7EA3264971C500AC9A30 /* RestaurantModel.swift in Sources */,
 				346F7E552649676200AC9A30 /* UIColor+hex.swift in Sources */,
 				346F7EC9264983F300AC9A30 /* SplitModuleBuilder.swift in Sources */,
+				346F7F062649C74800AC9A30 /* SplitViewUpdater.swift in Sources */,
 				346F7EBB26497B4700AC9A30 /* CachedImageView.swift in Sources */,
 				346F7EE5264988D500AC9A30 /* OrderModuleBuilder.swift in Sources */,
 				346F7ED62649886400AC9A30 /* OrdersViewController.swift in Sources */,
@@ -982,6 +1001,7 @@
 				346F7ED02649882900AC9A30 /* OrdersModuleBuilder.swift in Sources */,
 				346F7E9E26496F5700AC9A30 /* RestaurantsListPresenter.swift in Sources */,
 				346F7E9326496EDB00AC9A30 /* RestaurantsListModuleBuilder.swift in Sources */,
+				346F7EFF2649BA6000AC9A30 /* OrderPreviewCell.swift in Sources */,
 				346F7EA6264971CE00AC9A30 /* FirebaseHandler.swift in Sources */,
 				346F7EEF26498A9000AC9A30 /* OrderPresenter.swift in Sources */,
 				346F7EB22649754600AC9A30 /* ProductModel.swift in Sources */,
