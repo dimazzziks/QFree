@@ -100,5 +100,14 @@ extension RestaurantsListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension RestaurantsListViewController: UICollectionViewDelegate {
-
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
+    let restaurantName = restaurants[indexPath.row].name
+    present(
+      SplitModuleBuilder.build(restaurantName),
+      animated: true
+    )
+  }
 }

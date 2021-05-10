@@ -8,10 +8,10 @@
 import UIKit
 
 class RestaurantsListModuleBuilder {
-  static func build() -> UIViewController {
+  static func build() -> UINavigationController {
     let presenter = RestaurantsListPresenter()
     let viewController = RestaurantsListViewController(presenter: presenter)
     presenter.viewController = viewController
-    return viewController
+    return UINavigationController(rootViewController: viewController)
   }
 }
