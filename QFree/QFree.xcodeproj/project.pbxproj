@@ -58,6 +58,14 @@
 		345CB42825AB6393001FC9F5 /* OrdersModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CB42725AB6393001FC9F5 /* OrdersModuleBuilder.swift */; };
 		34668E8025AB65E600D3627A /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34668E7F25AB65E600D3627A /* OrderTableViewCell.swift */; };
 		34668E8525AB69B300D3627A /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34668E8425AB69B300D3627A /* OrderInfo.swift */; };
+		346F7E362649667000AC9A30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7E352649667000AC9A30 /* AppDelegate.swift */; };
+		346F7E382649667000AC9A30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7E372649667000AC9A30 /* SceneDelegate.swift */; };
+		346F7E3A2649667000AC9A30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7E392649667000AC9A30 /* ViewController.swift */; };
+		346F7E3F2649667200AC9A30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346F7E3E2649667200AC9A30 /* Assets.xcassets */; };
+		346F7E422649667200AC9A30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 346F7E402649667200AC9A30 /* LaunchScreen.storyboard */; };
+		346F7E4F264966EC00AC9A30 /* Brandbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F3254385C0006D1361 /* Brandbook.swift */; };
+		346F7E552649676200AC9A30 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F72543891C006D1361 /* UIColor+hex.swift */; };
+		346F7E62264968AD00AC9A30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 345522D52544B02800495E5F /* GoogleService-Info.plist */; };
 		9D5ED244257D016C006EF47E /* FirebaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5ED243257D016C006EF47E /* FirebaseHandler.swift */; };
 		B7086558255AE6CB00665E2C /* RestaurantMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086555255AE6CA00665E2C /* RestaurantMenuTableViewController.swift */; };
 		B7086559255AE6CB00665E2C /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086556255AE6CA00665E2C /* ProductTableViewCell.swift */; };
@@ -154,6 +162,13 @@
 		345CB42725AB6393001FC9F5 /* OrdersModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModuleBuilder.swift; sourceTree = "<group>"; };
 		34668E7F25AB65E600D3627A /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		34668E8425AB69B300D3627A /* OrderInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfo.swift; sourceTree = "<group>"; };
+		346F7E332649667000AC9A30 /* QFreeStuff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFreeStuff.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		346F7E352649667000AC9A30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		346F7E372649667000AC9A30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		346F7E392649667000AC9A30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		346F7E3E2649667200AC9A30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		346F7E412649667200AC9A30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		346F7E432649667200AC9A30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4276A4CA41B108E8576702E9 /* Pods_QFree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QFree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D5ED243257D016C006EF47E /* FirebaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
 		A5B42705DBC48C7900253926 /* Pods-QFree.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QFree.release.xcconfig"; path = "Target Support Files/Pods-QFree/Pods-QFree.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +220,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		346F7E302649667000AC9A30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -220,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				340F1A7825420773000A381D /* QFree */,
+				346F7E342649667000AC9A30 /* QFreeStuff */,
 				340F1A7725420773000A381D /* Products */,
 				682860BBB01170A36DA22FAD /* Pods */,
 				321D1BA44B347AAD6F3BBE95 /* Frameworks */,
@@ -230,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				340F1A7625420773000A381D /* QFree.app */,
+				346F7E332649667000AC9A30 /* QFreeStuff.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -398,6 +422,19 @@
 				34668E8425AB69B300D3627A /* OrderInfo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		346F7E342649667000AC9A30 /* QFreeStuff */ = {
+			isa = PBXGroup;
+			children = (
+				346F7E352649667000AC9A30 /* AppDelegate.swift */,
+				346F7E372649667000AC9A30 /* SceneDelegate.swift */,
+				346F7E392649667000AC9A30 /* ViewController.swift */,
+				346F7E3E2649667200AC9A30 /* Assets.xcassets */,
+				346F7E402649667200AC9A30 /* LaunchScreen.storyboard */,
+				346F7E432649667200AC9A30 /* Info.plist */,
+			);
+			path = QFreeStuff;
 			sourceTree = "<group>";
 		};
 		682860BBB01170A36DA22FAD /* Pods */ = {
@@ -586,17 +623,37 @@
 			productReference = 340F1A7625420773000A381D /* QFree.app */;
 			productType = "com.apple.product-type.application";
 		};
+		346F7E322649667000AC9A30 /* QFreeStuff */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 346F7E462649667200AC9A30 /* Build configuration list for PBXNativeTarget "QFreeStuff" */;
+			buildPhases = (
+				346F7E2F2649667000AC9A30 /* Sources */,
+				346F7E302649667000AC9A30 /* Frameworks */,
+				346F7E312649667000AC9A30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QFreeStuff;
+			productName = QFreeStuff;
+			productReference = 346F7E332649667000AC9A30 /* QFreeStuff.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		340F1A6E25420772000A381D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					340F1A7525420773000A381D = {
 						CreatedOnToolsVersion = 12.0.1;
+					};
+					346F7E322649667000AC9A30 = {
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -614,6 +671,7 @@
 			projectRoot = "";
 			targets = (
 				340F1A7525420773000A381D /* QFree */,
+				346F7E322649667000AC9A30 /* QFreeStuff */,
 			);
 		};
 /* End PBXProject section */
@@ -626,6 +684,16 @@
 				340F1A8625420775000A381D /* LaunchScreen.storyboard in Resources */,
 				B7C9C03D25764CB500FBD340 /* Assets.xcassets in Resources */,
 				345522D62544B02800495E5F /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		346F7E312649667000AC9A30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				346F7E422649667200AC9A30 /* LaunchScreen.storyboard in Resources */,
+				346F7E3F2649667200AC9A30 /* Assets.xcassets in Resources */,
+				346F7E62264968AD00AC9A30 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +835,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		346F7E2F2649667000AC9A30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				346F7E4F264966EC00AC9A30 /* Brandbook.swift in Sources */,
+				346F7E3A2649667000AC9A30 /* ViewController.swift in Sources */,
+				346F7E552649676200AC9A30 /* UIColor+hex.swift in Sources */,
+				346F7E362649667000AC9A30 /* AppDelegate.swift in Sources */,
+				346F7E382649667000AC9A30 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -774,6 +854,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				340F1A8525420775000A381D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		346F7E402649667200AC9A30 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				346F7E412649667200AC9A30 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -916,7 +1004,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -937,7 +1025,47 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MS.QFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		346F7E442649667200AC9A30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9ZB2A7WP7E;
+				INFOPLIST_FILE = QFreeStuff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MS.QFreeStuff;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		346F7E452649667200AC9A30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9ZB2A7WP7E;
+				INFOPLIST_FILE = QFreeStuff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MS.QFreeStuff;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -958,6 +1086,15 @@
 			buildConfigurations = (
 				340F1A8B25420775000A381D /* Debug */,
 				340F1A8C25420775000A381D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		346F7E462649667200AC9A30 /* Build configuration list for PBXNativeTarget "QFreeStuff" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				346F7E442649667200AC9A30 /* Debug */,
+				346F7E452649667200AC9A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
