@@ -54,6 +54,7 @@ class OrdersViewController: UIViewController, OrdersViewInput {
 
     view.backgroundColor = .white
     setupViews()
+    presenter.loadOrders()
   }
 
   private func setupViews() {
@@ -96,6 +97,4 @@ extension OrdersViewController: UITableViewDataSource {
   }
 }
 
-extension OrdersViewController: UITableViewDelegate {
-
-}
+extension OrdersViewController: UITableViewDelegate { }

@@ -22,7 +22,7 @@ class FirebaseHandler {
     }()
 
     private init() { }
-    
+
     func getRestaurantsInfo(completion: @escaping (Result<[Restaurant], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
@@ -45,7 +45,7 @@ class FirebaseHandler {
             completion(.failure(.invalidResponse))
         }
     }
-    
+
     func getProductsByIDRestaurant(id: String, completion: @escaping (Result<[ProductInfo], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
@@ -65,7 +65,7 @@ class FirebaseHandler {
                     if product.restaurantID == id {
                         products.append(product)
                     }
-                    
+
                 }
             }
             completion(.success(products))
@@ -73,7 +73,7 @@ class FirebaseHandler {
             completion(.failure(.invalidResponse))
         }
     }
-    
+
     func getBasket(completion: @escaping (Result<[ProductInfo : Int], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
@@ -81,14 +81,14 @@ class FirebaseHandler {
         }
 
         guard let user = user else {
-          completion(.failure(.invalidResponse))
-          return
+            completion(.failure(.invalidResponse))
+            return
         }
 
         var basket: [ProductInfo : Int] = [ProductInfo : Int]()
         self.ref.child("Users").child(user).child("basket").observeSingleEvent(of: .value, with: { (snapshot) in
             let data = snapshot.value as? [[String: AnyObject]]
-            
+
             if data != nil {
                 for i in data! {
                     let rawValues = i["category"] as! [String]
@@ -108,7 +108,7 @@ class FirebaseHandler {
             completion(.failure(.invalidResponse))
         }
     }
-    
+
     func postBasket(products: [ProductInfo : Int], completion: @escaping (NetworkingError?) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.noInternetConnection)
@@ -116,8 +116,8 @@ class FirebaseHandler {
         }
 
         guard let user = user else {
-          completion(.invalidResponse)
-          return
+            completion(.invalidResponse)
+            return
         }
 
         var basket: [[NSString : NSObject]] = [[NSString : NSObject]]()
@@ -134,7 +134,7 @@ class FirebaseHandler {
         self.ref.child("Users").child(user).child("basket").setValue(basket)
         completion(nil)
     }
-    
+
     func getCurrentOrderStatus(completion: @escaping (Result<OrderStatus, NetworkingError>) ->()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
@@ -157,8 +157,8 @@ class FirebaseHandler {
         }
 
         guard let user = user else {
-          completion(.failure(.invalidResponse))
-          return
+            completion(.failure(.invalidResponse))
+            return
         }
 
         let query = ref.child("Users").child(user).child("orders")
@@ -182,7 +182,7 @@ class FirebaseHandler {
                         let amount = Int(product["amount"] as! String)!
                         products.append((productInfo, amount))
                     }
-                    
+
                     let orderInfo = orders["info"] as! [String: AnyObject]
                     ordersInfo.append(
                         OrderInfo(
@@ -193,7 +193,7 @@ class FirebaseHandler {
                             products: products,
                             number: orderInfo["number"] as! String,
                             status: Int(orderInfo["ready"] as! String)!
-                            
+
                         )
                     )
                 }
@@ -208,8 +208,8 @@ class FirebaseHandler {
                     products: $0.products,
                     number: $0.number,
                     status: $0.status
-                    
-                    
+
+
                 )
             }
             completion(.success(formattedOrdersInfo))
@@ -228,8 +228,8 @@ class FirebaseHandler {
         }
 
         guard let user = user else {
-          completion(.invalidResponse)
-          return
+            completion(.invalidResponse)
+            return
         }
 
         getBasket { result in
@@ -245,20 +245,20 @@ class FirebaseHandler {
                     item["amount"] = String(amount) as NSString
                     item["category"] = product.category.map { $0.rawValue } as NSArray
                     order.append(item)
-                    
+
                 }
-                
+
                 let index = Int(Array(basket.keys)[0].restaurantID)
-                
+
                 let imageURL = restaurants[index!].image
                 let restaurantName = restaurants[index!].name
                 let calendar = Calendar.current
                 let readyDate = calendar.date(byAdding: .minute, value: 30, to: Date())
                 let readyDateStr = self.getTimestamp(date: readyDate!)
                 let isReady = "0"
-                
+
                 let hash = self.getTimestamp(date:  Date())
-                
+
                 var info: [NSString : NSObject] = [NSString : NSObject]()
                 info["image"] = imageURL as NSString
                 info["name"] = restaurantName as NSString
@@ -266,7 +266,7 @@ class FirebaseHandler {
                 info["readyDate"] = readyDateStr as NSString
                 info["number"] = String(number) as NSString
                 info["ready"] = isReady as NSString
-                
+
                 self.ref.child("Users").child(user).child("orders").child(hash).child("products").setValue(order)
                 self.ref.child("Users").child(user).child("orders").child(hash).child("info").setValue(info)
                 self.ref.child("Users").child(user).child("basket").removeValue()
@@ -276,6 +276,63 @@ class FirebaseHandler {
                 return
             }
         }
+    }
+
+    func loadOrders(restaurantName: String, completion: @escaping (Result<[OrderInfo], NetworkingError>) ->()) {
+        completion(.success([
+            OrderInfo(
+                imageURL: "https://www.hse.ru/pubs/share/direct/305134103.jpg",
+                restaurantName: "Столовая",
+                date: "1.2.3",
+                readyDate: "4.5.6",
+                products: [
+                    (productInfo: ProductInfo(
+                        name: "Кофе",
+                        imageLink: "https://static.tildacdn.com/tild6135-3262-4039-b030-373036336563/_.jpg",
+                        price: 250,
+                        category: [.bakery],
+                        restaurantID: "0"
+                    ),
+                    amount: 1),
+                    (productInfo: ProductInfo(
+                        name: "",
+                        imageLink: "",
+                        price: 0,
+                        category: [.bakery],
+                        restaurantID: "0"
+                    ),
+                    amount: 3)
+                ],
+                number: "10",
+                status: 0
+            ),
+            OrderInfo(
+                imageURL: "https://www.hse.ru/pubs/share/direct/305134103.jpg",
+                restaurantName: "",
+                date: "",
+                readyDate: "",
+                products: [
+                    (productInfo: ProductInfo(
+                        name: "Салат",
+                        imageLink: "https://static.tildacdn.com/tild6135-3262-4039-b030-373036336563/_.jpg",
+                        price: 200,
+                        category: [.bakery],
+                        restaurantID: ""
+                    ),
+                    amount: 2),
+                    (productInfo: ProductInfo(
+                        name: "Салат",
+                        imageLink: "https://static.tildacdn.com/tild6135-3262-4039-b030-373036336563/_.jpg",
+                        price: 300,
+                        category: [.bakery],
+                        restaurantID: "0"
+                    ),
+                    amount: 1)
+                ],
+                number: "20",
+                status: 0
+            )
+        ]))
     }
 
     private func getFormattedEmail(email: String?) -> String {

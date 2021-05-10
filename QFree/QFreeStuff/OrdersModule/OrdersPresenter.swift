@@ -28,7 +28,15 @@ class OrdersPresenter {
 
 extension OrdersPresenter: OrdersOutput {
   func loadOrders() {
-
+    FirebaseHandler.shared.loadOrders(
+      restaurantName: restaurantName) { result in
+      switch result {
+      case .success(let orders):
+        self.viewController?.orders = orders
+      case .failure(let error):
+        print(error)
+      }
+    }
   }
 
   func closeOrders() {
