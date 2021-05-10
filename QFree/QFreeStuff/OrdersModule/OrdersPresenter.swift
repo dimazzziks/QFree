@@ -10,7 +10,7 @@ import UIKit
 protocol OrdersOutput {
   func loadOrders()
   func closeOrders()
-  func selectCellWith(_ order: OrderInfo)
+  func updateOrderInfo(_ order: OrderInfo)
 }
 
 class OrdersPresenter {
@@ -47,7 +47,7 @@ extension OrdersPresenter: OrdersOutput {
     closeAction()
   }
 
-  func selectCellWith(_ order: OrderInfo) {
-    splitViewUpdater.updateOrderInfoAction?(order)
+  func updateOrderInfo(_ order: OrderInfo) {
+    splitViewUpdater.updateOrderInfo?(order)
   }
 }

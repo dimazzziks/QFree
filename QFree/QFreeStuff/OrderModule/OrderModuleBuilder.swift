@@ -12,8 +12,8 @@ class OrderModuleBuilder {
     splitViewUpdater: SplitViewUpdater
   ) -> UIViewController {
     let presenter = OrderPresenter()
-    splitViewUpdater.updateOrderInfoAction = { order in
-      presenter.showOrderInfo(order)
+    splitViewUpdater.updateOrderInfo = { order in
+      presenter.updateOrderInfo(order)
     }
     let viewController = OrderViewController(presenter: presenter)
     presenter.viewController = viewController

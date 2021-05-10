@@ -8,5 +8,5 @@
 import Foundation
 
 class SplitViewUpdater {
-  var updateOrderInfoAction: ((OrderInfo) -> Void)?
+  var updateOrderInfo: ((OrderInfo) -> Void)?
 }

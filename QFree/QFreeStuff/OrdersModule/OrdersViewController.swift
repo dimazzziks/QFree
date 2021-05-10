@@ -121,6 +121,6 @@ extension OrdersViewController: UITableViewDataSource {
 extension OrdersViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let currentOrder = orders[indexPath.row]
-    presenter.selectCellWith(currentOrder)
+    presenter.updateOrderInfo(currentOrder)
   }
 }

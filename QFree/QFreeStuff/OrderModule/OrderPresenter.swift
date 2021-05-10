@@ -8,7 +8,7 @@
 import UIKit
 
 protocol OrderOutput: class {
-  func showOrderInfo(_ order: OrderInfo)
+  func updateOrderInfo(_ order: OrderInfo)
 }
 
 class OrderPresenter {
@@ -16,7 +16,7 @@ class OrderPresenter {
 }
 
 extension OrderPresenter: OrderOutput {
-  func showOrderInfo(_ order: OrderInfo) {
+  func updateOrderInfo(_ order: OrderInfo) {
     viewController?.updateOrderInfo(order)
   }
 }
