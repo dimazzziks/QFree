@@ -21,7 +21,15 @@ class OrderPreviewCell: UITableViewCell {
   @IBOutlet weak var orderTimeLabel: UILabel!
 
   func configure(orderInfo: OrderInfo) {
-    orderNumberLabel.text = orderInfo.number
-    orderTimeLabel.text = orderInfo.date
+    orderNumberLabel.text = "№\(orderInfo.number)"
+    orderTimeLabel.text = getFormattedDate(orderInfo.date)
   }
+}
+
+private func getFormattedDate(_ timeIntervalSinceReference: String) -> String {
+    let timeInterval = TimeInterval(timeIntervalSinceReference.replacingOccurrences(of: "_", with: "."))
+    let date = Date(timeIntervalSinceReferenceDate: timeInterval!)
+    let dateformat = DateFormatter()
+    dateformat.dateFormat = "hh:mm"
+    return dateformat.string(from: date)
 }

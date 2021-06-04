@@ -278,65 +278,8 @@ class FirebaseHandler {
         }
     }
 
-    func loadAllOrders1(by restaurantName: String, completion: @escaping (Result<[OrderInfo], NetworkingError>) ->()) {
-        completion(.success([
-            OrderInfo(
-                imageURL: "https://www.hse.ru/pubs/share/direct/305134103.jpg",
-                restaurantName: "Столовая",
-                date: "12:45",
-                readyDate: "4.5.6",
-                products: [
-                    (productInfo: ProductInfo(
-                        name: "Кофе",
-                        imageLink: "https://static.tildacdn.com/tild6135-3262-4039-b030-373036336563/_.jpg",
-                        price: 250,
-                        category: [.bakery],
-                        restaurantID: "0"
-                    ),
-                    amount: 1),
-                    (productInfo: ProductInfo(
-                        name: "",
-                        imageLink: "",
-                        price: 0,
-                        category: [.bakery],
-                        restaurantID: "0"
-                    ),
-                    amount: 3)
-                ],
-                number: "77",
-                status: 0
-            ),
-            OrderInfo(
-                imageURL: "https://www.hse.ru/pubs/share/direct/305134103.jpg",
-                restaurantName: "",
-                date: "12:41",
-                readyDate: "",
-                products: [
-                    (productInfo: ProductInfo(
-                        name: "Салат",
-                        imageLink: "https://static.tildacdn.com/tild6135-3262-4039-b030-373036336563/_.jpg",
-                        price: 200,
-                        category: [.bakery],
-                        restaurantID: ""
-                    ),
-                    amount: 2),
-                    (productInfo: ProductInfo(
-                        name: "Салат",
-                        imageLink: "https://static.tildacdn.com/tild6135-3262-4039-b030-373036336563/_.jpg",
-                        price: 300,
-                        category: [.bakery],
-                        restaurantID: "0"
-                    ),
-                    amount: 1)
-                ],
-                number: "32",
-                status: 0
-            )
-        ]))
-    }
-
     func loadAllOrders(by restaurantName: String, completion: @escaping (Result<[OrderInfo], NetworkingError>) ->()) {
-      
+
 
 
         let query = ref.child("Users") //.child(user).child("orders")

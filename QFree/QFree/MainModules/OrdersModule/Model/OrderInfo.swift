@@ -17,5 +17,16 @@ struct OrderInfo {
     var products: Products
     var number: String
     var status: Int
-    
+}
+
+extension OrderInfo {
+  var totalPrice: Int {
+    products.reduce(0) {
+      $0 + $1.productInfo.price * $1.amount
+    }
+  }
+
+  var isCompleted: Bool {
+    status == 1
+  }
 }
