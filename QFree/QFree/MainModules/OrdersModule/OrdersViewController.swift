@@ -28,9 +28,9 @@ class OrdersViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         FirebaseHandler.shared.getRestaurantsInfo( completion: { result in
             switch result {
-            case .success(let restaurants):
+            case .success:
                 print("ok")
-                self.getOrders(restaurants: restaurants)
+                self.getOrders()
             case .failure(let error):
                 if error == .noInternetConnection {
                     //FIXME:
@@ -40,8 +40,8 @@ class OrdersViewController: BaseViewController {
         })
     }
 
-    private func getOrders(restaurants : [Restaurant]) {
-        FirebaseHandler.shared.getOrders(restaurants :  restaurants, completion: { result in
+    private func getOrders() {
+        FirebaseHandler.shared.getOrders(completion: { result in
             switch result {
             case .success(let ordersInfo):
                 self.orders = ordersInfo

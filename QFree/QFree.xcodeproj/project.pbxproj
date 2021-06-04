@@ -58,6 +58,40 @@
 		345CB42825AB6393001FC9F5 /* OrdersModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CB42725AB6393001FC9F5 /* OrdersModuleBuilder.swift */; };
 		34668E8025AB65E600D3627A /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34668E7F25AB65E600D3627A /* OrderTableViewCell.swift */; };
 		34668E8525AB69B300D3627A /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34668E8425AB69B300D3627A /* OrderInfo.swift */; };
+		346F7E362649667000AC9A30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7E352649667000AC9A30 /* AppDelegate.swift */; };
+		346F7E382649667000AC9A30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7E372649667000AC9A30 /* SceneDelegate.swift */; };
+		346F7E3F2649667200AC9A30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346F7E3E2649667200AC9A30 /* Assets.xcassets */; };
+		346F7E422649667200AC9A30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 346F7E402649667200AC9A30 /* LaunchScreen.storyboard */; };
+		346F7E4F264966EC00AC9A30 /* Brandbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F3254385C0006D1361 /* Brandbook.swift */; };
+		346F7E552649676200AC9A30 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341184F72543891C006D1361 /* UIColor+hex.swift */; };
+		346F7E62264968AD00AC9A30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 345522D52544B02800495E5F /* GoogleService-Info.plist */; };
+		346F7E9326496EDB00AC9A30 /* RestaurantsListModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7E9226496EDB00AC9A30 /* RestaurantsListModuleBuilder.swift */; };
+		346F7E9A26496F4600AC9A30 /* RestaurantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7E9926496F4600AC9A30 /* RestaurantsListViewController.swift */; };
+		346F7E9E26496F5700AC9A30 /* RestaurantsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7E9D26496F5700AC9A30 /* RestaurantsListPresenter.swift */; };
+		346F7EA3264971C500AC9A30 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228F22548EAD10052A546 /* RestaurantModel.swift */; };
+		346F7EA6264971CE00AC9A30 /* FirebaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5ED243257D016C006EF47E /* FirebaseHandler.swift */; };
+		346F7EA92649753300AC9A30 /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC547257ED86B001AADF6 /* OrderStatus.swift */; };
+		346F7EAC2649753800AC9A30 /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34668E8425AB69B300D3627A /* OrderInfo.swift */; };
+		346F7EAF2649753E00AC9A30 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451925D25A27FAD00B075F2 /* NetworkingError.swift */; };
+		346F7EB22649754600AC9A30 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086557255AE6CA00665E2C /* ProductModel.swift */; };
+		346F7EB52649755B00AC9A30 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451925725A271B400B075F2 /* Reachability.swift */; };
+		346F7EB826497B2100AC9A30 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78228F12548EAD10052A546 /* RestaurantCell.swift */; };
+		346F7EBB26497B4700AC9A30 /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71E8C6C258E5CF0007C881D /* CachedImageView.swift */; };
+		346F7EBE26497B5200AC9A30 /* UIView+addShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EC543257ED156001AADF6 /* UIView+addShadow.swift */; };
+		346F7EC9264983F300AC9A30 /* SplitModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7EC8264983F300AC9A30 /* SplitModuleBuilder.swift */; };
+		346F7ED02649882900AC9A30 /* OrdersModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7ECF2649882900AC9A30 /* OrdersModuleBuilder.swift */; };
+		346F7ED62649886400AC9A30 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7ED52649886400AC9A30 /* OrdersViewController.swift */; };
+		346F7EDA2649887E00AC9A30 /* OrdersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7ED92649887E00AC9A30 /* OrdersPresenter.swift */; };
+		346F7EE5264988D500AC9A30 /* OrderModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7EE4264988D500AC9A30 /* OrderModuleBuilder.swift */; };
+		346F7EEB26498A7B00AC9A30 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7EEA26498A7B00AC9A30 /* OrderViewController.swift */; };
+		346F7EEF26498A9000AC9A30 /* OrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7EEE26498A9000AC9A30 /* OrderPresenter.swift */; };
+		346F7EFF2649BA6000AC9A30 /* OrderPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7EFD2649BA6000AC9A30 /* OrderPreviewCell.swift */; };
+		346F7F002649BA6000AC9A30 /* OrderPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 346F7EFE2649BA6000AC9A30 /* OrderPreviewCell.xib */; };
+		346F7F062649C74800AC9A30 /* SplitViewUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F7F052649C74800AC9A30 /* SplitViewUpdater.swift */; };
+		347D6F222669A8AB0032AB4F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086556255AE6CA00665E2C /* ProductTableViewCell.swift */; };
+		347D6F2C2669AD820032AB4F /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3442CA13254398DB0079B5AB /* BaseButton.swift */; };
+		347D6F422669B2D60032AB4F /* OrderInfoBottomPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D6F412669B2D60032AB4F /* OrderInfoBottomPanel.swift */; };
+		76DE921A1522141D71C1E145 /* Pods_QFreeStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A97D92891732DB7F7E5A76 /* Pods_QFreeStuff.framework */; };
 		9D5ED244257D016C006EF47E /* FirebaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5ED243257D016C006EF47E /* FirebaseHandler.swift */; };
 		B7086558255AE6CB00665E2C /* RestaurantMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086555255AE6CA00665E2C /* RestaurantMenuTableViewController.swift */; };
 		B7086559255AE6CB00665E2C /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7086556255AE6CA00665E2C /* ProductTableViewCell.swift */; };
@@ -100,7 +134,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DFC77CD0AF3D6E958AEB73E /* Pods-QFreeStuff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QFreeStuff.debug.xcconfig"; path = "Target Support Files/Pods-QFreeStuff/Pods-QFreeStuff.debug.xcconfig"; sourceTree = "<group>"; };
 		17239FE9A9A689730F68C06F /* Pods-QFree.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QFree.debug.xcconfig"; path = "Target Support Files/Pods-QFree/Pods-QFree.debug.xcconfig"; sourceTree = "<group>"; };
+		18A97D92891732DB7F7E5A76 /* Pods_QFreeStuff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QFreeStuff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		340F1A7625420773000A381D /* QFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		340F1A7925420773000A381D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		340F1A7B25420773000A381D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,7 +190,28 @@
 		345CB42725AB6393001FC9F5 /* OrdersModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModuleBuilder.swift; sourceTree = "<group>"; };
 		34668E7F25AB65E600D3627A /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		34668E8425AB69B300D3627A /* OrderInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfo.swift; sourceTree = "<group>"; };
+		346F7E332649667000AC9A30 /* QFreeStuff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFreeStuff.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		346F7E352649667000AC9A30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		346F7E372649667000AC9A30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		346F7E3E2649667200AC9A30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		346F7E412649667200AC9A30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		346F7E432649667200AC9A30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		346F7E9226496EDB00AC9A30 /* RestaurantsListModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListModuleBuilder.swift; sourceTree = "<group>"; };
+		346F7E9926496F4600AC9A30 /* RestaurantsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewController.swift; sourceTree = "<group>"; };
+		346F7E9D26496F5700AC9A30 /* RestaurantsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListPresenter.swift; sourceTree = "<group>"; };
+		346F7EC8264983F300AC9A30 /* SplitModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitModuleBuilder.swift; sourceTree = "<group>"; };
+		346F7ECF2649882900AC9A30 /* OrdersModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModuleBuilder.swift; sourceTree = "<group>"; };
+		346F7ED52649886400AC9A30 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		346F7ED92649887E00AC9A30 /* OrdersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersPresenter.swift; sourceTree = "<group>"; };
+		346F7EE4264988D500AC9A30 /* OrderModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModuleBuilder.swift; sourceTree = "<group>"; };
+		346F7EEA26498A7B00AC9A30 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		346F7EEE26498A9000AC9A30 /* OrderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPresenter.swift; sourceTree = "<group>"; };
+		346F7EFD2649BA6000AC9A30 /* OrderPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPreviewCell.swift; sourceTree = "<group>"; };
+		346F7EFE2649BA6000AC9A30 /* OrderPreviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderPreviewCell.xib; sourceTree = "<group>"; };
+		346F7F052649C74800AC9A30 /* SplitViewUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewUpdater.swift; sourceTree = "<group>"; };
+		347D6F412669B2D60032AB4F /* OrderInfoBottomPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoBottomPanel.swift; sourceTree = "<group>"; };
 		4276A4CA41B108E8576702E9 /* Pods_QFree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QFree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		428DF78EB99EC92C9351C54B /* Pods-QFreeStuff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QFreeStuff.release.xcconfig"; path = "Target Support Files/Pods-QFreeStuff/Pods-QFreeStuff.release.xcconfig"; sourceTree = "<group>"; };
 		9D5ED243257D016C006EF47E /* FirebaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
 		A5B42705DBC48C7900253926 /* Pods-QFree.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QFree.release.xcconfig"; path = "Target Support Files/Pods-QFree/Pods-QFree.release.xcconfig"; sourceTree = "<group>"; };
 		B7086555255AE6CA00665E2C /* RestaurantMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +262,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		346F7E302649667000AC9A30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76DE921A1522141D71C1E145 /* Pods_QFreeStuff.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -212,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				4276A4CA41B108E8576702E9 /* Pods_QFree.framework */,
+				18A97D92891732DB7F7E5A76 /* Pods_QFreeStuff.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -220,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				340F1A7825420773000A381D /* QFree */,
+				346F7E342649667000AC9A30 /* QFreeStuff */,
 				340F1A7725420773000A381D /* Products */,
 				682860BBB01170A36DA22FAD /* Pods */,
 				321D1BA44B347AAD6F3BBE95 /* Frameworks */,
@@ -230,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				340F1A7625420773000A381D /* QFree.app */,
+				346F7E332649667000AC9A30 /* QFreeStuff.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -400,11 +468,95 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		346F7E342649667000AC9A30 /* QFreeStuff */ = {
+			isa = PBXGroup;
+			children = (
+				346F7E9826496F2900AC9A30 /* RestaurantsListModule */,
+				346F7EC12649812900AC9A30 /* SplitModule */,
+				346F7ECE2649881600AC9A30 /* OrdersModule */,
+				346F7EE1264988C700AC9A30 /* OrderModule */,
+				346F7E8F26496E9600AC9A30 /* Supporting Files */,
+				346F7E432649667200AC9A30 /* Info.plist */,
+			);
+			path = QFreeStuff;
+			sourceTree = "<group>";
+		};
+		346F7E8F26496E9600AC9A30 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				346F7E352649667000AC9A30 /* AppDelegate.swift */,
+				346F7E372649667000AC9A30 /* SceneDelegate.swift */,
+				346F7E3E2649667200AC9A30 /* Assets.xcassets */,
+				346F7E402649667200AC9A30 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		346F7E9826496F2900AC9A30 /* RestaurantsListModule */ = {
+			isa = PBXGroup;
+			children = (
+				346F7E9226496EDB00AC9A30 /* RestaurantsListModuleBuilder.swift */,
+				346F7E9926496F4600AC9A30 /* RestaurantsListViewController.swift */,
+				346F7E9D26496F5700AC9A30 /* RestaurantsListPresenter.swift */,
+			);
+			path = RestaurantsListModule;
+			sourceTree = "<group>";
+		};
+		346F7EC12649812900AC9A30 /* SplitModule */ = {
+			isa = PBXGroup;
+			children = (
+				346F7EC8264983F300AC9A30 /* SplitModuleBuilder.swift */,
+				346F7F052649C74800AC9A30 /* SplitViewUpdater.swift */,
+			);
+			path = SplitModule;
+			sourceTree = "<group>";
+		};
+		346F7ECE2649881600AC9A30 /* OrdersModule */ = {
+			isa = PBXGroup;
+			children = (
+				346F7EFC2649BA3B00AC9A30 /* OrderPreviewCell */,
+				346F7ECF2649882900AC9A30 /* OrdersModuleBuilder.swift */,
+				346F7ED52649886400AC9A30 /* OrdersViewController.swift */,
+				346F7ED92649887E00AC9A30 /* OrdersPresenter.swift */,
+			);
+			path = OrdersModule;
+			sourceTree = "<group>";
+		};
+		346F7EE1264988C700AC9A30 /* OrderModule */ = {
+			isa = PBXGroup;
+			children = (
+				347D6F252669AC0C0032AB4F /* Views */,
+				346F7EE4264988D500AC9A30 /* OrderModuleBuilder.swift */,
+				346F7EEA26498A7B00AC9A30 /* OrderViewController.swift */,
+				346F7EEE26498A9000AC9A30 /* OrderPresenter.swift */,
+			);
+			path = OrderModule;
+			sourceTree = "<group>";
+		};
+		346F7EFC2649BA3B00AC9A30 /* OrderPreviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				346F7EFD2649BA6000AC9A30 /* OrderPreviewCell.swift */,
+				346F7EFE2649BA6000AC9A30 /* OrderPreviewCell.xib */,
+			);
+			path = OrderPreviewCell;
+			sourceTree = "<group>";
+		};
+		347D6F252669AC0C0032AB4F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				347D6F412669B2D60032AB4F /* OrderInfoBottomPanel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		682860BBB01170A36DA22FAD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				17239FE9A9A689730F68C06F /* Pods-QFree.debug.xcconfig */,
 				A5B42705DBC48C7900253926 /* Pods-QFree.release.xcconfig */,
+				0DFC77CD0AF3D6E958AEB73E /* Pods-QFreeStuff.debug.xcconfig */,
+				428DF78EB99EC92C9351C54B /* Pods-QFreeStuff.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -586,17 +738,39 @@
 			productReference = 340F1A7625420773000A381D /* QFree.app */;
 			productType = "com.apple.product-type.application";
 		};
+		346F7E322649667000AC9A30 /* QFreeStuff */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 346F7E462649667200AC9A30 /* Build configuration list for PBXNativeTarget "QFreeStuff" */;
+			buildPhases = (
+				05734E6E75B62A6543F9BCCB /* [CP] Check Pods Manifest.lock */,
+				346F7E2F2649667000AC9A30 /* Sources */,
+				346F7E302649667000AC9A30 /* Frameworks */,
+				346F7E312649667000AC9A30 /* Resources */,
+				0F9E8C6525F1EC77B9540A05 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QFreeStuff;
+			productName = QFreeStuff;
+			productReference = 346F7E332649667000AC9A30 /* QFreeStuff.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		340F1A6E25420772000A381D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					340F1A7525420773000A381D = {
 						CreatedOnToolsVersion = 12.0.1;
+					};
+					346F7E322649667000AC9A30 = {
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -614,6 +788,7 @@
 			projectRoot = "";
 			targets = (
 				340F1A7525420773000A381D /* QFree */,
+				346F7E322649667000AC9A30 /* QFreeStuff */,
 			);
 		};
 /* End PBXProject section */
@@ -629,9 +804,59 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		346F7E312649667000AC9A30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				346F7E422649667200AC9A30 /* LaunchScreen.storyboard in Resources */,
+				346F7E3F2649667200AC9A30 /* Assets.xcassets in Resources */,
+				346F7E62264968AD00AC9A30 /* GoogleService-Info.plist in Resources */,
+				346F7F002649BA6000AC9A30 /* OrderPreviewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		05734E6E75B62A6543F9BCCB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QFreeStuff-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0F9E8C6525F1EC77B9540A05 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QFreeStuff/Pods-QFreeStuff-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QFreeStuff/Pods-QFreeStuff-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QFreeStuff/Pods-QFreeStuff-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4EC5973BB065C75CEDE5CC93 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -767,6 +992,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		346F7E2F2649667000AC9A30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				346F7EB826497B2100AC9A30 /* RestaurantCell.swift in Sources */,
+				346F7EB52649755B00AC9A30 /* Reachability.swift in Sources */,
+				346F7E4F264966EC00AC9A30 /* Brandbook.swift in Sources */,
+				346F7EBE26497B5200AC9A30 /* UIView+addShadow.swift in Sources */,
+				346F7E9A26496F4600AC9A30 /* RestaurantsListViewController.swift in Sources */,
+				346F7EA3264971C500AC9A30 /* RestaurantModel.swift in Sources */,
+				346F7E552649676200AC9A30 /* UIColor+hex.swift in Sources */,
+				346F7EC9264983F300AC9A30 /* SplitModuleBuilder.swift in Sources */,
+				346F7F062649C74800AC9A30 /* SplitViewUpdater.swift in Sources */,
+				346F7EBB26497B4700AC9A30 /* CachedImageView.swift in Sources */,
+				346F7EE5264988D500AC9A30 /* OrderModuleBuilder.swift in Sources */,
+				346F7ED62649886400AC9A30 /* OrdersViewController.swift in Sources */,
+				346F7E362649667000AC9A30 /* AppDelegate.swift in Sources */,
+				346F7EAC2649753800AC9A30 /* OrderInfo.swift in Sources */,
+				346F7EDA2649887E00AC9A30 /* OrdersPresenter.swift in Sources */,
+				346F7ED02649882900AC9A30 /* OrdersModuleBuilder.swift in Sources */,
+				346F7E9E26496F5700AC9A30 /* RestaurantsListPresenter.swift in Sources */,
+				346F7E9326496EDB00AC9A30 /* RestaurantsListModuleBuilder.swift in Sources */,
+				347D6F2C2669AD820032AB4F /* BaseButton.swift in Sources */,
+				346F7EFF2649BA6000AC9A30 /* OrderPreviewCell.swift in Sources */,
+				346F7EA6264971CE00AC9A30 /* FirebaseHandler.swift in Sources */,
+				347D6F222669A8AB0032AB4F /* ProductTableViewCell.swift in Sources */,
+				346F7EEF26498A9000AC9A30 /* OrderPresenter.swift in Sources */,
+				346F7EB22649754600AC9A30 /* ProductModel.swift in Sources */,
+				346F7EA92649753300AC9A30 /* OrderStatus.swift in Sources */,
+				346F7EAF2649753E00AC9A30 /* NetworkingError.swift in Sources */,
+				346F7E382649667000AC9A30 /* SceneDelegate.swift in Sources */,
+				346F7EEB26498A7B00AC9A30 /* OrderViewController.swift in Sources */,
+				347D6F422669B2D60032AB4F /* OrderInfoBottomPanel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -774,6 +1035,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				340F1A8525420775000A381D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		346F7E402649667200AC9A30 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				346F7E412649667200AC9A30 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -916,7 +1185,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -937,7 +1206,49 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MS.QFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		346F7E442649667200AC9A30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DFC77CD0AF3D6E958AEB73E /* Pods-QFreeStuff.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9ZB2A7WP7E;
+				INFOPLIST_FILE = QFreeStuff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MS.QFreeStuff;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		346F7E452649667200AC9A30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 428DF78EB99EC92C9351C54B /* Pods-QFreeStuff.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9ZB2A7WP7E;
+				INFOPLIST_FILE = QFreeStuff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MS.QFreeStuff;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -958,6 +1269,15 @@
 			buildConfigurations = (
 				340F1A8B25420775000A381D /* Debug */,
 				340F1A8C25420775000A381D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		346F7E462649667200AC9A30 /* Build configuration list for PBXNativeTarget "QFreeStuff" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				346F7E442649667200AC9A30 /* Debug */,
+				346F7E452649667200AC9A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

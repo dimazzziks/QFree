@@ -11,18 +11,18 @@ import Firebase
 class FirebaseHandler {
     private var reachabilityManager: ReachabilityManagerProtocol!
     private var ref: DatabaseReference!
-    private var user: String!
+    private var user: String?
 
     static var shared: FirebaseHandler = {
         let firebaseHandler = FirebaseHandler()
         firebaseHandler.reachabilityManager = ReachabilityManager()
         firebaseHandler.ref = Database.database().reference()
-        firebaseHandler.user = Auth.auth().currentUser!.email!.replacingOccurrences(of: ".", with: "")
+        firebaseHandler.user = Auth.auth().currentUser?.email?.replacingOccurrences(of: ".", with: "")
         return firebaseHandler
     }()
 
     private init() { }
-    
+
     func getRestaurantsInfo(completion: @escaping (Result<[Restaurant], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
@@ -45,7 +45,7 @@ class FirebaseHandler {
             completion(.failure(.invalidResponse))
         }
     }
-    
+
     func getProductsByIDRestaurant(id: String, completion: @escaping (Result<[ProductInfo], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
@@ -65,7 +65,7 @@ class FirebaseHandler {
                     if product.restaurantID == id {
                         products.append(product)
                     }
-                    
+
                 }
             }
             completion(.success(products))
@@ -73,17 +73,22 @@ class FirebaseHandler {
             completion(.failure(.invalidResponse))
         }
     }
-    
+
     func getBasket(completion: @escaping (Result<[ProductInfo : Int], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
             return
         }
 
+        guard let user = user else {
+            completion(.failure(.invalidResponse))
+            return
+        }
+
         var basket: [ProductInfo : Int] = [ProductInfo : Int]()
-        self.ref.child("Users").child(self.user).child("basket").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("Users").child(user).child("basket").observeSingleEvent(of: .value, with: { (snapshot) in
             let data = snapshot.value as? [[String: AnyObject]]
-            
+
             if data != nil {
                 for i in data! {
                     let rawValues = i["category"] as! [String]
@@ -103,10 +108,15 @@ class FirebaseHandler {
             completion(.failure(.invalidResponse))
         }
     }
-    
+
     func postBasket(products: [ProductInfo : Int], completion: @escaping (NetworkingError?) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.noInternetConnection)
+            return
+        }
+
+        guard let user = user else {
+            completion(.invalidResponse)
             return
         }
 
@@ -121,10 +131,10 @@ class FirebaseHandler {
             item["category"] = product.category.map { $0.rawValue } as NSArray
             basket.append(item)
         }
-        self.ref.child("Users").child(self.user).child("basket").setValue(basket)
+        self.ref.child("Users").child(user).child("basket").setValue(basket)
         completion(nil)
     }
-    
+
     func getCurrentOrderStatus(completion: @escaping (Result<OrderStatus, NetworkingError>) ->()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
@@ -140,13 +150,18 @@ class FirebaseHandler {
         completion(.success(currentOrderInfo))
     }
 
-    func getOrders(restaurants : [Restaurant], completion: @escaping (Result<[OrderInfo], NetworkingError>) -> ()) {
+    func getOrders(completion: @escaping (Result<[OrderInfo], NetworkingError>) -> ()) {
         guard reachabilityManager.isConnected else {
             completion(.failure(.noInternetConnection))
             return
         }
 
-        let query = ref.child("Users").child(self.user).child("orders")
+        guard let user = user else {
+            completion(.failure(.invalidResponse))
+            return
+        }
+
+        let query = ref.child("Users").child(user).child("orders")
         var ordersInfo: [OrderInfo] = []
         query.observeSingleEvent(of: .value) { (snapshot) in
             if let data = snapshot.value as? [String: AnyObject] {
@@ -167,7 +182,7 @@ class FirebaseHandler {
                         let amount = Int(product["amount"] as! String)!
                         products.append((productInfo, amount))
                     }
-                    
+
                     let orderInfo = orders["info"] as! [String: AnyObject]
                     ordersInfo.append(
                         OrderInfo(
@@ -178,7 +193,7 @@ class FirebaseHandler {
                             products: products,
                             number: orderInfo["number"] as! String,
                             status: Int(orderInfo["ready"] as! String)!
-                            
+
                         )
                     )
                 }
@@ -193,8 +208,8 @@ class FirebaseHandler {
                     products: $0.products,
                     number: $0.number,
                     status: $0.status
-                    
-                    
+
+
                 )
             }
             completion(.success(formattedOrdersInfo))
@@ -212,6 +227,11 @@ class FirebaseHandler {
             return
         }
 
+        guard let user = user else {
+            completion(.invalidResponse)
+            return
+        }
+
         getBasket { result in
             switch result {
             case .success(let basket):
@@ -225,20 +245,20 @@ class FirebaseHandler {
                     item["amount"] = String(amount) as NSString
                     item["category"] = product.category.map { $0.rawValue } as NSArray
                     order.append(item)
-                    
+
                 }
-                
+
                 let index = Int(Array(basket.keys)[0].restaurantID)
-                
+
                 let imageURL = restaurants[index!].image
                 let restaurantName = restaurants[index!].name
                 let calendar = Calendar.current
                 let readyDate = calendar.date(byAdding: .minute, value: 30, to: Date())
                 let readyDateStr = self.getTimestamp(date: readyDate!)
                 let isReady = "0"
-                
+
                 let hash = self.getTimestamp(date:  Date())
-                
+
                 var info: [NSString : NSObject] = [NSString : NSObject]()
                 info["image"] = imageURL as NSString
                 info["name"] = restaurantName as NSString
@@ -246,15 +266,70 @@ class FirebaseHandler {
                 info["readyDate"] = readyDateStr as NSString
                 info["number"] = String(number) as NSString
                 info["ready"] = isReady as NSString
-                
-                self.ref.child("Users").child(self.user).child("orders").child(hash).child("products").setValue(order)
-                self.ref.child("Users").child(self.user).child("orders").child(hash).child("info").setValue(info)
-                self.ref.child("Users").child(self.user).child("basket").removeValue()
+
+                self.ref.child("Users").child(user).child("orders").child(hash).child("products").setValue(order)
+                self.ref.child("Users").child(user).child("orders").child(hash).child("info").setValue(info)
+                self.ref.child("Users").child(user).child("basket").removeValue()
                 completion(nil)
             case .failure(let error):
                 completion(error)
                 return
             }
+        }
+    }
+
+    func loadAllOrders(by restaurantName: String, completion: @escaping (Result<[OrderInfo], NetworkingError>) ->()) {
+
+
+
+        let query = ref.child("Users") //.child(user).child("orders")
+        var ordersInfo: [OrderInfo] = []
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            if let data = snapshot.value as? [String: AnyObject] {
+                for (user, elem) in data {
+                    if let newElem = elem as? [String: AnyObject] {
+                        if let orders = newElem["orders"] as? [String: AnyObject] {
+                            for order in orders.values {
+                                if let newOrder = order as? [String: AnyObject] {
+                                    if let info = newOrder["info"] as? [String: AnyObject] {
+                                        if info["name"] as! String == restaurantName {
+                                            
+                                            
+                                            var products = [(productInfo: ProductInfo, amount: Int)]()
+                                            let responseProducts = newOrder["products"] as! [[String: AnyObject]]
+                                            for product in responseProducts {
+                                                let productInfo = ProductInfo(
+                                                    name: product["name"] as! String,
+                                                    imageLink: product["image"] as! String,
+                                                    price: Int(product["price"] as! String)!,
+                                                    category: (product["category"] as! [String]).map {
+                                                        Category(rawValue: $0)!
+                                                    },
+                                                    restaurantID: product["restaurantID"] as! String
+                                                )
+                                                let amount = Int(product["amount"] as! String)!
+                                                products.append((productInfo, amount))
+                                            }
+                                            
+                                            ordersInfo.append(OrderInfo(
+                                                imageURL: info["image"] as! String,
+                                                restaurantName: info["name"] as! String,
+                                                date: info["date"] as! String,
+                                                readyDate: info["readyDate"] as! String,
+                                                products: products,
+                                                number: info["number"] as! String,
+                                                status: Int(info["ready"] as! String)!
+                                            )
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            completion(.success(ordersInfo))
         }
     }
 
